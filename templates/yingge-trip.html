@@ -3,344 +3,271 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>鶯歌一日遊行程</title>
+<title>鶯歌一日遊</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;700;900&display=swap');
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body {
-    font-family: "Noto Sans TC", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-    background: #FFF8E1;
+    font-family: "Zen Maru Gothic", "Noto Sans TC", sans-serif;
+    background: #FFF9EC;
     min-height: 100vh;
-    color: #5D4037;
-    position: relative;
+    color: #6B4C2A;
     overflow-x: hidden;
   }
 
-  /* Pompompurin paw print background pattern */
-  body::before {
-    content: '';
-    position: fixed;
-    inset: 0;
-    background-image:
-      radial-gradient(circle 6px at 30px 80px, rgba(196,155,65,0.07) 100%, transparent 100%),
-      radial-gradient(circle 3px at 24px 72px, rgba(196,155,65,0.07) 100%, transparent 100%),
-      radial-gradient(circle 3px at 36px 72px, rgba(196,155,65,0.07) 100%, transparent 100%),
-      radial-gradient(circle 3px at 21px 82px, rgba(196,155,65,0.07) 100%, transparent 100%),
-      radial-gradient(circle 3px at 39px 82px, rgba(196,155,65,0.07) 100%, transparent 100%),
-      radial-gradient(circle 6px at 170px 200px, rgba(196,155,65,0.06) 100%, transparent 100%),
-      radial-gradient(circle 3px at 164px 192px, rgba(196,155,65,0.06) 100%, transparent 100%),
-      radial-gradient(circle 3px at 176px 192px, rgba(196,155,65,0.06) 100%, transparent 100%),
-      radial-gradient(circle 3px at 161px 202px, rgba(196,155,65,0.06) 100%, transparent 100%),
-      radial-gradient(circle 3px at 179px 202px, rgba(196,155,65,0.06) 100%, transparent 100%);
-    background-size: 200px 280px;
-    pointer-events: none;
-    z-index: 0;
-  }
-
-  /* ===== POMPOMPURIN CSS CHARACTER ===== */
-  .pompom {
-    position: relative;
-    width: 100px;
-    height: 95px;
-    margin: 0 auto 10px;
-  }
-  /* Face */
-  .pompom .face {
-    position: absolute;
-    width: 90px; height: 72px;
-    background: #F5D36E;
-    border-radius: 50%;
-    top: 23px; left: 5px;
-    border: 2.5px solid #C49B41;
-    z-index: 2;
-  }
-  /* Beret */
-  .pompom .beret {
-    position: absolute;
-    width: 70px; height: 22px;
-    background: #C49B41;
-    border-radius: 50% 50% 40% 40%;
-    top: 8px; left: 15px;
-    z-index: 3;
-    border: 2px solid #A07830;
-  }
-  .pompom .beret::after {
-    content: '';
-    position: absolute;
-    width: 56px; height: 6px;
-    background: #A07830;
-    border-radius: 0 0 50% 50%;
-    bottom: -1px; left: 7px;
-  }
-  /* Ears */
-  .pompom .ear-l, .pompom .ear-r {
-    position: absolute;
-    width: 26px; height: 18px;
-    background: #C49B41;
-    border-radius: 50% 50% 50% 50%;
-    top: 20px;
-    z-index: 1;
-    border: 2px solid #A07830;
-  }
-  .pompom .ear-l { left: 0; transform: rotate(-20deg); }
-  .pompom .ear-r { right: 0; transform: rotate(20deg); }
-  /* Eyes */
-  .pompom .eye-l, .pompom .eye-r {
-    position: absolute;
-    width: 7px; height: 8px;
-    background: #3E2723;
-    border-radius: 50%;
-    top: 48px;
-    z-index: 4;
-  }
-  .pompom .eye-l { left: 28px; }
-  .pompom .eye-r { right: 28px; }
-  /* Nose */
-  .pompom .nose {
-    position: absolute;
-    width: 8px; height: 6px;
-    background: #3E2723;
-    border-radius: 50%;
-    top: 58px; left: 46px;
-    z-index: 4;
-  }
-  /* Mouth */
-  .pompom .mouth {
-    position: absolute;
-    width: 18px; height: 8px;
-    border-bottom: 2.5px solid #3E2723;
-    border-radius: 0 0 50% 50%;
-    top: 62px; left: 41px;
-    z-index: 4;
-  }
-  /* Blush */
-  .pompom .blush-l, .pompom .blush-r {
-    position: absolute;
-    width: 14px; height: 8px;
-    background: rgba(255,138,128,0.35);
-    border-radius: 50%;
-    top: 60px;
-    z-index: 3;
-  }
-  .pompom .blush-l { left: 18px; }
-  .pompom .blush-r { right: 18px; }
-
-  /* Floating pompom mini (decorative) */
-  .pompom-mini {
-    display: inline-block;
-    width: 28px; height: 24px;
-    background: #F5D36E;
-    border-radius: 50%;
-    border: 1.5px solid #C49B41;
-    position: relative;
-    vertical-align: middle;
-    margin: 0 2px;
-  }
-  .pompom-mini::before, .pompom-mini::after {
-    content: '';
-    position: absolute;
-    width: 3px; height: 3px;
-    background: #3E2723;
-    border-radius: 50%;
-    top: 10px;
-  }
-  .pompom-mini::before { left: 7px; }
-  .pompom-mini::after { right: 7px; }
-
-  /* ===== HERO ===== */
+  /* ===== HERO BANNER ===== */
   .hero {
-    background: linear-gradient(135deg, #F5D36E 0%, #FFECB3 50%, #F5D36E 100%);
-    color: #5D4037;
-    text-align: center;
-    padding: 36px 20px 50px;
     position: relative;
+    background: linear-gradient(180deg, #FFECB3 0%, #FFE082 40%, #81C784 70%, #66BB6A 100%);
+    text-align: center;
+    padding: 30px 20px 80px;
     overflow: hidden;
-    z-index: 1;
   }
-  .hero::before {
+  /* clouds */
+  .cloud {
+    position: absolute;
+    background: rgba(255,255,255,0.7);
+    border-radius: 50px;
+    height: 30px;
+  }
+  .cloud::before, .cloud::after {
     content: '';
     position: absolute;
-    top: -30px; right: -30px;
-    width: 120px; height: 120px;
-    background: rgba(255,255,255,0.2);
+    background: rgba(255,255,255,0.7);
     border-radius: 50%;
   }
+  .cloud:nth-child(1) { width: 90px; top: 15px; left: 8%; }
+  .cloud:nth-child(1)::before { width: 36px; height: 36px; top: -18px; left: 14px; }
+  .cloud:nth-child(1)::after { width: 28px; height: 28px; top: -12px; left: 44px; }
+  .cloud:nth-child(2) { width: 70px; top: 30px; right: 12%; height: 24px; }
+  .cloud:nth-child(2)::before { width: 28px; height: 28px; top: -14px; left: 10px; }
+  .cloud:nth-child(2)::after { width: 22px; height: 22px; top: -10px; left: 34px; }
+  .cloud:nth-child(3) { width: 55px; top: 8px; left: 45%; height: 20px; }
+  .cloud:nth-child(3)::before { width: 24px; height: 24px; top: -12px; left: 8px; }
+  .cloud:nth-child(3)::after { width: 18px; height: 18px; top: -8px; left: 28px; }
+
+  /* pompom images */
+  .hero-pompom {
+    position: relative;
+    z-index: 2;
+    margin-bottom: 10px;
+  }
+  .hero-pompom img {
+    height: 140px;
+    filter: drop-shadow(2px 4px 6px rgba(0,0,0,0.1));
+    animation: pompomBounce 3s ease-in-out infinite;
+  }
+  @keyframes pompomBounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+  }
+
+  .hero h1 {
+    position: relative; z-index: 2;
+    font-size: 2rem; font-weight: 900;
+    color: #5D4037;
+    letter-spacing: 3px;
+    text-shadow: 0 2px 0 rgba(255,255,255,0.6);
+    margin-bottom: 4px;
+  }
+  .hero .subtitle {
+    position: relative; z-index: 2;
+    font-size: 0.9rem; color: #795548;
+    font-weight: 500;
+  }
+  .hero .date-badge {
+    position: relative; z-index: 2;
+    display: inline-block; margin-top: 10px;
+    padding: 5px 20px;
+    background: rgba(255,255,255,0.65);
+    border: 2px solid #F5D36E;
+    border-radius: 30px;
+    font-size: 0.82rem; color: #8D6E63; font-weight: 700;
+    backdrop-filter: blur(4px);
+  }
+  /* ground wave */
   .hero::after {
     content: '';
     position: absolute;
-    bottom: -2px;
-    left: 0; right: 0;
-    height: 36px;
-    background: #FFF8E1;
+    bottom: -2px; left: 0; right: 0;
+    height: 50px;
+    background: #FFF9EC;
     clip-path: ellipse(55% 100% at 50% 100%);
+    z-index: 3;
   }
-  .hero h1 {
-    font-size: 2rem;
-    font-weight: 900;
-    letter-spacing: 4px;
-    margin-bottom: 4px;
-    text-shadow: 1px 1px 0 rgba(255,255,255,0.5);
-  }
-  .hero .subtitle {
-    font-size: 0.95rem;
-    color: #795548;
-  }
-  .hero .date-badge {
-    display: inline-block;
-    margin-top: 12px;
-    padding: 5px 18px;
-    background: rgba(255,255,255,0.5);
-    border: 1.5px solid #C49B41;
-    border-radius: 20px;
-    font-size: 0.82rem;
-    color: #795548;
-    font-weight: 600;
+  /* little flowers on ground */
+  .ground-deco {
+    position: absolute;
+    bottom: 40px; left: 0; right: 0;
+    z-index: 2;
+    height: 30px;
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-end;
+    padding: 0 20px;
+    opacity: 0.6;
+    font-size: 1rem;
   }
 
-  .container { max-width: 700px; margin: 0 auto; padding: 24px 20px 60px; position: relative; z-index: 1; }
+  /* ===== CONTAINER ===== */
+  .container { max-width: 680px; margin: 0 auto; padding: 20px 16px 50px; }
 
   /* ===== TIMELINE ===== */
-  .timeline { position: relative; padding-left: 38px; }
+  .timeline { position: relative; padding-left: 40px; }
   .timeline::before {
     content: '';
     position: absolute;
-    left: 15px;
-    top: 0; bottom: 0;
-    width: 3px;
-    background: repeating-linear-gradient(to bottom, #F5D36E 0px, #F5D36E 8px, #FFECB3 8px, #FFECB3 14px);
-    border-radius: 2px;
+    left: 16px; top: 0; bottom: 0;
+    width: 4px;
+    background: repeating-linear-gradient(to bottom, #FFD54F 0px, #FFD54F 10px, transparent 10px, transparent 16px);
+    border-radius: 4px;
   }
 
-  .stop {
-    position: relative;
-    margin-bottom: 12px;
-    animation: fadeUp 0.5s ease both;
-  }
-  .stop:nth-child(1) { animation-delay: 0.1s; }
-  .stop:nth-child(2) { animation-delay: 0.2s; }
-  .stop:nth-child(3) { animation-delay: 0.3s; }
-  .stop:nth-child(4) { animation-delay: 0.4s; }
-  .stop:nth-child(5) { animation-delay: 0.5s; }
-  .stop:nth-child(6) { animation-delay: 0.6s; }
-  .stop:nth-child(7) { animation-delay: 0.7s; }
-
+  .stop { position: relative; margin-bottom: 14px; animation: fadeUp 0.5s ease both; }
+  .stop:nth-child(1) { animation-delay: 0.05s; }
+  .stop:nth-child(2) { animation-delay: 0.1s; }
+  .stop:nth-child(3) { animation-delay: 0.15s; }
+  .stop:nth-child(4) { animation-delay: 0.2s; }
+  .stop:nth-child(5) { animation-delay: 0.25s; }
+  .stop:nth-child(6) { animation-delay: 0.3s; }
+  .stop:nth-child(7) { animation-delay: 0.35s; }
+  .stop:nth-child(8) { animation-delay: 0.4s; }
+  .stop:nth-child(9) { animation-delay: 0.45s; }
+  .stop:nth-child(10) { animation-delay: 0.5s; }
+  .stop:nth-child(11) { animation-delay: 0.55s; }
+  .stop:nth-child(12) { animation-delay: 0.6s; }
+  .stop:nth-child(13) { animation-delay: 0.65s; }
+  .stop:nth-child(14) { animation-delay: 0.7s; }
+  .stop:nth-child(15) { animation-delay: 0.75s; }
+  .stop:nth-child(16) { animation-delay: 0.8s; }
+  .stop:nth-child(17) { animation-delay: 0.85s; }
+  .stop:nth-child(18) { animation-delay: 0.9s; }
+  .stop:nth-child(19) { animation-delay: 0.95s; }
+  .stop:nth-child(20) { animation-delay: 1.0s; }
   @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(16px); }
+    from { opacity: 0; transform: translateY(14px); }
     to { opacity: 1; transform: translateY(0); }
   }
 
-  /* Paw print dot */
+  /* paw dot */
   .stop .dot {
     position: absolute;
-    left: -30px; top: 22px;
-    width: 18px; height: 18px;
-    background: #F5D36E;
-    border-radius: 50%;
-    border: 2.5px solid #C49B41;
+    left: -31px; top: 20px;
+    width: 22px; height: 22px;
     z-index: 1;
   }
-  .stop .dot::before, .stop .dot::after {
-    content: '';
-    position: absolute;
-    width: 5px; height: 5px;
-    background: #C49B41;
-    border-radius: 50%;
-    top: -4px;
+  .stop .dot img {
+    width: 100%; height: 100%;
+    object-fit: contain;
   }
-  .stop .dot::before { left: 1px; }
-  .stop .dot::after { right: 1px; }
 
   .stop.transport .dot {
-    width: 14px; height: 14px;
-    left: -28px; top: 14px;
-    background: #FFECB3;
-    border: 2px solid #C49B41;
+    width: 16px; height: 16px;
+    left: -28px; top: 12px;
   }
-  .stop.transport .dot::before,
-  .stop.transport .dot::after { display: none; }
 
   /* ===== CARDS ===== */
   .card {
     background: white;
-    border-radius: 18px;
+    border-radius: 20px;
     padding: 18px 20px;
-    border: 2px solid #F5D36E;
-    box-shadow: 0 3px 12px rgba(196,155,65,0.1);
+    border: 2.5px solid #FFD54F;
+    box-shadow: 0 4px 16px rgba(255,193,7,0.12), 0 1px 3px rgba(0,0,0,0.04);
     transition: transform 0.2s, box-shadow 0.2s;
     position: relative;
   }
   .card:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(196,155,65,0.18);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 24px rgba(255,193,7,0.18), 0 2px 6px rgba(0,0,0,0.06);
   }
   .card .time {
-    font-size: 0.76rem;
-    color: #C49B41;
-    font-weight: 700;
-    letter-spacing: 1px;
-    margin-bottom: 4px;
+    font-size: 0.74rem; color: #F9A825;
+    font-weight: 700; letter-spacing: 1px; margin-bottom: 3px;
   }
   .card .name {
-    font-size: 1.15rem;
-    font-weight: 700;
-    margin-bottom: 6px;
-    color: #4E342E;
-    display: flex;
-    align-items: center;
-    gap: 8px;
+    font-size: 1.12rem; font-weight: 900;
+    margin-bottom: 6px; color: #4E342E;
+    display: flex; align-items: center; gap: 8px;
+    line-height: 1.4;
   }
-  .card .name .icon { font-size: 1.2rem; }
+  .card .name .icon { font-size: 1.15rem; }
   .card .desc {
-    font-size: 0.86rem;
-    color: #795548;
-    line-height: 1.65;
+    font-size: 0.84rem; color: #795548; line-height: 1.7;
   }
   .card .tags {
     margin-top: 10px;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px;
+    display: flex; flex-wrap: wrap; gap: 6px;
   }
   .card .tag {
-    background: #FFF8E1;
-    color: #C49B41;
-    padding: 3px 10px;
-    border-radius: 12px;
-    font-size: 0.73rem;
-    font-weight: 600;
-    border: 1px solid #F5D36E;
+    background: #FFFDE7; color: #F9A825;
+    padding: 3px 10px; border-radius: 20px;
+    font-size: 0.72rem; font-weight: 700;
+    border: 1.5px solid #FFD54F;
+  }
+  .card .tag.meal {
+    background: #FFF3E0; color: #E65100;
+    border-color: #FFAB40;
   }
 
-  /* Transport card */
+  /* card corner pompom */
+  .card .corner-img {
+    position: absolute;
+    right: -8px; top: -14px;
+    width: 36px; height: 36px;
+    filter: drop-shadow(1px 2px 2px rgba(0,0,0,0.08));
+    pointer-events: none;
+  }
+
+  /* Transport */
   .transport .card {
-    background: linear-gradient(90deg, #FFFDE7, #FFF8E1);
+    background: linear-gradient(90deg, #FFFDE7, #FFF9EC);
     padding: 10px 16px;
-    border: 1.5px dashed #F5D36E;
+    border: 2px dashed #FFD54F;
     box-shadow: none;
+    border-radius: 16px;
   }
   .transport .card:hover { transform: none; box-shadow: none; }
   .transport .card .name {
-    font-size: 0.88rem;
-    font-weight: 600;
-    color: #A07830;
-    margin-bottom: 0;
+    font-size: 0.85rem; font-weight: 700;
+    color: #A1887F; margin-bottom: 0;
+  }
+
+  /* Section divider */
+  .section-label {
+    text-align: center;
+    margin: 8px 0 8px -40px;
+    padding: 6px 0;
+  }
+  .section-label span {
+    background: linear-gradient(135deg, #FFD54F, #FFCA28);
+    color: #5D4037;
+    padding: 5px 18px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 900;
+    letter-spacing: 1px;
+    box-shadow: 0 2px 8px rgba(255,193,7,0.2);
   }
 
   /* ===== SUMMARY ===== */
   .summary {
-    margin-top: 32px;
+    margin-top: 30px;
     background: white;
-    border-radius: 18px;
+    border-radius: 24px;
     padding: 22px;
-    border: 2px solid #F5D36E;
-    box-shadow: 0 3px 12px rgba(196,155,65,0.1);
+    border: 2.5px solid #FFD54F;
+    box-shadow: 0 4px 16px rgba(255,193,7,0.12);
     position: relative;
   }
+  .summary .pompom-corner {
+    position: absolute;
+    right: 12px; top: -24px;
+    width: 48px; height: 48px;
+  }
   .summary h3 {
-    font-size: 1rem;
-    color: #C49B41;
-    margin-bottom: 14px;
-    font-weight: 700;
+    font-size: 1rem; color: #F9A825;
+    margin-bottom: 14px; font-weight: 900;
   }
   .summary-grid {
     display: grid;
@@ -349,72 +276,78 @@
   }
   .summary-item {
     background: #FFFDE7;
-    border-radius: 14px;
+    border-radius: 16px;
     padding: 14px;
     text-align: center;
-    border: 1.5px solid #F5D36E;
+    border: 2px solid #FFE082;
   }
-  .summary-item .label { font-size: 0.72rem; color: #A07830; margin-bottom: 3px; }
-  .summary-item .value { font-size: 1.05rem; font-weight: 700; color: #5D4037; }
+  .summary-item .label { font-size: 0.72rem; color: #A1887F; margin-bottom: 3px; font-weight: 500; }
+  .summary-item .value { font-size: 1.05rem; font-weight: 900; color: #5D4037; }
 
   /* ===== FOOTER ===== */
   .footer {
     text-align: center;
-    margin-top: 36px;
-    font-size: 0.78rem;
-    color: #C49B41;
+    margin-top: 30px;
+    padding: 16px;
+  }
+  .footer img {
+    height: 50px;
+    opacity: 0.7;
+    margin-bottom: 6px;
+  }
+  .footer p {
+    font-size: 0.75rem;
+    color: #BCAAA4;
+    font-weight: 500;
   }
 
-  /* Floating paw decorations */
-  .deco-paw {
+  /* floating deco */
+  .float-deco {
     position: fixed;
-    opacity: 0.06;
-    font-size: 2.5rem;
-    z-index: 0;
     pointer-events: none;
+    z-index: 0;
+    opacity: 0.08;
   }
-  .deco-paw:nth-child(1) { top: 15%; right: 8%; transform: rotate(25deg); }
-  .deco-paw:nth-child(2) { top: 40%; left: 5%; transform: rotate(-15deg); font-size: 2rem; }
-  .deco-paw:nth-child(3) { top: 65%; right: 12%; transform: rotate(40deg); font-size: 1.8rem; }
-  .deco-paw:nth-child(4) { top: 85%; left: 10%; transform: rotate(-30deg); font-size: 2.2rem; }
+  .float-deco img { width: 100%; }
+  .float-deco:nth-child(1) { width: 80px; top: 20%; right: 2%; }
+  .float-deco:nth-child(2) { width: 60px; top: 45%; left: 2%; }
+  .float-deco:nth-child(3) { width: 70px; top: 70%; right: 5%; }
 </style>
 </head>
 <body>
 
-<div class="deco-paw">🐾</div>
-<div class="deco-paw">🐾</div>
-<div class="deco-paw">🐾</div>
-<div class="deco-paw">🐾</div>
+<!-- floating pompom deco -->
+<div class="float-deco"><img src="https://www.pngall.com/wp-content/uploads/15/Pompompurin-PNG-Photos.png" alt=""></div>
+<div class="float-deco"><img src="https://www.pngall.com/wp-content/uploads/15/Pompompurin-Transparent.png" alt=""></div>
+<div class="float-deco"><img src="https://www.pngall.com/wp-content/uploads/15/Pompompurin-PNG-Photo.png" alt=""></div>
 
 <div class="hero">
-  <div class="pompom">
-    <div class="ear-l"></div>
-    <div class="ear-r"></div>
-    <div class="beret"></div>
-    <div class="face"></div>
-    <div class="eye-l"></div>
-    <div class="eye-r"></div>
-    <div class="nose"></div>
-    <div class="mouth"></div>
-    <div class="blush-l"></div>
-    <div class="blush-r"></div>
+  <div class="cloud"></div>
+  <div class="cloud"></div>
+  <div class="cloud"></div>
+
+  <div class="hero-pompom">
+    <img src="https://www.pngall.com/wp-content/uploads/15/Pompompurin-PNG-Image.png" alt="Pompompurin">
   </div>
   <h1>鶯歌一日遊</h1>
-  <div class="subtitle">陶瓷之鄉 ‧ 老街漫步 ‧ 一起出發吧！</div>
+  <div class="subtitle">~ 布丁狗陪你出去玩！~</div>
   <div class="date-badge">🐾 2026 春季旅行 🐾</div>
+
+  <div class="ground-deco">
+    <span>🌸</span><span>🌿</span><span>🌼</span><span>🍀</span><span>🌸</span><span>🌿</span><span>🌼</span><span>🍀</span><span>🌸</span>
+  </div>
 </div>
 
 <div class="container">
-
   <div class="timeline">
 
-    <!-- 1. 板橋出發 → 鶯歌 -->
+    <!-- 1. 板橋→鶯歌 -->
     <div class="stop">
-      <div class="dot"></div>
+      <div class="dot"><img src="https://www.pngall.com/wp-content/uploads/15/Pompompurin-PNG-Photos.png" alt="🐾"></div>
       <div class="card">
         <div class="time">09:33 — 09:47</div>
         <div class="name"><span class="icon">🚆</span> 板橋 → 鶯歌火車站</div>
-        <div class="desc">搭乘區間快 4013（往北湖），板橋站 09:33 發車，經 2 站、14 分鐘抵達鶯歌站。從文化路出口出站即可開始行程。</div>
+        <div class="desc">搭乘區間快 4013（往北湖），板橋站 09:33 發車，經 2 站、14 分鐘抵達鶯歌站。從文化路出口出站。</div>
         <div class="tags">
           <span class="tag">區間快 4013</span>
           <span class="tag">14 分鐘</span>
@@ -423,74 +356,247 @@
       </div>
     </div>
 
-    <!-- 步行到阿婆壽司 -->
     <div class="stop transport">
-      <div class="dot"></div>
+      <div class="dot"><img src="https://www.pngall.com/wp-content/uploads/15/Pompompurin-PNG-Photos.png" alt="🐾"></div>
       <div class="card">
-        <div class="name">🐾 步行約 5-8 分鐘（約 450 公尺）→ 往中正一路方向</div>
+        <div class="name">🐾 步行約 3 分鐘 → 信義街</div>
       </div>
     </div>
 
-    <!-- 2. 阿婆壽司 -->
+    <!-- ===== 早餐 ===== -->
+    <div class="section-label"><span>🍳 早餐時光</span></div>
+
+    <!-- 2. 三合號 -->
     <div class="stop">
-      <div class="dot"></div>
+      <div class="dot"><img src="https://www.pngall.com/wp-content/uploads/15/Pompompurin-PNG-Photos.png" alt="🐾"></div>
       <div class="card">
-        <div class="time">09:55 — 10:30</div>
-        <div class="name"><span class="icon">🍣</span> 阿婆壽司</div>
-        <div class="desc">鶯歌在地超過 40 年的老字號，24 小時營業。銅板價即可享用台式壽司捲、茶碗蒸、關東煮、味噌湯等經典小吃。</div>
+        <img class="corner-img" src="https://www.pngall.com/wp-content/uploads/15/Pompompurin-Transparent.png" alt="">
+        <div class="time">09:50 — 10:30</div>
+        <div class="name"><span class="icon">🏠</span> 三合號 SUMMER HOUSE</div>
+        <div class="desc">藏在市場旁巷弄裡的老宅早午餐，復古懷舊風格超好拍。招牌「六合滷呷粿」淋上古早味滷汁，必點！蘿蔔糕加蛋也很推。</div>
         <div class="tags">
-          <span class="tag">早餐</span>
-          <span class="tag">排隊名店</span>
+          <span class="tag meal">早餐</span>
+          <span class="tag">老宅風格</span>
           <span class="tag">銅板美食</span>
-          <span class="tag">24H 營業</span>
+          <span class="tag">信義街 62 號</span>
         </div>
       </div>
     </div>
 
-    <!-- 步行到老街 -->
     <div class="stop transport">
-      <div class="dot"></div>
+      <div class="dot"><img src="https://www.pngall.com/wp-content/uploads/15/Pompompurin-PNG-Photos.png" alt="🐾"></div>
       <div class="card">
-        <div class="name">🐾 步行約 8-10 分鐘（約 600 公尺）→ 沿尖山埔路進入老街</div>
+        <div class="name">🐾 步行約 10 分鐘 → 宏德宮方向上山</div>
       </div>
     </div>
 
-    <!-- 3. 鶯歌老街 -->
+    <!-- ===== 爬山 ===== -->
+    <div class="section-label"><span>🌿 小爬山</span></div>
+
+    <!-- 3. 鶯歌石步道 -->
     <div class="stop">
-      <div class="dot"></div>
+      <div class="dot"><img src="https://www.pngall.com/wp-content/uploads/15/Pompompurin-PNG-Photos.png" alt="🐾"></div>
       <div class="card">
-        <div class="time">10:40 — 12:00</div>
-        <div class="name"><span class="icon">🏮</span> 鶯歌老街（陶瓷老街）</div>
-        <div class="desc">全台最大的陶瓷藝品集散地，沿街可欣賞各式陶瓷創作、挑選伴手禮，也有手拉坯 DIY 體驗可以參加，適合慢慢逛。</div>
+        <div class="time">10:40 — 11:30</div>
+        <div class="name"><span class="icon">🥾</span> 鶯歌石步道 → 鶯歌石</div>
+        <div class="desc">從宏德宮牌樓沿紅磚階梯上行，約 8 分鐘即可抵達鶯歌石觀景台，欣賞三鶯地區景色。拍完照原路折返下山，輕裝即可。</div>
+        <div class="tags">
+          <span class="tag">輕鬆爬山</span>
+          <span class="tag">觀景台</span>
+          <span class="tag">約 30-40 分鐘</span>
+          <span class="tag">免費</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="stop transport">
+      <div class="dot"><img src="https://www.pngall.com/wp-content/uploads/15/Pompompurin-PNG-Photos.png" alt="🐾"></div>
+      <div class="card">
+        <div class="name">🐾 下山步行約 10 分鐘 → 文化路</div>
+      </div>
+    </div>
+
+    <!-- ===== 午餐 ===== -->
+    <div class="section-label"><span>🍜 午餐時光</span></div>
+
+    <!-- 4. 大媽牛肉麵 -->
+    <div class="stop">
+      <div class="dot"><img src="https://www.pngall.com/wp-content/uploads/15/Pompompurin-PNG-Photos.png" alt="🐾"></div>
+      <div class="card">
+        <img class="corner-img" src="https://www.pngall.com/wp-content/uploads/15/Pompompurin-PNG-Image.png" alt="">
+        <div class="time">11:50 — 12:40</div>
+        <div class="name"><span class="icon">🍖</span> 大媽牛肉麵 文化店</div>
+        <div class="desc">在地人口袋名單！牛肋條牛肉麵 $130 起，肉大塊又入味，搭配各式滷味小菜，CP 值超高。近火車站步行只要 2 分鐘。</div>
+        <div class="tags">
+          <span class="tag meal">午餐</span>
+          <span class="tag">平價美食</span>
+          <span class="tag">文化路 135 號</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="stop transport">
+      <div class="dot"><img src="https://www.pngall.com/wp-content/uploads/15/Pompompurin-PNG-Photos.png" alt="🐾"></div>
+      <div class="card">
+        <div class="name">🐾 步行約 6 分鐘 → 經捷運通廊至館前路</div>
+      </div>
+    </div>
+
+    <!-- ===== 下午藝文 ===== -->
+    <div class="section-label"><span>🎨 下午藝文行程</span></div>
+
+    <!-- 5. 新北市美術館 -->
+    <div class="stop">
+      <div class="dot"><img src="https://www.pngall.com/wp-content/uploads/15/Pompompurin-PNG-Photos.png" alt="🐾"></div>
+      <div class="card">
+        <div class="time">12:50 — 14:10</div>
+        <div class="name"><span class="icon">🖼️</span> 新北市美術館</div>
+        <div class="desc">2025 年開幕的藝術新地標，蘆葦叢中的現代建築。館內寬敞明亮、展品多元，戶外也有特色藝術裝置。週二至五開放到 17:30，週末到 18:00。</div>
+        <div class="tags">
+          <span class="tag">全票 $100</span>
+          <span class="tag">館前路 300 號</span>
+          <span class="tag">週一休館</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="stop transport">
+      <div class="dot"><img src="https://www.pngall.com/wp-content/uploads/15/Pompompurin-PNG-Photos.png" alt="🐾"></div>
+      <div class="card">
+        <div class="name">🐾 步行約 5 分鐘 → 美術館旁</div>
+      </div>
+    </div>
+
+    <!-- 6. 三鶯之心 -->
+    <div class="stop">
+      <div class="dot"><img src="https://www.pngall.com/wp-content/uploads/15/Pompompurin-PNG-Photos.png" alt="🐾"></div>
+      <div class="card">
+        <div class="time">14:15 — 14:40</div>
+        <div class="name"><span class="icon">📸</span> 三鶯之心空間藝術特區</div>
+        <div class="desc">巨型陶瓷裝置藝術園區，15 公尺高的「坯」被譽為台版羚羊谷，還有放大版杯盤可以拍出趣味照片。經過拍拍照就好！</div>
+        <div class="tags">
+          <span class="tag">免費</span>
+          <span class="tag">拍照打卡</span>
+          <span class="tag">24H 開放</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="stop transport">
+      <div class="dot"><img src="https://www.pngall.com/wp-content/uploads/15/Pompompurin-PNG-Photos.png" alt="🐾"></div>
+      <div class="card">
+        <div class="name">🐾 步行約 15 分鐘 → 返回老街區域</div>
+      </div>
+    </div>
+
+    <!-- ===== 老街 ===== -->
+    <div class="section-label"><span>🏮 老街漫步</span></div>
+
+    <!-- 7. 鶯歌陶瓷老街 -->
+    <div class="stop">
+      <div class="dot"><img src="https://www.pngall.com/wp-content/uploads/15/Pompompurin-PNG-Photos.png" alt="🐾"></div>
+      <div class="card">
+        <img class="corner-img" src="https://www.pngall.com/wp-content/uploads/15/Pompompurin-PNG-Photo.png" alt="">
+        <div class="time">14:55 — 15:40</div>
+        <div class="name"><span class="icon">🏮</span> 鶯歌陶瓷老街</div>
+        <div class="desc">全台最大的陶瓷藝品集散地，沿街欣賞各式陶瓷創作、挑選伴手禮，也有手拉坯 DIY 體驗。</div>
         <div class="tags">
           <span class="tag">逛街購物</span>
           <span class="tag">陶瓷藝術</span>
           <span class="tag">手拉坯 DIY</span>
-          <span class="tag">拍照打卡</span>
         </div>
       </div>
     </div>
 
-    <!-- 步行到陶館 -->
-    <div class="stop transport">
-      <div class="dot"></div>
+    <!-- 8. 光點美學館 -->
+    <div class="stop">
+      <div class="dot"><img src="https://www.pngall.com/wp-content/uploads/15/Pompompurin-PNG-Photos.png" alt="🐾"></div>
       <div class="card">
-        <div class="name">🐾 步行約 3 分鐘 → 老街內即可抵達</div>
+        <div class="time">15:40 — 16:10</div>
+        <div class="name"><span class="icon">✨</span> 鶯歌光點美學館</div>
+        <div class="desc">佔地約 1500 坪的綜合型藝術商場，匯集陶瓷、玻璃、文創品。一樓逛選品，也有展覽空間。</div>
+        <div class="tags">
+          <span class="tag">陶瓷街 18 號</span>
+          <span class="tag">免費參觀</span>
+          <span class="tag">至 19:00</span>
+        </div>
       </div>
     </div>
 
-    <!-- 4. 鶯歌老街陶館 -->
+    <!-- 9. 老街陶館 -->
     <div class="stop">
-      <div class="dot"></div>
+      <div class="dot"><img src="https://www.pngall.com/wp-content/uploads/15/Pompompurin-PNG-Photos.png" alt="🐾"></div>
       <div class="card">
-        <div class="time">12:05 — 13:00</div>
+        <div class="time">16:10 — 16:30</div>
         <div class="name"><span class="icon">🏛️</span> 鶯歌老街陶館</div>
-        <div class="desc">外觀醒目的 20 公尺大煙囪為地標。一樓為大型商品展示場，匯集陶瓷、寶石、木雕、玻璃藝術品；二樓設有展覽館及用餐休憩區，可在此稍作休息。</div>
+        <div class="desc">20 公尺大煙囪為地標，一樓匯集陶瓷、寶石、木雕、玻璃藝術品，二樓有展覽館及休憩區。</div>
         <div class="tags">
           <span class="tag">展覽館</span>
-          <span class="tag">藝術品</span>
           <span class="tag">地標煙囪</span>
-          <span class="tag">休憩用餐</span>
+          <span class="tag">藝術品</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== 下午茶 ===== -->
+    <div class="section-label"><span>☕ 下午茶</span></div>
+
+    <!-- 10. 星巴克 -->
+    <div class="stop">
+      <div class="dot"><img src="https://www.pngall.com/wp-content/uploads/15/Pompompurin-PNG-Photos.png" alt="🐾"></div>
+      <div class="card">
+        <div class="time">16:30 — 17:00</div>
+        <div class="name"><span class="icon">☕</span> 星巴克 鶯歌門市</div>
+        <div class="desc">紅磚古宅改建的特色門市，融合在地陶瓷元素，店內使用圓陶磚、窯燒陶片裝飾。逛完老街來杯咖啡休息。</div>
+        <div class="tags">
+          <span class="tag">特色門市</span>
+          <span class="tag">育英街 67 號</span>
+          <span class="tag">至 21:00</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== 晚餐 ===== -->
+    <div class="section-label"><span>🍚 晚餐時光</span></div>
+
+    <!-- 11. 厚道飲食店 -->
+    <div class="stop">
+      <div class="dot"><img src="https://www.pngall.com/wp-content/uploads/15/Pompompurin-PNG-Photos.png" alt="🐾"></div>
+      <div class="card">
+        <img class="corner-img" src="https://www.pngall.com/wp-content/uploads/15/Pompompurin-Transparent.png" alt="">
+        <div class="time">17:00 — 18:00</div>
+        <div class="name"><span class="icon">🍱</span> 厚道飲食店</div>
+        <div class="desc">鶯歌老街排隊名店，主打懷舊古早味。招牌炸排骨飯酥脆多汁、炸雞腿飯也超人氣，搭配白菜滷和各式小菜。復古裝潢讓人彷彿回到舊時光。</div>
+        <div class="tags">
+          <span class="tag meal">晚餐</span>
+          <span class="tag">排骨飯必點</span>
+          <span class="tag">尖山埔路 79 號</span>
+          <span class="tag">至 19:00</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="stop transport">
+      <div class="dot"><img src="https://www.pngall.com/wp-content/uploads/15/Pompompurin-PNG-Photos.png" alt="🐾"></div>
+      <div class="card">
+        <div class="name">🐾 步行約 15 分鐘 → 回鶯歌火車站</div>
+      </div>
+    </div>
+
+    <!-- ===== 回程 ===== -->
+    <div class="section-label"><span>🚆 回家囉</span></div>
+
+    <!-- 12. 回程 -->
+    <div class="stop">
+      <div class="dot"><img src="https://www.pngall.com/wp-content/uploads/15/Pompompurin-PNG-Photos.png" alt="🐾"></div>
+      <div class="card">
+        <div class="time">19:07 — 19:25</div>
+        <div class="name"><span class="icon">🚆</span> 鶯歌 → 板橋火車站</div>
+        <div class="desc">搭乘區間車 4240（往南澳），鶯歌站 19:07 發車，經 5 站、18 分鐘抵達板橋站。帶著滿滿回憶和戰利品回家！</div>
+        <div class="tags">
+          <span class="tag">區間車 4240</span>
+          <span class="tag">18 分鐘</span>
+          <span class="tag">$30</span>
         </div>
       </div>
     </div>
@@ -499,28 +605,32 @@
 
   <!-- Summary -->
   <div class="summary">
-    <h3>🐾 鶯歌行程摘要</h3>
+    <img class="pompom-corner" src="https://www.pngall.com/wp-content/uploads/15/Pompompurin-PNG-Image.png" alt="">
+    <h3>🐾 一日行程摘要</h3>
     <div class="summary-grid">
       <div class="summary-item">
         <div class="label">行程時段</div>
-        <div class="value">09:33 — 13:00</div>
+        <div class="value">09:33 — 19:25</div>
       </div>
       <div class="summary-item">
         <div class="label">景點數量</div>
-        <div class="value">4 個</div>
+        <div class="value">10 個</div>
       </div>
       <div class="summary-item">
-        <div class="label">總步行距離</div>
-        <div class="value">約 1.1 公里</div>
+        <div class="label">餐食安排</div>
+        <div class="value">早 / 午 / 午茶 / 晚</div>
       </div>
       <div class="summary-item">
-        <div class="label">總步行時間</div>
-        <div class="value">約 16-21 分鐘</div>
+        <div class="label">交通方式</div>
+        <div class="value">火車 + 步行</div>
       </div>
     </div>
   </div>
 
-  <div class="footer">🐾 鶯歌、三峽一日遊 — 鶯歌段行程 🐾</div>
+  <div class="footer">
+    <img src="https://www.pngall.com/wp-content/uploads/15/Pompompurin-PNG-Image.png" alt="Pompompurin">
+    <p>鶯歌一日遊 — 布丁狗陪你出發！</p>
+  </div>
 
 </div>
 

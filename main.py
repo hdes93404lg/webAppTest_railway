@@ -11,16 +11,7 @@ templates = Jinja2Templates(directory="templates")
 
 
 @app.get("/", response_class=HTMLResponse)
-async def home(request: Request):
-    return templates.TemplateResponse("index.html", {
-        "request": request,
-        "title": "首頁",
-        "message": "Hello World",
-    })
-
-
-@app.get("/yingge-trip", response_class=HTMLResponse)
-async def yingge_trip():
+async def home():
     with open("templates/yingge-trip.html", "r", encoding="utf-8") as f:
         return HTMLResponse(content=f.read())
 
