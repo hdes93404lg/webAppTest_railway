@@ -19,6 +19,12 @@ async def home(request: Request):
     })
 
 
+@app.get("/yingge-trip", response_class=HTMLResponse)
+async def yingge_trip():
+    with open("templates/yingge-trip.html", "r", encoding="utf-8") as f:
+        return HTMLResponse(content=f.read())
+
+
 @app.get("/health")
 async def health():
     return {"status": "ok"}

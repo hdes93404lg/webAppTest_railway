@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>鶯歌一日遊行程</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap');
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: "Noto Sans TC", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    background: #FFF8E1;
+    min-height: 100vh;
+    color: #5D4037;
+    position: relative;
+    overflow-x: hidden;
+  }
+
+  /* Pompompurin paw print background pattern */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      radial-gradient(circle 6px at 30px 80px, rgba(196,155,65,0.07) 100%, transparent 100%),
+      radial-gradient(circle 3px at 24px 72px, rgba(196,155,65,0.07) 100%, transparent 100%),
+      radial-gradient(circle 3px at 36px 72px, rgba(196,155,65,0.07) 100%, transparent 100%),
+      radial-gradient(circle 3px at 21px 82px, rgba(196,155,65,0.07) 100%, transparent 100%),
+      radial-gradient(circle 3px at 39px 82px, rgba(196,155,65,0.07) 100%, transparent 100%),
+      radial-gradient(circle 6px at 170px 200px, rgba(196,155,65,0.06) 100%, transparent 100%),
+      radial-gradient(circle 3px at 164px 192px, rgba(196,155,65,0.06) 100%, transparent 100%),
+      radial-gradient(circle 3px at 176px 192px, rgba(196,155,65,0.06) 100%, transparent 100%),
+      radial-gradient(circle 3px at 161px 202px, rgba(196,155,65,0.06) 100%, transparent 100%),
+      radial-gradient(circle 3px at 179px 202px, rgba(196,155,65,0.06) 100%, transparent 100%);
+    background-size: 200px 280px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* ===== POMPOMPURIN CSS CHARACTER ===== */
+  .pompom {
+    position: relative;
+    width: 100px;
+    height: 95px;
+    margin: 0 auto 10px;
+  }
+  /* Face */
+  .pompom .face {
+    position: absolute;
+    width: 90px; height: 72px;
+    background: #F5D36E;
+    border-radius: 50%;
+    top: 23px; left: 5px;
+    border: 2.5px solid #C49B41;
+    z-index: 2;
+  }
+  /* Beret */
+  .pompom .beret {
+    position: absolute;
+    width: 70px; height: 22px;
+    background: #C49B41;
+    border-radius: 50% 50% 40% 40%;
+    top: 8px; left: 15px;
+    z-index: 3;
+    border: 2px solid #A07830;
+  }
+  .pompom .beret::after {
+    content: '';
+    position: absolute;
+    width: 56px; height: 6px;
+    background: #A07830;
+    border-radius: 0 0 50% 50%;
+    bottom: -1px; left: 7px;
+  }
+  /* Ears */
+  .pompom .ear-l, .pompom .ear-r {
+    position: absolute;
+    width: 26px; height: 18px;
+    background: #C49B41;
+    border-radius: 50% 50% 50% 50%;
+    top: 20px;
+    z-index: 1;
+    border: 2px solid #A07830;
+  }
+  .pompom .ear-l { left: 0; transform: rotate(-20deg); }
+  .pompom .ear-r { right: 0; transform: rotate(20deg); }
+  /* Eyes */
+  .pompom .eye-l, .pompom .eye-r {
+    position: absolute;
+    width: 7px; height: 8px;
+    background: #3E2723;
+    border-radius: 50%;
+    top: 48px;
+    z-index: 4;
+  }
+  .pompom .eye-l { left: 28px; }
+  .pompom .eye-r { right: 28px; }
+  /* Nose */
+  .pompom .nose {
+    position: absolute;
+    width: 8px; height: 6px;
+    background: #3E2723;
+    border-radius: 50%;
+    top: 58px; left: 46px;
+    z-index: 4;
+  }
+  /* Mouth */
+  .pompom .mouth {
+    position: absolute;
+    width: 18px; height: 8px;
+    border-bottom: 2.5px solid #3E2723;
+    border-radius: 0 0 50% 50%;
+    top: 62px; left: 41px;
+    z-index: 4;
+  }
+  /* Blush */
+  .pompom .blush-l, .pompom .blush-r {
+    position: absolute;
+    width: 14px; height: 8px;
+    background: rgba(255,138,128,0.35);
+    border-radius: 50%;
+    top: 60px;
+    z-index: 3;
+  }
+  .pompom .blush-l { left: 18px; }
+  .pompom .blush-r { right: 18px; }
+
+  /* Floating pompom mini (decorative) */
+  .pompom-mini {
+    display: inline-block;
+    width: 28px; height: 24px;
+    background: #F5D36E;
+    border-radius: 50%;
+    border: 1.5px solid #C49B41;
+    position: relative;
+    vertical-align: middle;
+    margin: 0 2px;
+  }
+  .pompom-mini::before, .pompom-mini::after {
+    content: '';
+    position: absolute;
+    width: 3px; height: 3px;
+    background: #3E2723;
+    border-radius: 50%;
+    top: 10px;
+  }
+  .pompom-mini::before { left: 7px; }
+  .pompom-mini::after { right: 7px; }
+
+  /* ===== HERO ===== */
+  .hero {
+    background: linear-gradient(135deg, #F5D36E 0%, #FFECB3 50%, #F5D36E 100%);
+    color: #5D4037;
+    text-align: center;
+    padding: 36px 20px 50px;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -30px; right: -30px;
+    width: 120px; height: 120px;
+    background: rgba(255,255,255,0.2);
+    border-radius: 50%;
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0; right: 0;
+    height: 36px;
+    background: #FFF8E1;
+    clip-path: ellipse(55% 100% at 50% 100%);
+  }
+  .hero h1 {
+    font-size: 2rem;
+    font-weight: 900;
+    letter-spacing: 4px;
+    margin-bottom: 4px;
+    text-shadow: 1px 1px 0 rgba(255,255,255,0.5);
+  }
+  .hero .subtitle {
+    font-size: 0.95rem;
+    color: #795548;
+  }
+  .hero .date-badge {
+    display: inline-block;
+    margin-top: 12px;
+    padding: 5px 18px;
+    background: rgba(255,255,255,0.5);
+    border: 1.5px solid #C49B41;
+    border-radius: 20px;
+    font-size: 0.82rem;
+    color: #795548;
+    font-weight: 600;
+  }
+
+  .container { max-width: 700px; margin: 0 auto; padding: 24px 20px 60px; position: relative; z-index: 1; }
+
+  /* ===== TIMELINE ===== */
+  .timeline { position: relative; padding-left: 38px; }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 15px;
+    top: 0; bottom: 0;
+    width: 3px;
+    background: repeating-linear-gradient(to bottom, #F5D36E 0px, #F5D36E 8px, #FFECB3 8px, #FFECB3 14px);
+    border-radius: 2px;
+  }
+
+  .stop {
+    position: relative;
+    margin-bottom: 12px;
+    animation: fadeUp 0.5s ease both;
+  }
+  .stop:nth-child(1) { animation-delay: 0.1s; }
+  .stop:nth-child(2) { animation-delay: 0.2s; }
+  .stop:nth-child(3) { animation-delay: 0.3s; }
+  .stop:nth-child(4) { animation-delay: 0.4s; }
+  .stop:nth-child(5) { animation-delay: 0.5s; }
+  .stop:nth-child(6) { animation-delay: 0.6s; }
+  .stop:nth-child(7) { animation-delay: 0.7s; }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Paw print dot */
+  .stop .dot {
+    position: absolute;
+    left: -30px; top: 22px;
+    width: 18px; height: 18px;
+    background: #F5D36E;
+    border-radius: 50%;
+    border: 2.5px solid #C49B41;
+    z-index: 1;
+  }
+  .stop .dot::before, .stop .dot::after {
+    content: '';
+    position: absolute;
+    width: 5px; height: 5px;
+    background: #C49B41;
+    border-radius: 50%;
+    top: -4px;
+  }
+  .stop .dot::before { left: 1px; }
+  .stop .dot::after { right: 1px; }
+
+  .stop.transport .dot {
+    width: 14px; height: 14px;
+    left: -28px; top: 14px;
+    background: #FFECB3;
+    border: 2px solid #C49B41;
+  }
+  .stop.transport .dot::before,
+  .stop.transport .dot::after { display: none; }
+
+  /* ===== CARDS ===== */
+  .card {
+    background: white;
+    border-radius: 18px;
+    padding: 18px 20px;
+    border: 2px solid #F5D36E;
+    box-shadow: 0 3px 12px rgba(196,155,65,0.1);
+    transition: transform 0.2s, box-shadow 0.2s;
+    position: relative;
+  }
+  .card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(196,155,65,0.18);
+  }
+  .card .time {
+    font-size: 0.76rem;
+    color: #C49B41;
+    font-weight: 700;
+    letter-spacing: 1px;
+    margin-bottom: 4px;
+  }
+  .card .name {
+    font-size: 1.15rem;
+    font-weight: 700;
+    margin-bottom: 6px;
+    color: #4E342E;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .card .name .icon { font-size: 1.2rem; }
+  .card .desc {
+    font-size: 0.86rem;
+    color: #795548;
+    line-height: 1.65;
+  }
+  .card .tags {
+    margin-top: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .card .tag {
+    background: #FFF8E1;
+    color: #C49B41;
+    padding: 3px 10px;
+    border-radius: 12px;
+    font-size: 0.73rem;
+    font-weight: 600;
+    border: 1px solid #F5D36E;
+  }
+
+  /* Transport card */
+  .transport .card {
+    background: linear-gradient(90deg, #FFFDE7, #FFF8E1);
+    padding: 10px 16px;
+    border: 1.5px dashed #F5D36E;
+    box-shadow: none;
+  }
+  .transport .card:hover { transform: none; box-shadow: none; }
+  .transport .card .name {
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: #A07830;
+    margin-bottom: 0;
+  }
+
+  /* ===== SUMMARY ===== */
+  .summary {
+    margin-top: 32px;
+    background: white;
+    border-radius: 18px;
+    padding: 22px;
+    border: 2px solid #F5D36E;
+    box-shadow: 0 3px 12px rgba(196,155,65,0.1);
+    position: relative;
+  }
+  .summary h3 {
+    font-size: 1rem;
+    color: #C49B41;
+    margin-bottom: 14px;
+    font-weight: 700;
+  }
+  .summary-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+  .summary-item {
+    background: #FFFDE7;
+    border-radius: 14px;
+    padding: 14px;
+    text-align: center;
+    border: 1.5px solid #F5D36E;
+  }
+  .summary-item .label { font-size: 0.72rem; color: #A07830; margin-bottom: 3px; }
+  .summary-item .value { font-size: 1.05rem; font-weight: 700; color: #5D4037; }
+
+  /* ===== FOOTER ===== */
+  .footer {
+    text-align: center;
+    margin-top: 36px;
+    font-size: 0.78rem;
+    color: #C49B41;
+  }
+
+  /* Floating paw decorations */
+  .deco-paw {
+    position: fixed;
+    opacity: 0.06;
+    font-size: 2.5rem;
+    z-index: 0;
+    pointer-events: none;
+  }
+  .deco-paw:nth-child(1) { top: 15%; right: 8%; transform: rotate(25deg); }
+  .deco-paw:nth-child(2) { top: 40%; left: 5%; transform: rotate(-15deg); font-size: 2rem; }
+  .deco-paw:nth-child(3) { top: 65%; right: 12%; transform: rotate(40deg); font-size: 1.8rem; }
+  .deco-paw:nth-child(4) { top: 85%; left: 10%; transform: rotate(-30deg); font-size: 2.2rem; }
+</style>
+</head>
+<body>
+
+<div class="deco-paw">🐾</div>
+<div class="deco-paw">🐾</div>
+<div class="deco-paw">🐾</div>
+<div class="deco-paw">🐾</div>
+
+<div class="hero">
+  <div class="pompom">
+    <div class="ear-l"></div>
+    <div class="ear-r"></div>
+    <div class="beret"></div>
+    <div class="face"></div>
+    <div class="eye-l"></div>
+    <div class="eye-r"></div>
+    <div class="nose"></div>
+    <div class="mouth"></div>
+    <div class="blush-l"></div>
+    <div class="blush-r"></div>
+  </div>
+  <h1>鶯歌一日遊</h1>
+  <div class="subtitle">陶瓷之鄉 ‧ 老街漫步 ‧ 一起出發吧！</div>
+  <div class="date-badge">🐾 2026 春季旅行 🐾</div>
+</div>
+
+<div class="container">
+
+  <div class="timeline">
+
+    <!-- 1. 板橋出發 → 鶯歌 -->
+    <div class="stop">
+      <div class="dot"></div>
+      <div class="card">
+        <div class="time">09:33 — 09:47</div>
+        <div class="name"><span class="icon">🚆</span> 板橋 → 鶯歌火車站</div>
+        <div class="desc">搭乘區間快 4013（往北湖），板橋站 09:33 發車，經 2 站、14 分鐘抵達鶯歌站。從文化路出口出站即可開始行程。</div>
+        <div class="tags">
+          <span class="tag">區間快 4013</span>
+          <span class="tag">14 分鐘</span>
+          <span class="tag">$30</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 步行到阿婆壽司 -->
+    <div class="stop transport">
+      <div class="dot"></div>
+      <div class="card">
+        <div class="name">🐾 步行約 5-8 分鐘（約 450 公尺）→ 往中正一路方向</div>
+      </div>
+    </div>
+
+    <!-- 2. 阿婆壽司 -->
+    <div class="stop">
+      <div class="dot"></div>
+      <div class="card">
+        <div class="time">09:55 — 10:30</div>
+        <div class="name"><span class="icon">🍣</span> 阿婆壽司</div>
+        <div class="desc">鶯歌在地超過 40 年的老字號，24 小時營業。銅板價即可享用台式壽司捲、茶碗蒸、關東煮、味噌湯等經典小吃。</div>
+        <div class="tags">
+          <span class="tag">早餐</span>
+          <span class="tag">排隊名店</span>
+          <span class="tag">銅板美食</span>
+          <span class="tag">24H 營業</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 步行到老街 -->
+    <div class="stop transport">
+      <div class="dot"></div>
+      <div class="card">
+        <div class="name">🐾 步行約 8-10 分鐘（約 600 公尺）→ 沿尖山埔路進入老街</div>
+      </div>
+    </div>
+
+    <!-- 3. 鶯歌老街 -->
+    <div class="stop">
+      <div class="dot"></div>
+      <div class="card">
+        <div class="time">10:40 — 12:00</div>
+        <div class="name"><span class="icon">🏮</span> 鶯歌老街（陶瓷老街）</div>
+        <div class="desc">全台最大的陶瓷藝品集散地，沿街可欣賞各式陶瓷創作、挑選伴手禮，也有手拉坯 DIY 體驗可以參加，適合慢慢逛。</div>
+        <div class="tags">
+          <span class="tag">逛街購物</span>
+          <span class="tag">陶瓷藝術</span>
+          <span class="tag">手拉坯 DIY</span>
+          <span class="tag">拍照打卡</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 步行到陶館 -->
+    <div class="stop transport">
+      <div class="dot"></div>
+      <div class="card">
+        <div class="name">🐾 步行約 3 分鐘 → 老街內即可抵達</div>
+      </div>
+    </div>
+
+    <!-- 4. 鶯歌老街陶館 -->
+    <div class="stop">
+      <div class="dot"></div>
+      <div class="card">
+        <div class="time">12:05 — 13:00</div>
+        <div class="name"><span class="icon">🏛️</span> 鶯歌老街陶館</div>
+        <div class="desc">外觀醒目的 20 公尺大煙囪為地標。一樓為大型商品展示場，匯集陶瓷、寶石、木雕、玻璃藝術品；二樓設有展覽館及用餐休憩區，可在此稍作休息。</div>
+        <div class="tags">
+          <span class="tag">展覽館</span>
+          <span class="tag">藝術品</span>
+          <span class="tag">地標煙囪</span>
+          <span class="tag">休憩用餐</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Summary -->
+  <div class="summary">
+    <h3>🐾 鶯歌行程摘要</h3>
+    <div class="summary-grid">
+      <div class="summary-item">
+        <div class="label">行程時段</div>
+        <div class="value">09:33 — 13:00</div>
+      </div>
+      <div class="summary-item">
+        <div class="label">景點數量</div>
+        <div class="value">4 個</div>
+      </div>
+      <div class="summary-item">
+        <div class="label">總步行距離</div>
+        <div class="value">約 1.1 公里</div>
+      </div>
+      <div class="summary-item">
+        <div class="label">總步行時間</div>
+        <div class="value">約 16-21 分鐘</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">🐾 鶯歌、三峽一日遊 — 鶯歌段行程 🐾</div>
+
+</div>
+
+</body>
+</html>
