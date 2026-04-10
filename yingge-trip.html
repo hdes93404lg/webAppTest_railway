@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>鶯歌一日遊行程</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans TC", sans-serif;
+    background: linear-gradient(135deg, #fdf6ec 0%, #f0e4d7 100%);
+    min-height: 100vh;
+    color: #3a2e1f;
+  }
+
+  .hero {
+    background: linear-gradient(135deg, #8B4513 0%, #A0522D 50%, #CD853F 100%);
+    color: white;
+    text-align: center;
+    padding: 48px 20px 40px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    right: 0;
+    height: 40px;
+    background: #fdf6ec;
+    clip-path: ellipse(55% 100% at 50% 100%);
+  }
+  .hero h1 { font-size: 2.2rem; letter-spacing: 4px; margin-bottom: 8px; }
+  .hero .subtitle { font-size: 1rem; opacity: 0.85; }
+  .hero .date-badge {
+    display: inline-block;
+    margin-top: 14px;
+    padding: 6px 20px;
+    border: 1px solid rgba(255,255,255,0.5);
+    border-radius: 20px;
+    font-size: 0.85rem;
+    opacity: 0.9;
+  }
+
+  .container { max-width: 700px; margin: 0 auto; padding: 30px 20px 60px; }
+
+  /* Timeline */
+  .timeline { position: relative; padding-left: 36px; }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 14px;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background: linear-gradient(to bottom, #CD853F, #D2B48C, #CD853F);
+    border-radius: 2px;
+  }
+
+  .stop {
+    position: relative;
+    margin-bottom: 10px;
+    animation: fadeUp 0.5s ease both;
+  }
+  .stop:nth-child(1) { animation-delay: 0.1s; }
+  .stop:nth-child(2) { animation-delay: 0.2s; }
+  .stop:nth-child(3) { animation-delay: 0.3s; }
+  .stop:nth-child(4) { animation-delay: 0.4s; }
+  .stop:nth-child(5) { animation-delay: 0.5s; }
+  .stop:nth-child(6) { animation-delay: 0.6s; }
+  .stop:nth-child(7) { animation-delay: 0.7s; }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .stop .dot {
+    position: absolute;
+    left: -29px;
+    top: 22px;
+    width: 17px;
+    height: 17px;
+    border-radius: 50%;
+    background: #CD853F;
+    border: 3px solid #fdf6ec;
+    box-shadow: 0 0 0 2px #CD853F;
+    z-index: 1;
+  }
+  .stop.transport .dot {
+    width: 13px;
+    height: 13px;
+    left: -27px;
+    top: 16px;
+    background: #D2B48C;
+    border: 2px solid #fdf6ec;
+    box-shadow: 0 0 0 2px #D2B48C;
+  }
+
+  .card {
+    background: white;
+    border-radius: 16px;
+    padding: 20px 22px;
+    box-shadow: 0 2px 12px rgba(139,69,19,0.08);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(139,69,19,0.12);
+  }
+
+  .card .time {
+    font-size: 0.78rem;
+    color: #A0522D;
+    font-weight: 600;
+    letter-spacing: 1px;
+    margin-bottom: 4px;
+  }
+  .card .name {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 6px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .card .name .icon { font-size: 1.3rem; }
+  .card .desc {
+    font-size: 0.88rem;
+    color: #6b5b4a;
+    line-height: 1.6;
+  }
+  .card .tags {
+    margin-top: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .card .tag {
+    background: #fdf6ec;
+    color: #8B4513;
+    padding: 3px 10px;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    font-weight: 500;
+  }
+
+  /* Transport card */
+  .transport .card {
+    background: linear-gradient(90deg, #faf3ea, #f7efe3);
+    padding: 12px 18px;
+    border-left: 3px solid #D2B48C;
+    box-shadow: none;
+  }
+  .transport .card:hover {
+    transform: none;
+    box-shadow: none;
+  }
+  .transport .card .name {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #8B6914;
+    margin-bottom: 0;
+  }
+
+  /* Summary section */
+  .summary {
+    margin-top: 36px;
+    background: white;
+    border-radius: 16px;
+    padding: 24px;
+    box-shadow: 0 2px 12px rgba(139,69,19,0.08);
+  }
+  .summary h3 {
+    font-size: 1rem;
+    color: #8B4513;
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .summary-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  .summary-item {
+    background: #fdf6ec;
+    border-radius: 12px;
+    padding: 14px;
+    text-align: center;
+  }
+  .summary-item .label {
+    font-size: 0.75rem;
+    color: #8B6914;
+    margin-bottom: 4px;
+  }
+  .summary-item .value {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #3a2e1f;
+  }
+
+  .footer {
+    text-align: center;
+    margin-top: 40px;
+    font-size: 0.78rem;
+    color: #b8a898;
+  }
+
+  /* Train schedule section */
+  .train-section {
+    margin-bottom: 36px;
+  }
+  .train-section h2 {
+    font-size: 1.2rem;
+    color: #8B4513;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .route-info {
+    background: white;
+    border-radius: 16px;
+    padding: 22px;
+    box-shadow: 0 2px 12px rgba(139,69,19,0.08);
+    margin-bottom: 16px;
+  }
+  .route-stations {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 16px;
+    flex-wrap: wrap;
+  }
+  .station-chip {
+    background: #8B4513;
+    color: white;
+    padding: 8px 18px;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 0.95rem;
+  }
+  .station-chip.small {
+    background: #D2B48C;
+    color: #3a2e1f;
+    padding: 5px 12px;
+    font-size: 0.8rem;
+    font-weight: 500;
+  }
+  .arrow { color: #CD853F; font-size: 1.1rem; }
+  .route-meta {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 16px;
+  }
+  .route-meta-item {
+    background: #fdf6ec;
+    border-radius: 10px;
+    padding: 12px;
+    text-align: center;
+  }
+  .route-meta-item .label { font-size: 0.72rem; color: #8B6914; margin-bottom: 2px; }
+  .route-meta-item .value { font-size: 1rem; font-weight: 700; color: #3a2e1f; }
+
+  .train-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    background: white;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 2px 12px rgba(139,69,19,0.08);
+  }
+  .train-table thead th {
+    background: #8B4513;
+    color: white;
+    padding: 12px 10px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-align: center;
+  }
+  .train-table tbody td {
+    padding: 11px 10px;
+    text-align: center;
+    font-size: 0.88rem;
+    border-bottom: 1px solid #f0e4d7;
+  }
+  .train-table tbody tr:last-child td { border-bottom: none; }
+  .train-table tbody tr:hover { background: #fdf6ec; }
+  .train-table tbody tr.recommended {
+    background: #fff8ee;
+  }
+  .train-table tbody tr.recommended td:first-child::before {
+    content: '★ ';
+    color: #CD853F;
+  }
+  .type-local {
+    background: #e8f5e9; color: #2e7d32;
+    padding: 2px 8px; border-radius: 8px; font-size: 0.78rem; font-weight: 600;
+  }
+  .type-local-express {
+    background: #e3f2fd; color: #1565c0;
+    padding: 2px 8px; border-radius: 8px; font-size: 0.78rem; font-weight: 600;
+  }
+
+  .schedule-note {
+    background: linear-gradient(90deg, #faf3ea, #f7efe3);
+    border-left: 3px solid #CD853F;
+    border-radius: 0 12px 12px 0;
+    padding: 14px 18px;
+    margin-top: 16px;
+    font-size: 0.82rem;
+    color: #6b5b4a;
+    line-height: 1.6;
+  }
+  .schedule-note a {
+    color: #8B4513;
+    font-weight: 600;
+    text-decoration: none;
+    border-bottom: 1px dashed #CD853F;
+  }
+  .schedule-note a:hover { border-bottom-style: solid; }
+
+  .section-divider {
+    text-align: center;
+    margin: 36px 0 24px;
+    position: relative;
+  }
+  .section-divider::before {
+    content: '';
+    position: absolute;
+    left: 0; right: 0; top: 50%;
+    height: 1px;
+    background: #D2B48C;
+  }
+  .section-divider span {
+    background: linear-gradient(135deg, #fdf6ec, #f0e4d7);
+    padding: 0 16px;
+    position: relative;
+    font-size: 0.85rem;
+    color: #8B6914;
+    font-weight: 600;
+  }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <h1>鶯歌一日遊</h1>
+  <div class="subtitle">陶瓷之鄉 ‧ 老街漫步</div>
+  <div class="date-badge">2026 春季旅行</div>
+</div>
+
+<div class="container">
+
+  <div class="timeline">
+
+    <!-- 1. 板橋出發 → 鶯歌 -->
+    <div class="stop">
+      <div class="dot"></div>
+      <div class="card">
+        <div class="time">09:33 — 09:47</div>
+        <div class="name"><span class="icon">🚆</span> 板橋 → 鶯歌火車站</div>
+        <div class="desc">搭乘區間快 4013（往北湖），板橋站 09:33 發車，經 2 站、14 分鐘抵達鶯歌站。從文化路出口出站即可開始行程。</div>
+        <div class="tags">
+          <span class="tag">區間快 4013</span>
+          <span class="tag">14 分鐘</span>
+          <span class="tag">$30</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 步行到阿婆壽司 -->
+    <div class="stop transport">
+      <div class="dot"></div>
+      <div class="card">
+        <div class="name">🚶 步行約 5-8 分鐘（約 450 公尺）→ 往中正一路方向</div>
+      </div>
+    </div>
+
+    <!-- 2. 阿婆壽司 -->
+    <div class="stop">
+      <div class="dot"></div>
+      <div class="card">
+        <div class="time">09:55 — 10:30</div>
+        <div class="name"><span class="icon">🍣</span> 阿婆壽司</div>
+        <div class="desc">鶯歌在地超過 40 年的老字號，24 小時營業。銅板價即可享用台式壽司捲、茶碗蒸、關東煮、味噌湯等經典小吃。</div>
+        <div class="tags">
+          <span class="tag">早餐</span>
+          <span class="tag">排隊名店</span>
+          <span class="tag">銅板美食</span>
+          <span class="tag">24H 營業</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 步行到老街 -->
+    <div class="stop transport">
+      <div class="dot"></div>
+      <div class="card">
+        <div class="name">🚶 步行約 8-10 分鐘（約 600 公尺）→ 沿尖山埔路進入老街</div>
+      </div>
+    </div>
+
+    <!-- 3. 鶯歌老街 -->
+    <div class="stop">
+      <div class="dot"></div>
+      <div class="card">
+        <div class="time">10:40 — 12:00</div>
+        <div class="name"><span class="icon">🏮</span> 鶯歌老街（陶瓷老街）</div>
+        <div class="desc">全台最大的陶瓷藝品集散地，沿街可欣賞各式陶瓷創作、挑選伴手禮，也有手拉坯 DIY 體驗可以參加，適合慢慢逛。</div>
+        <div class="tags">
+          <span class="tag">逛街購物</span>
+          <span class="tag">陶瓷藝術</span>
+          <span class="tag">手拉坯 DIY</span>
+          <span class="tag">拍照打卡</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 步行到陶館 -->
+    <div class="stop transport">
+      <div class="dot"></div>
+      <div class="card">
+        <div class="name">🚶 步行約 3 分鐘 → 老街內即可抵達</div>
+      </div>
+    </div>
+
+    <!-- 4. 鶯歌老街陶館 -->
+    <div class="stop">
+      <div class="dot"></div>
+      <div class="card">
+        <div class="time">12:05 — 13:00</div>
+        <div class="name"><span class="icon">🏛️</span> 鶯歌老街陶館</div>
+        <div class="desc">外觀醒目的 20 公尺大煙囪為地標。一樓為大型商品展示場，匯集陶瓷、寶石、木雕、玻璃藝術品；二樓設有展覽館及用餐休憩區，可在此稍作休息。</div>
+        <div class="tags">
+          <span class="tag">展覽館</span>
+          <span class="tag">藝術品</span>
+          <span class="tag">地標煙囪</span>
+          <span class="tag">休憩用餐</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Summary -->
+  <div class="summary">
+    <h3>📋 鶯歌行程摘要</h3>
+    <div class="summary-grid">
+      <div class="summary-item">
+        <div class="label">行程時段</div>
+        <div class="value">09:33 — 13:00</div>
+      </div>
+      <div class="summary-item">
+        <div class="label">景點數量</div>
+        <div class="value">4 個</div>
+      </div>
+      <div class="summary-item">
+        <div class="label">總步行距離</div>
+        <div class="value">約 1.1 公里</div>
+      </div>
+      <div class="summary-item">
+        <div class="label">總步行時間</div>
+        <div class="value">約 16-21 分鐘</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">鶯歌、三峽一日遊 — 鶯歌段行程</div>
+
+</div>
+
+</body>
+</html>
