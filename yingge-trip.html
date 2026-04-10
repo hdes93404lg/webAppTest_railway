@@ -5,62 +5,215 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>鶯歌一日遊行程</title>
 <style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap');
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans TC", sans-serif;
-    background: linear-gradient(135deg, #fdf6ec 0%, #f0e4d7 100%);
+    font-family: "Noto Sans TC", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    background: #FFF8E1;
     min-height: 100vh;
-    color: #3a2e1f;
+    color: #5D4037;
+    position: relative;
+    overflow-x: hidden;
   }
 
+  /* Pompompurin paw print background pattern */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      radial-gradient(circle 6px at 30px 80px, rgba(196,155,65,0.07) 100%, transparent 100%),
+      radial-gradient(circle 3px at 24px 72px, rgba(196,155,65,0.07) 100%, transparent 100%),
+      radial-gradient(circle 3px at 36px 72px, rgba(196,155,65,0.07) 100%, transparent 100%),
+      radial-gradient(circle 3px at 21px 82px, rgba(196,155,65,0.07) 100%, transparent 100%),
+      radial-gradient(circle 3px at 39px 82px, rgba(196,155,65,0.07) 100%, transparent 100%),
+      radial-gradient(circle 6px at 170px 200px, rgba(196,155,65,0.06) 100%, transparent 100%),
+      radial-gradient(circle 3px at 164px 192px, rgba(196,155,65,0.06) 100%, transparent 100%),
+      radial-gradient(circle 3px at 176px 192px, rgba(196,155,65,0.06) 100%, transparent 100%),
+      radial-gradient(circle 3px at 161px 202px, rgba(196,155,65,0.06) 100%, transparent 100%),
+      radial-gradient(circle 3px at 179px 202px, rgba(196,155,65,0.06) 100%, transparent 100%);
+    background-size: 200px 280px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* ===== POMPOMPURIN CSS CHARACTER ===== */
+  .pompom {
+    position: relative;
+    width: 100px;
+    height: 95px;
+    margin: 0 auto 10px;
+  }
+  /* Face */
+  .pompom .face {
+    position: absolute;
+    width: 90px; height: 72px;
+    background: #F5D36E;
+    border-radius: 50%;
+    top: 23px; left: 5px;
+    border: 2.5px solid #C49B41;
+    z-index: 2;
+  }
+  /* Beret */
+  .pompom .beret {
+    position: absolute;
+    width: 70px; height: 22px;
+    background: #C49B41;
+    border-radius: 50% 50% 40% 40%;
+    top: 8px; left: 15px;
+    z-index: 3;
+    border: 2px solid #A07830;
+  }
+  .pompom .beret::after {
+    content: '';
+    position: absolute;
+    width: 56px; height: 6px;
+    background: #A07830;
+    border-radius: 0 0 50% 50%;
+    bottom: -1px; left: 7px;
+  }
+  /* Ears */
+  .pompom .ear-l, .pompom .ear-r {
+    position: absolute;
+    width: 26px; height: 18px;
+    background: #C49B41;
+    border-radius: 50% 50% 50% 50%;
+    top: 20px;
+    z-index: 1;
+    border: 2px solid #A07830;
+  }
+  .pompom .ear-l { left: 0; transform: rotate(-20deg); }
+  .pompom .ear-r { right: 0; transform: rotate(20deg); }
+  /* Eyes */
+  .pompom .eye-l, .pompom .eye-r {
+    position: absolute;
+    width: 7px; height: 8px;
+    background: #3E2723;
+    border-radius: 50%;
+    top: 48px;
+    z-index: 4;
+  }
+  .pompom .eye-l { left: 28px; }
+  .pompom .eye-r { right: 28px; }
+  /* Nose */
+  .pompom .nose {
+    position: absolute;
+    width: 8px; height: 6px;
+    background: #3E2723;
+    border-radius: 50%;
+    top: 58px; left: 46px;
+    z-index: 4;
+  }
+  /* Mouth */
+  .pompom .mouth {
+    position: absolute;
+    width: 18px; height: 8px;
+    border-bottom: 2.5px solid #3E2723;
+    border-radius: 0 0 50% 50%;
+    top: 62px; left: 41px;
+    z-index: 4;
+  }
+  /* Blush */
+  .pompom .blush-l, .pompom .blush-r {
+    position: absolute;
+    width: 14px; height: 8px;
+    background: rgba(255,138,128,0.35);
+    border-radius: 50%;
+    top: 60px;
+    z-index: 3;
+  }
+  .pompom .blush-l { left: 18px; }
+  .pompom .blush-r { right: 18px; }
+
+  /* Floating pompom mini (decorative) */
+  .pompom-mini {
+    display: inline-block;
+    width: 28px; height: 24px;
+    background: #F5D36E;
+    border-radius: 50%;
+    border: 1.5px solid #C49B41;
+    position: relative;
+    vertical-align: middle;
+    margin: 0 2px;
+  }
+  .pompom-mini::before, .pompom-mini::after {
+    content: '';
+    position: absolute;
+    width: 3px; height: 3px;
+    background: #3E2723;
+    border-radius: 50%;
+    top: 10px;
+  }
+  .pompom-mini::before { left: 7px; }
+  .pompom-mini::after { right: 7px; }
+
+  /* ===== HERO ===== */
   .hero {
-    background: linear-gradient(135deg, #8B4513 0%, #A0522D 50%, #CD853F 100%);
-    color: white;
+    background: linear-gradient(135deg, #F5D36E 0%, #FFECB3 50%, #F5D36E 100%);
+    color: #5D4037;
     text-align: center;
-    padding: 48px 20px 40px;
+    padding: 36px 20px 50px;
     position: relative;
     overflow: hidden;
+    z-index: 1;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -30px; right: -30px;
+    width: 120px; height: 120px;
+    background: rgba(255,255,255,0.2);
+    border-radius: 50%;
   }
   .hero::after {
     content: '';
     position: absolute;
     bottom: -2px;
-    left: 0;
-    right: 0;
-    height: 40px;
-    background: #fdf6ec;
+    left: 0; right: 0;
+    height: 36px;
+    background: #FFF8E1;
     clip-path: ellipse(55% 100% at 50% 100%);
   }
-  .hero h1 { font-size: 2.2rem; letter-spacing: 4px; margin-bottom: 8px; }
-  .hero .subtitle { font-size: 1rem; opacity: 0.85; }
+  .hero h1 {
+    font-size: 2rem;
+    font-weight: 900;
+    letter-spacing: 4px;
+    margin-bottom: 4px;
+    text-shadow: 1px 1px 0 rgba(255,255,255,0.5);
+  }
+  .hero .subtitle {
+    font-size: 0.95rem;
+    color: #795548;
+  }
   .hero .date-badge {
     display: inline-block;
-    margin-top: 14px;
-    padding: 6px 20px;
-    border: 1px solid rgba(255,255,255,0.5);
+    margin-top: 12px;
+    padding: 5px 18px;
+    background: rgba(255,255,255,0.5);
+    border: 1.5px solid #C49B41;
     border-radius: 20px;
-    font-size: 0.85rem;
-    opacity: 0.9;
+    font-size: 0.82rem;
+    color: #795548;
+    font-weight: 600;
   }
 
-  .container { max-width: 700px; margin: 0 auto; padding: 30px 20px 60px; }
+  .container { max-width: 700px; margin: 0 auto; padding: 24px 20px 60px; position: relative; z-index: 1; }
 
-  /* Timeline */
-  .timeline { position: relative; padding-left: 36px; }
+  /* ===== TIMELINE ===== */
+  .timeline { position: relative; padding-left: 38px; }
   .timeline::before {
     content: '';
     position: absolute;
-    left: 14px;
-    top: 0;
-    bottom: 0;
+    left: 15px;
+    top: 0; bottom: 0;
     width: 3px;
-    background: linear-gradient(to bottom, #CD853F, #D2B48C, #CD853F);
+    background: repeating-linear-gradient(to bottom, #F5D36E 0px, #F5D36E 8px, #FFECB3 8px, #FFECB3 14px);
     border-radius: 2px;
   }
 
   .stop {
     position: relative;
-    margin-bottom: 10px;
+    margin-bottom: 12px;
     animation: fadeUp 0.5s ease both;
   }
   .stop:nth-child(1) { animation-delay: 0.1s; }
@@ -76,60 +229,71 @@
     to { opacity: 1; transform: translateY(0); }
   }
 
+  /* Paw print dot */
   .stop .dot {
     position: absolute;
-    left: -29px;
-    top: 22px;
-    width: 17px;
-    height: 17px;
+    left: -30px; top: 22px;
+    width: 18px; height: 18px;
+    background: #F5D36E;
     border-radius: 50%;
-    background: #CD853F;
-    border: 3px solid #fdf6ec;
-    box-shadow: 0 0 0 2px #CD853F;
+    border: 2.5px solid #C49B41;
     z-index: 1;
   }
-  .stop.transport .dot {
-    width: 13px;
-    height: 13px;
-    left: -27px;
-    top: 16px;
-    background: #D2B48C;
-    border: 2px solid #fdf6ec;
-    box-shadow: 0 0 0 2px #D2B48C;
+  .stop .dot::before, .stop .dot::after {
+    content: '';
+    position: absolute;
+    width: 5px; height: 5px;
+    background: #C49B41;
+    border-radius: 50%;
+    top: -4px;
   }
+  .stop .dot::before { left: 1px; }
+  .stop .dot::after { right: 1px; }
 
+  .stop.transport .dot {
+    width: 14px; height: 14px;
+    left: -28px; top: 14px;
+    background: #FFECB3;
+    border: 2px solid #C49B41;
+  }
+  .stop.transport .dot::before,
+  .stop.transport .dot::after { display: none; }
+
+  /* ===== CARDS ===== */
   .card {
     background: white;
-    border-radius: 16px;
-    padding: 20px 22px;
-    box-shadow: 0 2px 12px rgba(139,69,19,0.08);
+    border-radius: 18px;
+    padding: 18px 20px;
+    border: 2px solid #F5D36E;
+    box-shadow: 0 3px 12px rgba(196,155,65,0.1);
     transition: transform 0.2s, box-shadow 0.2s;
+    position: relative;
   }
   .card:hover {
     transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(139,69,19,0.12);
+    box-shadow: 0 6px 20px rgba(196,155,65,0.18);
   }
-
   .card .time {
-    font-size: 0.78rem;
-    color: #A0522D;
-    font-weight: 600;
+    font-size: 0.76rem;
+    color: #C49B41;
+    font-weight: 700;
     letter-spacing: 1px;
     margin-bottom: 4px;
   }
   .card .name {
-    font-size: 1.2rem;
+    font-size: 1.15rem;
     font-weight: 700;
     margin-bottom: 6px;
+    color: #4E342E;
     display: flex;
     align-items: center;
     gap: 8px;
   }
-  .card .name .icon { font-size: 1.3rem; }
+  .card .name .icon { font-size: 1.2rem; }
   .card .desc {
-    font-size: 0.88rem;
-    color: #6b5b4a;
-    line-height: 1.6;
+    font-size: 0.86rem;
+    color: #795548;
+    line-height: 1.65;
   }
   .card .tags {
     margin-top: 10px;
@@ -138,223 +302,106 @@
     gap: 6px;
   }
   .card .tag {
-    background: #fdf6ec;
-    color: #8B4513;
+    background: #FFF8E1;
+    color: #C49B41;
     padding: 3px 10px;
     border-radius: 12px;
-    font-size: 0.75rem;
-    font-weight: 500;
+    font-size: 0.73rem;
+    font-weight: 600;
+    border: 1px solid #F5D36E;
   }
 
   /* Transport card */
   .transport .card {
-    background: linear-gradient(90deg, #faf3ea, #f7efe3);
-    padding: 12px 18px;
-    border-left: 3px solid #D2B48C;
+    background: linear-gradient(90deg, #FFFDE7, #FFF8E1);
+    padding: 10px 16px;
+    border: 1.5px dashed #F5D36E;
     box-shadow: none;
   }
-  .transport .card:hover {
-    transform: none;
-    box-shadow: none;
-  }
+  .transport .card:hover { transform: none; box-shadow: none; }
   .transport .card .name {
-    font-size: 0.9rem;
+    font-size: 0.88rem;
     font-weight: 600;
-    color: #8B6914;
+    color: #A07830;
     margin-bottom: 0;
   }
 
-  /* Summary section */
+  /* ===== SUMMARY ===== */
   .summary {
-    margin-top: 36px;
+    margin-top: 32px;
     background: white;
-    border-radius: 16px;
-    padding: 24px;
-    box-shadow: 0 2px 12px rgba(139,69,19,0.08);
+    border-radius: 18px;
+    padding: 22px;
+    border: 2px solid #F5D36E;
+    box-shadow: 0 3px 12px rgba(196,155,65,0.1);
+    position: relative;
   }
   .summary h3 {
     font-size: 1rem;
-    color: #8B4513;
+    color: #C49B41;
     margin-bottom: 14px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
+    font-weight: 700;
   }
   .summary-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 12px;
+    gap: 10px;
   }
   .summary-item {
-    background: #fdf6ec;
-    border-radius: 12px;
+    background: #FFFDE7;
+    border-radius: 14px;
     padding: 14px;
     text-align: center;
+    border: 1.5px solid #F5D36E;
   }
-  .summary-item .label {
-    font-size: 0.75rem;
-    color: #8B6914;
-    margin-bottom: 4px;
-  }
-  .summary-item .value {
-    font-size: 1.1rem;
-    font-weight: 700;
-    color: #3a2e1f;
-  }
+  .summary-item .label { font-size: 0.72rem; color: #A07830; margin-bottom: 3px; }
+  .summary-item .value { font-size: 1.05rem; font-weight: 700; color: #5D4037; }
 
+  /* ===== FOOTER ===== */
   .footer {
     text-align: center;
-    margin-top: 40px;
+    margin-top: 36px;
     font-size: 0.78rem;
-    color: #b8a898;
+    color: #C49B41;
   }
 
-  /* Train schedule section */
-  .train-section {
-    margin-bottom: 36px;
+  /* Floating paw decorations */
+  .deco-paw {
+    position: fixed;
+    opacity: 0.06;
+    font-size: 2.5rem;
+    z-index: 0;
+    pointer-events: none;
   }
-  .train-section h2 {
-    font-size: 1.2rem;
-    color: #8B4513;
-    margin-bottom: 16px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-  .route-info {
-    background: white;
-    border-radius: 16px;
-    padding: 22px;
-    box-shadow: 0 2px 12px rgba(139,69,19,0.08);
-    margin-bottom: 16px;
-  }
-  .route-stations {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    margin-bottom: 16px;
-    flex-wrap: wrap;
-  }
-  .station-chip {
-    background: #8B4513;
-    color: white;
-    padding: 8px 18px;
-    border-radius: 20px;
-    font-weight: 600;
-    font-size: 0.95rem;
-  }
-  .station-chip.small {
-    background: #D2B48C;
-    color: #3a2e1f;
-    padding: 5px 12px;
-    font-size: 0.8rem;
-    font-weight: 500;
-  }
-  .arrow { color: #CD853F; font-size: 1.1rem; }
-  .route-meta {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 10px;
-    margin-bottom: 16px;
-  }
-  .route-meta-item {
-    background: #fdf6ec;
-    border-radius: 10px;
-    padding: 12px;
-    text-align: center;
-  }
-  .route-meta-item .label { font-size: 0.72rem; color: #8B6914; margin-bottom: 2px; }
-  .route-meta-item .value { font-size: 1rem; font-weight: 700; color: #3a2e1f; }
-
-  .train-table {
-    width: 100%;
-    border-collapse: separate;
-    border-spacing: 0;
-    background: white;
-    border-radius: 16px;
-    overflow: hidden;
-    box-shadow: 0 2px 12px rgba(139,69,19,0.08);
-  }
-  .train-table thead th {
-    background: #8B4513;
-    color: white;
-    padding: 12px 10px;
-    font-size: 0.8rem;
-    font-weight: 600;
-    letter-spacing: 0.5px;
-    text-align: center;
-  }
-  .train-table tbody td {
-    padding: 11px 10px;
-    text-align: center;
-    font-size: 0.88rem;
-    border-bottom: 1px solid #f0e4d7;
-  }
-  .train-table tbody tr:last-child td { border-bottom: none; }
-  .train-table tbody tr:hover { background: #fdf6ec; }
-  .train-table tbody tr.recommended {
-    background: #fff8ee;
-  }
-  .train-table tbody tr.recommended td:first-child::before {
-    content: '★ ';
-    color: #CD853F;
-  }
-  .type-local {
-    background: #e8f5e9; color: #2e7d32;
-    padding: 2px 8px; border-radius: 8px; font-size: 0.78rem; font-weight: 600;
-  }
-  .type-local-express {
-    background: #e3f2fd; color: #1565c0;
-    padding: 2px 8px; border-radius: 8px; font-size: 0.78rem; font-weight: 600;
-  }
-
-  .schedule-note {
-    background: linear-gradient(90deg, #faf3ea, #f7efe3);
-    border-left: 3px solid #CD853F;
-    border-radius: 0 12px 12px 0;
-    padding: 14px 18px;
-    margin-top: 16px;
-    font-size: 0.82rem;
-    color: #6b5b4a;
-    line-height: 1.6;
-  }
-  .schedule-note a {
-    color: #8B4513;
-    font-weight: 600;
-    text-decoration: none;
-    border-bottom: 1px dashed #CD853F;
-  }
-  .schedule-note a:hover { border-bottom-style: solid; }
-
-  .section-divider {
-    text-align: center;
-    margin: 36px 0 24px;
-    position: relative;
-  }
-  .section-divider::before {
-    content: '';
-    position: absolute;
-    left: 0; right: 0; top: 50%;
-    height: 1px;
-    background: #D2B48C;
-  }
-  .section-divider span {
-    background: linear-gradient(135deg, #fdf6ec, #f0e4d7);
-    padding: 0 16px;
-    position: relative;
-    font-size: 0.85rem;
-    color: #8B6914;
-    font-weight: 600;
-  }
+  .deco-paw:nth-child(1) { top: 15%; right: 8%; transform: rotate(25deg); }
+  .deco-paw:nth-child(2) { top: 40%; left: 5%; transform: rotate(-15deg); font-size: 2rem; }
+  .deco-paw:nth-child(3) { top: 65%; right: 12%; transform: rotate(40deg); font-size: 1.8rem; }
+  .deco-paw:nth-child(4) { top: 85%; left: 10%; transform: rotate(-30deg); font-size: 2.2rem; }
 </style>
 </head>
 <body>
 
+<div class="deco-paw">🐾</div>
+<div class="deco-paw">🐾</div>
+<div class="deco-paw">🐾</div>
+<div class="deco-paw">🐾</div>
+
 <div class="hero">
+  <div class="pompom">
+    <div class="ear-l"></div>
+    <div class="ear-r"></div>
+    <div class="beret"></div>
+    <div class="face"></div>
+    <div class="eye-l"></div>
+    <div class="eye-r"></div>
+    <div class="nose"></div>
+    <div class="mouth"></div>
+    <div class="blush-l"></div>
+    <div class="blush-r"></div>
+  </div>
   <h1>鶯歌一日遊</h1>
-  <div class="subtitle">陶瓷之鄉 ‧ 老街漫步</div>
-  <div class="date-badge">2026 春季旅行</div>
+  <div class="subtitle">陶瓷之鄉 ‧ 老街漫步 ‧ 一起出發吧！</div>
+  <div class="date-badge">🐾 2026 春季旅行 🐾</div>
 </div>
 
 <div class="container">
@@ -380,7 +427,7 @@
     <div class="stop transport">
       <div class="dot"></div>
       <div class="card">
-        <div class="name">🚶 步行約 5-8 分鐘（約 450 公尺）→ 往中正一路方向</div>
+        <div class="name">🐾 步行約 5-8 分鐘（約 450 公尺）→ 往中正一路方向</div>
       </div>
     </div>
 
@@ -404,7 +451,7 @@
     <div class="stop transport">
       <div class="dot"></div>
       <div class="card">
-        <div class="name">🚶 步行約 8-10 分鐘（約 600 公尺）→ 沿尖山埔路進入老街</div>
+        <div class="name">🐾 步行約 8-10 分鐘（約 600 公尺）→ 沿尖山埔路進入老街</div>
       </div>
     </div>
 
@@ -428,7 +475,7 @@
     <div class="stop transport">
       <div class="dot"></div>
       <div class="card">
-        <div class="name">🚶 步行約 3 分鐘 → 老街內即可抵達</div>
+        <div class="name">🐾 步行約 3 分鐘 → 老街內即可抵達</div>
       </div>
     </div>
 
@@ -452,7 +499,7 @@
 
   <!-- Summary -->
   <div class="summary">
-    <h3>📋 鶯歌行程摘要</h3>
+    <h3>🐾 鶯歌行程摘要</h3>
     <div class="summary-grid">
       <div class="summary-item">
         <div class="label">行程時段</div>
@@ -473,7 +520,7 @@
     </div>
   </div>
 
-  <div class="footer">鶯歌、三峽一日遊 — 鶯歌段行程</div>
+  <div class="footer">🐾 鶯歌、三峽一日遊 — 鶯歌段行程 🐾</div>
 
 </div>
 
