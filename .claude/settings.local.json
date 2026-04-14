@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(wc -l /Users/hdes93404lg/Desktop/webAppTest_railway/*.py)",
+      "Bash(pip3 install:*)",
+      "Bash(python3 -c ':*)"
+    ]
+  }
+}
