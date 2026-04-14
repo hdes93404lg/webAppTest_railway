@@ -3,7 +3,9 @@
     "allow": [
       "Bash(wc -l /Users/hdes93404lg/Desktop/webAppTest_railway/*.py)",
       "Bash(pip3 install:*)",
-      "Bash(python3 -c ':*)"
+      "Bash(python3 -c ':*)",
+      "Bash(curl -sI \"https://www.cwa.gov.tw/Data/radar/CV1_TW_3600.png\")",
+      "Bash(curl -sI \"https://www.cwa.gov.tw/Data/radar/CV1_TW_1000.png\")"
     ]
   }
 }
