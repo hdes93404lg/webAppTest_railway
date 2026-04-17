@@ -3,114 +3,153 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>三峽一日遊</title>
+<title>三峽一日遊 — 與茵茵的小旅行</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap');
   @import url('https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;700;900&display=swap');
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body {
     font-family: "Zen Maru Gothic", "Noto Sans TC", sans-serif;
-    background: #FDF6EC;
+    background: #F5EBD6;
+    background-image:
+      radial-gradient(circle at 20% 10%, rgba(255, 228, 181, 0.3) 0%, transparent 40%),
+      radial-gradient(circle at 80% 80%, rgba(168, 200, 155, 0.2) 0%, transparent 40%);
     min-height: 100vh;
-    color: #5D4037;
+    color: #3E2A1E;
     overflow-x: hidden;
   }
 
   /* ===== HERO ===== */
   .hero {
     position: relative;
-    background: linear-gradient(180deg, #C5CAE9 0%, #9FA8DA 35%, #AED581 70%, #81C784 100%);
+    background:
+      linear-gradient(180deg, #B3D4E8 0%, #D6E8F0 25%, #FFE4B5 55%, #C8D9A8 80%, #A8C89B 100%);
     text-align: center;
-    padding: 28px 20px 75px;
+    padding: 28px 20px 85px;
     overflow: hidden;
+  }
+  /* hill silhouette behind */
+  .hero-hills {
+    position: absolute;
+    bottom: 45px; left: 0; right: 0;
+    height: 60px;
+    z-index: 1;
+    pointer-events: none;
+  }
+  .hero-hills::before {
+    content: '';
+    position: absolute;
+    bottom: 0; left: -10%; right: -10%; height: 100%;
+    background:
+      radial-gradient(ellipse at 25% 100%, #8FAF7E 0%, #8FAF7E 40%, transparent 41%),
+      radial-gradient(ellipse at 75% 100%, #9BBF8A 0%, #9BBF8A 35%, transparent 36%),
+      radial-gradient(ellipse at 50% 100%, #7FA06E 0%, #7FA06E 45%, transparent 46%);
+    opacity: 0.6;
   }
   .cloud {
     position: absolute;
-    background: rgba(255,255,255,0.7);
+    background: rgba(255,255,255,0.85);
     border-radius: 50px;
-    height: 28px;
-    animation: cloudDrift 20s linear infinite;
+    height: 26px;
+    animation: cloudDrift 24s linear infinite;
+    z-index: 1;
   }
   .cloud::before, .cloud::after {
     content: '';
     position: absolute;
-    background: rgba(255,255,255,0.7);
+    background: rgba(255,255,255,0.85);
     border-radius: 50%;
   }
-  .cloud:nth-child(1) { width: 90px; top: 12px; left: 5%; }
-  .cloud:nth-child(1)::before { width: 36px; height: 36px; top: -18px; left: 14px; }
-  .cloud:nth-child(1)::after { width: 28px; height: 28px; top: -12px; left: 44px; }
-  .cloud:nth-child(2) { width: 65px; top: 28px; right: 10%; height: 22px; animation-delay: -8s; }
-  .cloud:nth-child(2)::before { width: 26px; height: 26px; top: -13px; left: 10px; }
-  .cloud:nth-child(2)::after { width: 20px; height: 20px; top: -9px; left: 30px; }
-  .cloud:nth-child(3) { width: 50px; top: 6px; left: 42%; height: 18px; animation-delay: -14s; }
-  .cloud:nth-child(3)::before { width: 22px; height: 22px; top: -11px; left: 8px; }
-  .cloud:nth-child(3)::after { width: 16px; height: 16px; top: -7px; left: 26px; }
+  .cloud:nth-of-type(1) { width: 90px; top: 10px; left: 5%; }
+  .cloud:nth-of-type(1)::before { width: 36px; height: 36px; top: -18px; left: 14px; }
+  .cloud:nth-of-type(1)::after { width: 28px; height: 28px; top: -12px; left: 44px; }
+  .cloud:nth-of-type(2) { width: 65px; top: 24px; right: 8%; height: 22px; animation-delay: -10s; }
+  .cloud:nth-of-type(2)::before { width: 26px; height: 26px; top: -13px; left: 10px; }
+  .cloud:nth-of-type(2)::after { width: 20px; height: 20px; top: -9px; left: 30px; }
+  .cloud:nth-of-type(3) { width: 50px; top: 4px; left: 45%; height: 18px; animation-delay: -16s; }
+  .cloud:nth-of-type(3)::before { width: 22px; height: 22px; top: -11px; left: 8px; }
+  .cloud:nth-of-type(3)::after { width: 16px; height: 16px; top: -7px; left: 26px; }
   @keyframes cloudDrift {
     0% { transform: translateX(0); }
-    50% { transform: translateX(30px); }
+    50% { transform: translateX(35px); }
     100% { transform: translateX(0); }
+  }
+
+  /* distant castle */
+  .hero-castle {
+    position: absolute;
+    top: 50px; right: 8%;
+    width: 85px;
+    z-index: 1;
+    opacity: 0.75;
+    animation: castleWalk 6s ease-in-out infinite;
+  }
+  @keyframes castleWalk {
+    0%, 100% { transform: translateY(0) rotate(-1deg); }
+    50% { transform: translateY(-4px) rotate(1deg); }
   }
 
   .hero-character {
     position: relative;
-    z-index: 2;
+    z-index: 3;
     margin-bottom: 8px;
   }
-  .hero-character svg { filter: drop-shadow(2px 4px 8px rgba(0,0,0,0.1)); }
-  .hero-character .bounce { animation: bounce 3s ease-in-out infinite; display: inline-block; }
+  .hero-character svg { filter: drop-shadow(2px 4px 10px rgba(62,42,30,0.18)); }
+  .hero-character .bounce { animation: bounce 3.2s ease-in-out infinite; display: inline-block; }
   @keyframes bounce {
     0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-10px); }
+    50% { transform: translateY(-8px); }
   }
+
   .hero-friends {
     position: absolute;
-    bottom: 52px;
+    bottom: 55px;
     z-index: 2;
     animation: bounce 3.5s ease-in-out infinite;
   }
-  .hero-friends.left { left: 10%; animation-delay: -0.5s; }
-  .hero-friends.right { right: 10%; animation-delay: -1.5s; }
+  .hero-friends.left { left: 8%; animation-delay: -0.6s; }
+  .hero-friends.right { right: 10%; animation-delay: -1.6s; }
 
   .hero h1 {
-    position: relative; z-index: 2;
+    position: relative; z-index: 3;
     font-size: 2rem; font-weight: 900;
-    color: #3E2723;
+    color: #3E2A1E;
     letter-spacing: 3px;
-    text-shadow: 0 2px 0 rgba(255,255,255,0.5);
+    text-shadow: 0 2px 0 rgba(255,255,255,0.6), 0 0 12px rgba(255,228,181,0.5);
   }
   .hero .subtitle {
-    position: relative; z-index: 2;
-    font-size: 0.92rem; color: #4E342E; font-weight: 700;
+    position: relative; z-index: 3;
+    font-size: 0.92rem; color: #5C4A3A; font-weight: 700;
     margin: 4px 0;
   }
   .hero .date-badge {
-    position: relative; z-index: 2;
+    position: relative; z-index: 3;
     display: inline-block; margin-top: 8px;
     padding: 5px 20px;
-    background: rgba(255,255,255,0.7);
-    border: 2px solid #7986CB;
+    background: rgba(255, 250, 235, 0.85);
+    border: 2px solid #C89B6B;
     border-radius: 30px;
-    font-size: 0.82rem; color: #3E2723; font-weight: 700;
+    font-size: 0.82rem; color: #3E2A1E; font-weight: 700;
+    box-shadow: 0 2px 6px rgba(139, 115, 85, 0.15);
   }
   .hero::after {
     content: '';
     position: absolute;
     bottom: -2px; left: 0; right: 0;
     height: 45px;
-    background: #FDF6EC;
+    background: #F5EBD6;
     clip-path: ellipse(55% 100% at 50% 100%);
-    z-index: 3;
+    z-index: 4;
   }
   .ground-flowers {
     position: absolute;
-    bottom: 38px; left: 0; right: 0; z-index: 2;
+    bottom: 42px; left: 0; right: 0; z-index: 2;
     display: flex; justify-content: space-around;
-    padding: 0 15px; opacity: 0.55; font-size: 0.9rem;
+    padding: 0 15px; opacity: 0.7; font-size: 0.95rem;
   }
 
   /* ===== CONTAINER ===== */
-  .container { max-width: 680px; margin: 0 auto; padding: 20px 16px 50px; }
+  .container { max-width: 680px; margin: 0 auto; padding: 20px 16px 50px; position: relative; z-index: 2;}
 
   /* ===== TIMELINE ===== */
   .timeline { position: relative; padding-left: 40px; }
@@ -119,7 +158,7 @@
     position: absolute;
     left: 16px; top: 0; bottom: 0;
     width: 4px;
-    background: repeating-linear-gradient(to bottom, #7986CB 0px, #7986CB 10px, transparent 10px, transparent 16px);
+    background: repeating-linear-gradient(to bottom, #C89B6B 0px, #C89B6B 10px, transparent 10px, transparent 16px);
     border-radius: 4px;
   }
   .stop { position: relative; margin-bottom: 14px; animation: fadeUp 0.5s ease both; }
@@ -144,97 +183,108 @@
     to { opacity: 1; transform: translateY(0); }
   }
 
-  /* paw SVG dot */
+  /* Heen as timeline dot */
   .stop .dot {
     position: absolute;
-    left: -30px; top: 18px;
-    width: 24px; height: 24px;
+    left: -33px; top: 14px;
+    width: 28px; height: 28px;
     z-index: 1;
+    background: #FFF4E0;
+    border-radius: 50%;
+    padding: 2px;
+    box-shadow: 0 2px 4px rgba(139, 115, 85, 0.2);
+    border: 2px solid #C89B6B;
   }
   .stop.transport .dot {
-    width: 18px; height: 18px;
-    left: -27px; top: 10px;
-    opacity: 0.6;
+    width: 20px; height: 20px;
+    left: -29px; top: 10px;
+    opacity: 0.75;
+    border-width: 1.5px;
   }
 
   /* ===== CARDS ===== */
   .card {
-    background: white;
-    border-radius: 20px;
+    background: #FFFBF2;
+    border-radius: 18px;
     padding: 18px 20px;
-    border: 2.5px solid #9FA8DA;
-    box-shadow: 0 4px 16px rgba(121,134,203,0.12), 0 1px 3px rgba(0,0,0,0.03);
-    transition: transform 0.2s, box-shadow 0.2s;
+    border: 2.5px solid #C89B6B;
+    box-shadow:
+      0 4px 14px rgba(139, 115, 85, 0.12),
+      0 1px 3px rgba(0,0,0,0.04),
+      inset 0 0 0 1px rgba(255, 244, 224, 0.6);
+    transition: transform 0.25s, box-shadow 0.25s;
     position: relative;
   }
   .card:hover {
     transform: translateY(-3px);
-    box-shadow: 0 8px 24px rgba(121,134,203,0.2);
+    box-shadow: 0 8px 22px rgba(139, 115, 85, 0.2);
   }
   .card .time {
-    font-size: 0.74rem; color: #5C6BC0;
+    font-size: 0.74rem; color: #A67C52;
     font-weight: 700; letter-spacing: 1px; margin-bottom: 3px;
+    text-transform: uppercase;
   }
   .card .name {
     font-size: 1.1rem; font-weight: 900;
-    margin-bottom: 6px; color: #3E2723;
+    margin-bottom: 6px; color: #3E2A1E;
     display: flex; align-items: center; gap: 8px;
     line-height: 1.4;
   }
   .card .name .icon { font-size: 1.15rem; }
   .card .name a {
     color: inherit; text-decoration: none;
-    border-bottom: 1.5px dashed #9FA8DA;
+    border-bottom: 1.5px dashed #C89B6B;
     transition: border-color 0.2s;
   }
-  .card .name a:hover { border-color: #3F51B5; }
+  .card .name a:hover { border-color: #8B5A2B; }
   .card .map-link {
     display: inline-block;
-    font-size: 0.72rem; color: #3F51B5; font-weight: 700;
+    font-size: 0.72rem; color: #8B5A2B; font-weight: 700;
     text-decoration: none;
     padding: 3px 10px;
-    border: 1.5px solid #C5CAE9;
+    border: 1.5px solid #C89B6B;
     border-radius: 20px;
-    background: #F3F4FB;
+    background: #FFF4E0;
     transition: background 0.2s, border-color 0.2s;
   }
-  .card .map-link:hover { background: #E8EAF6; border-color: #3F51B5; }
-  .card .desc { font-size: 0.84rem; color: #5D4037; line-height: 1.7; }
+  .card .map-link:hover { background: #FFE8CC; border-color: #8B5A2B; }
+  .card .desc { font-size: 0.84rem; color: #5C4A3A; line-height: 1.75; }
   .card .tags { margin-top: 10px; display: flex; flex-wrap: wrap; gap: 6px; }
   .card .tag {
-    background: #F3F4FB; color: #3F51B5;
+    background: #FFF4E0; color: #8B5A2B;
     padding: 3px 10px; border-radius: 20px;
     font-size: 0.72rem; font-weight: 700;
-    border: 1.5px solid #9FA8DA;
+    border: 1.5px solid #C89B6B;
   }
   .card .tag.meal {
-    background: #FFF3E0; color: #E65100;
-    border-color: #FFAB40;
+    background: #FFE4D1; color: #C0392B;
+    border-color: #E07856;
   }
   .card .tag.bus {
-    background: #E8F5E9; color: #2E7D32;
-    border-color: #81C784;
+    background: #DCE8D4; color: #4A7C3A;
+    border-color: #7FAE7E;
   }
   /* corner character */
   .card .corner-char {
     position: absolute;
-    right: 6px; top: -16px;
-    width: 36px; height: 36px;
+    right: 6px; top: -18px;
+    width: 40px; height: 40px;
     pointer-events: none;
+    filter: drop-shadow(1px 2px 3px rgba(62,42,30,0.18));
   }
 
   /* Transport */
   .transport .card {
-    background: linear-gradient(90deg, #F3F4FB, #FDF6EC);
+    background: linear-gradient(90deg, #FFF4E0, #F5EBD6);
     padding: 10px 16px;
-    border: 2px dashed #9FA8DA;
+    border: 2px dashed #C89B6B;
     box-shadow: none;
-    border-radius: 16px;
+    border-radius: 14px;
   }
   .transport .card:hover { transform: none; box-shadow: none; }
   .transport .card .name {
     font-size: 0.85rem; font-weight: 700;
-    color: #7986CB; margin-bottom: 0;
+    color: #8B5A2B; margin-bottom: 0;
   }
 
   /* Section */
@@ -244,108 +294,190 @@
     padding: 6px 0;
   }
   .section-label span {
-    background: linear-gradient(135deg, #9FA8DA, #7986CB);
-    color: white;
+    background: linear-gradient(135deg, #C89B6B, #A67C52);
+    color: #FFF4E0;
     padding: 5px 18px;
     border-radius: 20px;
     font-size: 0.8rem;
     font-weight: 900;
     letter-spacing: 1px;
-    box-shadow: 0 2px 8px rgba(121,134,203,0.3);
+    box-shadow: 0 2px 8px rgba(139, 115, 85, 0.25);
+    border: 1.5px solid rgba(255, 244, 224, 0.3);
   }
 
   /* Summary */
   .summary {
     margin-top: 30px;
-    background: white;
-    border-radius: 24px;
-    padding: 22px;
-    border: 2.5px solid #9FA8DA;
-    box-shadow: 0 4px 16px rgba(121,134,203,0.12);
+    background: #FFFBF2;
+    border-radius: 22px;
+    padding: 22px 22px 24px;
+    border: 2.5px solid #C89B6B;
+    box-shadow: 0 4px 16px rgba(139, 115, 85, 0.15);
     position: relative;
   }
-  .summary .corner-char { position: absolute; right: 14px; top: -20px; width: 42px; }
-  .summary h3 { font-size: 1rem; color: #3F51B5; margin-bottom: 14px; font-weight: 900; }
+  .summary .corner-char { position: absolute; right: 14px; top: -22px; width: 48px; }
+  .summary h3 {
+    font-size: 1rem; color: #8B5A2B; margin-bottom: 14px; font-weight: 900;
+    display: flex; align-items: center; gap: 6px;
+  }
   .summary-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
   .summary-item {
-    background: #F3F4FB;
-    border-radius: 16px;
+    background: #FFF4E0;
+    border-radius: 14px;
     padding: 14px;
     text-align: center;
-    border: 2px solid #C5CAE9;
+    border: 2px solid #E5C89B;
   }
-  .summary-item .label { font-size: 0.72rem; color: #7986CB; margin-bottom: 3px; }
-  .summary-item .value { font-size: 1.05rem; font-weight: 900; color: #3E2723; }
+  .summary-item .label { font-size: 0.72rem; color: #A67C52; margin-bottom: 3px; }
+  .summary-item .value { font-size: 1.05rem; font-weight: 900; color: #3E2A1E; }
 
   .footer {
     text-align: center;
     margin-top: 30px;
     padding: 16px;
   }
-  .footer p { font-size: 0.75rem; color: #9FA8DA; font-weight: 500; margin-top: 6px; }
+  .footer p { font-size: 0.78rem; color: #8B7355; font-weight: 500; margin-top: 6px; font-style: italic; }
 
-  /* floating paws */
-  .float-paw {
+  /* floating deco (clouds + castle) */
+  .float-deco {
     position: fixed;
     pointer-events: none;
     z-index: 0;
     opacity: 0.08;
   }
-  .float-paw:nth-child(1) { top: 18%; right: 4%; width: 50px; transform: rotate(20deg); }
-  .float-paw:nth-child(2) { top: 42%; left: 3%; width: 40px; transform: rotate(-15deg); }
-  .float-paw:nth-child(3) { top: 68%; right: 6%; width: 45px; transform: rotate(35deg); }
+  .float-deco:nth-child(1) { top: 18%; right: 4%; width: 55px; transform: rotate(8deg); }
+  .float-deco:nth-child(2) { top: 42%; left: 3%; width: 45px; transform: rotate(-12deg); }
+  .float-deco:nth-child(3) { top: 68%; right: 6%; width: 50px; transform: rotate(18deg); }
 </style>
 </head>
 <body>
 
 <!-- SVG definitions (reusable) -->
 <svg xmlns="http://www.w3.org/2000/svg" style="display:none">
-  <!-- Character face -->
-  <symbol id="pompom-face" viewBox="0 0 200 200">
-    <!-- droopy ears -->
-    <ellipse cx="46" cy="115" rx="20" ry="35" fill="#FFF1A8" stroke="#3E2723" stroke-width="3" transform="rotate(10 46 115)"/>
-    <ellipse cx="154" cy="115" rx="20" ry="35" fill="#FFF1A8" stroke="#3E2723" stroke-width="3" transform="rotate(-10 154 115)"/>
-    <!-- round face -->
-    <circle cx="100" cy="108" r="58" fill="#FFF1A8" stroke="#3E2723" stroke-width="3"/>
-    <!-- beret -->
-    <ellipse cx="100" cy="55" rx="38" ry="14" fill="#3F51B5" stroke="#3E2723" stroke-width="3"/>
-    <ellipse cx="100" cy="53" rx="34" ry="10" fill="#5C6BC0"/>
-    <circle cx="100" cy="43" r="4.5" fill="#5C6BC0" stroke="#3E2723" stroke-width="2"/>
-    <!-- eyes -->
-    <circle cx="82" cy="105" r="4.5" fill="#3E2723"/>
-    <circle cx="118" cy="105" r="4.5" fill="#3E2723"/>
-    <!-- nose + mouth -->
-    <ellipse cx="100" cy="118" rx="3" ry="2" fill="#3E2723"/>
-    <path d="M94 122 Q100 128 106 122" fill="none" stroke="#3E2723" stroke-width="2" stroke-linecap="round"/>
-  </symbol>
 
-  <!-- Muffin (hamster friend) -->
-  <symbol id="muffin" viewBox="0 0 120 140">
+  <!-- ================ Heen 茵茵 ================ -->
+  <symbol id="heen" viewBox="0 0 200 200">
+    <!-- shadow under body -->
+    <ellipse cx="100" cy="178" rx="52" ry="6" fill="rgba(62,42,30,0.12)"/>
+
     <!-- body -->
-    <ellipse cx="60" cy="90" rx="32" ry="28" fill="#FFF5E6" stroke="#E0C9A6" stroke-width="2"/>
-    <!-- head -->
-    <circle cx="60" cy="62" r="30" fill="#FFF5E6" stroke="#E0C9A6" stroke-width="2"/>
-    <!-- ears -->
-    <circle cx="36" cy="40" r="10" fill="#FFF5E6" stroke="#E0C9A6" stroke-width="2"/>
-    <circle cx="36" cy="40" r="5" fill="#F5C0A0"/>
-    <circle cx="84" cy="40" r="10" fill="#FFF5E6" stroke="#E0C9A6" stroke-width="2"/>
-    <circle cx="84" cy="40" r="5" fill="#F5C0A0"/>
-    <!-- eyes -->
-    <circle cx="50" cy="60" r="3" fill="#1A1A1A"/>
-    <circle cx="70" cy="60" r="3" fill="#1A1A1A"/>
-    <!-- eye highlights -->
-    <circle cx="51" cy="59" r="1" fill="white"/>
-    <circle cx="71" cy="59" r="1" fill="white"/>
+    <ellipse cx="100" cy="150" rx="48" ry="26" fill="#F5E6D0" stroke="#6B4A2A" stroke-width="3"/>
+
+    <!-- back legs/paws peeking -->
+    <ellipse cx="70" cy="170" rx="11" ry="7" fill="#E5D4B8" stroke="#6B4A2A" stroke-width="2.5"/>
+    <ellipse cx="130" cy="170" rx="11" ry="7" fill="#E5D4B8" stroke="#6B4A2A" stroke-width="2.5"/>
+
+    <!-- head (big, round, sits low on body) -->
+    <circle cx="100" cy="108" r="58" fill="#F5E6D0" stroke="#6B4A2A" stroke-width="3"/>
+
+    <!-- long droopy ears -->
+    <path d="M48 100 Q38 140 50 160 Q60 158 62 140 Q60 120 58 100 Z"
+          fill="#D4B896" stroke="#6B4A2A" stroke-width="3"/>
+    <path d="M152 100 Q162 140 150 160 Q140 158 138 140 Q140 120 142 100 Z"
+          fill="#D4B896" stroke="#6B4A2A" stroke-width="3"/>
+    <!-- ear inner shadow -->
+    <path d="M52 110 Q46 140 54 155" fill="none" stroke="#B89968" stroke-width="2" opacity="0.5"/>
+    <path d="M148 110 Q154 140 146 155" fill="none" stroke="#B89968" stroke-width="2" opacity="0.5"/>
+
+    <!-- pushed-in muzzle area (lighter patch) -->
+    <ellipse cx="100" cy="128" rx="34" ry="22" fill="#FFF8EC" stroke="#6B4A2A" stroke-width="2"/>
+
+    <!-- sleepy squinted eyes (closed curves) -->
+    <path d="M72 102 Q80 97 88 102" stroke="#3E2A1E" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+    <path d="M112 102 Q120 97 128 102" stroke="#3E2A1E" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+
+    <!-- eye brows (tiny tufts) -->
+    <path d="M70 90 Q75 86 82 89" stroke="#8B6F47" stroke-width="2" fill="none" stroke-linecap="round"/>
+    <path d="M118 89 Q125 86 130 90" stroke="#8B6F47" stroke-width="2" fill="none" stroke-linecap="round"/>
+
     <!-- nose -->
-    <ellipse cx="60" cy="67" rx="2.5" ry="2" fill="#1A1A1A"/>
-    <!-- mouth -->
-    <path d="M55 71 Q60 76 65 71" fill="none" stroke="#1A1A1A" stroke-width="1.5" stroke-linecap="round"/>
-    <!-- blush -->
-    <ellipse cx="43" cy="68" rx="6" ry="3" fill="rgba(255,150,150,0.25)"/>
-    <ellipse cx="77" cy="68" rx="6" ry="3" fill="rgba(255,150,150,0.25)"/>
+    <ellipse cx="100" cy="124" rx="6" ry="5" fill="#3E2A1E"/>
+    <ellipse cx="98" cy="122" rx="1.5" ry="1" fill="#FFF"/>
+
+    <!-- mouth (little tongue sticking) -->
+    <path d="M100 129 L100 136" stroke="#3E2A1E" stroke-width="2" fill="none"/>
+    <path d="M100 136 Q96 142 94 139" stroke="#3E2A1E" stroke-width="2" fill="none"/>
+    <path d="M100 136 Q104 142 106 139" stroke="#3E2A1E" stroke-width="2" fill="none"/>
+    <ellipse cx="102" cy="141" rx="4" ry="3" fill="#E88B8B" opacity="0.85"/>
+
+    <!-- whiskers dots -->
+    <circle cx="84" cy="128" r="1" fill="#8B6F47"/>
+    <circle cx="82" cy="132" r="1" fill="#8B6F47"/>
+    <circle cx="116" cy="128" r="1" fill="#8B6F47"/>
+    <circle cx="118" cy="132" r="1" fill="#8B6F47"/>
   </symbol>
 
-  <!-- Paw print -->
+  <!-- ================ Howl's Moving Castle ================ -->
+  <symbol id="castle" viewBox="0 0 200 200">
+    <!-- chicken legs -->
+    <path d="M60 165 L55 180 L50 178 M60 165 L56 182" stroke="#3E2A1E" stroke-width="3" fill="none" stroke-linecap="round"/>
+    <path d="M140 165 L145 180 L150 178 M140 165 L144 182" stroke="#3E2A1E" stroke-width="3" fill="none" stroke-linecap="round"/>
+
+    <!-- main body (lumpy rustic) -->
+    <path d="M40 160 L40 110 Q40 95 55 90 L70 82 L72 65 L90 68 L94 52 L120 55 L125 72 L145 76 L152 100 L168 108 L168 160 Z"
+          fill="#A08060" stroke="#3E2A1E" stroke-width="3" stroke-linejoin="round"/>
+
+    <!-- roof peaks -->
+    <polygon points="70,82 95,45 115,75" fill="#8B4A3A" stroke="#3E2A1E" stroke-width="2.5"/>
+    <polygon points="115,75 135,50 155,78" fill="#A05545" stroke="#3E2A1E" stroke-width="2.5"/>
+
+    <!-- turret -->
+    <rect x="105" y="30" width="20" height="28" fill="#C89B6B" stroke="#3E2A1E" stroke-width="2"/>
+    <polygon points="102,30 128,30 115,15" fill="#4A6B3C" stroke="#3E2A1E" stroke-width="2"/>
+
+    <!-- smokestack -->
+    <rect x="50" y="60" width="11" height="32" fill="#5C4A3A" stroke="#3E2A1E" stroke-width="2"/>
+    <rect x="48" y="58" width="15" height="5" fill="#3E2A1E"/>
+
+    <!-- smoke puffs -->
+    <circle cx="55" cy="48" r="6" fill="#E8E2D4" opacity="0.85"/>
+    <circle cx="60" cy="38" r="7" fill="#E8E2D4" opacity="0.7"/>
+    <circle cx="52" cy="30" r="5" fill="#E8E2D4" opacity="0.55"/>
+
+    <!-- windows -->
+    <rect x="78" y="115" width="14" height="14" fill="#FFD76B" stroke="#3E2A1E" stroke-width="1.5" rx="1"/>
+    <line x1="85" y1="115" x2="85" y2="129" stroke="#3E2A1E" stroke-width="1"/>
+    <line x1="78" y1="122" x2="92" y2="122" stroke="#3E2A1E" stroke-width="1"/>
+
+    <rect x="110" y="125" width="12" height="12" fill="#FFD76B" stroke="#3E2A1E" stroke-width="1.5" rx="1"/>
+    <rect x="135" y="118" width="10" height="10" fill="#FFD76B" stroke="#3E2A1E" stroke-width="1.5" rx="1"/>
+
+    <!-- door -->
+    <rect x="90" y="142" width="18" height="22" fill="#5C4A3A" stroke="#3E2A1E" stroke-width="2" rx="2"/>
+    <circle cx="104" cy="154" r="1.5" fill="#FFD76B"/>
+
+    <!-- random protrusion -->
+    <rect x="155" y="95" width="8" height="14" fill="#8B6F47" stroke="#3E2A1E" stroke-width="1.5"/>
+
+    <!-- flag -->
+    <line x1="115" y1="15" x2="115" y2="2" stroke="#3E2A1E" stroke-width="1.5"/>
+    <polygon points="115,2 125,5 115,10" fill="#E07856" stroke="#3E2A1E" stroke-width="1"/>
+  </symbol>
+
+  <!-- ================ Calcifer 卡西法 ================ -->
+  <symbol id="calcifer" viewBox="0 0 100 120">
+    <!-- outer flame -->
+    <path d="M50 10 Q35 28 28 50 Q22 72 32 90 Q42 102 58 100 Q72 92 72 70 Q70 48 58 25 Q54 16 50 10 Z"
+          fill="#FF8C42" stroke="#C0392B" stroke-width="2"/>
+    <!-- inner flame -->
+    <path d="M50 22 Q40 38 36 58 Q33 75 42 88 Q52 92 60 82 Q64 66 58 45 Q54 32 50 22 Z"
+          fill="#FFD54F"/>
+    <!-- core -->
+    <ellipse cx="50" cy="65" rx="10" ry="14" fill="#FFF176" opacity="0.7"/>
+    <!-- eyes -->
+    <circle cx="42" cy="58" r="3.5" fill="#3E2A1E"/>
+    <circle cx="58" cy="58" r="3.5" fill="#3E2A1E"/>
+    <circle cx="43" cy="57" r="1" fill="#FFF"/>
+    <circle cx="59" cy="57" r="1" fill="#FFF"/>
+    <!-- wide grin -->
+    <path d="M40 70 Q50 78 60 70" stroke="#3E2A1E" stroke-width="2" fill="#3E2A1E"/>
+    <!-- little log under -->
+    <rect x="35" y="100" width="30" height="8" fill="#6B4A2A" stroke="#3E2A1E" stroke-width="1.5" rx="2"/>
+    <circle cx="38" cy="104" r="1.5" fill="#3E2A1E"/>
+    <circle cx="62" cy="104" r="1.5" fill="#3E2A1E"/>
+  </symbol>
+
+  <!-- ================ Small paw (timeline dot fallback) ================ -->
   <symbol id="paw" viewBox="0 0 40 40">
     <ellipse cx="20" cy="26" rx="9" ry="8" fill="currentColor"/>
     <circle cx="12" cy="15" r="4.5" fill="currentColor"/>
@@ -353,38 +485,55 @@
     <circle cx="9" cy="24" r="3.5" fill="currentColor"/>
     <circle cx="31" cy="24" r="3.5" fill="currentColor"/>
   </symbol>
+
+  <!-- ================ Tiny Heen head for timeline dots ================ -->
+  <symbol id="heen-mini" viewBox="0 0 40 40">
+    <circle cx="20" cy="20" r="15" fill="#F5E6D0" stroke="#6B4A2A" stroke-width="2"/>
+    <path d="M7 22 Q5 32 12 35 Q14 33 14 28" fill="#D4B896" stroke="#6B4A2A" stroke-width="2"/>
+    <path d="M33 22 Q35 32 28 35 Q26 33 26 28" fill="#D4B896" stroke="#6B4A2A" stroke-width="2"/>
+    <path d="M14 18 Q17 15 20 18" stroke="#3E2A1E" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+    <path d="M20 18 Q23 15 26 18" stroke="#3E2A1E" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+    <ellipse cx="20" cy="25" rx="2" ry="1.5" fill="#3E2A1E"/>
+  </symbol>
 </svg>
 
-<!-- Floating paw deco -->
-<div class="float-paw"><svg viewBox="0 0 40 40"><use href="#paw" fill="#7986CB"/></svg></div>
-<div class="float-paw"><svg viewBox="0 0 40 40"><use href="#paw" fill="#7986CB"/></svg></div>
-<div class="float-paw"><svg viewBox="0 0 40 40"><use href="#paw" fill="#7986CB"/></svg></div>
+<!-- Floating decoration -->
+<div class="float-deco"><svg viewBox="0 0 200 200"><use href="#castle"/></svg></div>
+<div class="float-deco"><svg viewBox="0 0 100 120"><use href="#calcifer"/></svg></div>
+<div class="float-deco"><svg viewBox="0 0 200 200"><use href="#heen"/></svg></div>
 
 <div class="hero">
+  <div class="hero-hills"></div>
   <div class="cloud"></div>
   <div class="cloud"></div>
   <div class="cloud"></div>
+
+  <!-- Moving castle in the distance -->
+  <div class="hero-castle">
+    <svg viewBox="0 0 200 200"><use href="#castle"/></svg>
+  </div>
 
   <div class="hero-character">
     <div class="bounce">
-      <svg width="130" height="130" viewBox="0 0 200 200"><use href="#pompom-face"/></svg>
+      <svg width="140" height="140" viewBox="0 0 200 200"><use href="#heen"/></svg>
     </div>
   </div>
 
-  <!-- Friends -->
+  <!-- Calcifer on the left -->
   <div class="hero-friends left">
-    <svg width="56" height="65"><use href="#muffin"/></svg>
+    <svg width="48" height="58" viewBox="0 0 100 120"><use href="#calcifer"/></svg>
   </div>
+  <!-- Small castle / stars on right -->
   <div class="hero-friends right">
-    <svg width="24" height="24" style="margin-bottom:20px"><use href="#paw" fill="#3F51B5"/></svg>
+    <svg width="32" height="32" viewBox="0 0 200 200" style="margin-bottom:16px"><use href="#castle"/></svg>
   </div>
 
   <h1>三峽一日遊</h1>
-  <div class="subtitle">~ 搭 910 公車出發吧！~</div>
-  <div class="date-badge">🐾 2026 春季小旅行 🐾</div>
+  <div class="subtitle">~ 和茵茵一起漫步老街 ~</div>
+  <div class="date-badge">✨ 霍爾的移動小旅行 ✨</div>
 
   <div class="ground-flowers">
-    <span>🌸</span><span>🌿</span><span>🏮</span><span>🍀</span><span>🌸</span><span>🌿</span><span>🏮</span><span>🍀</span><span>🌸</span>
+    <span>🌼</span><span>🌿</span><span>🏮</span><span>🌸</span><span>🌾</span><span>🌿</span><span>🏮</span><span>🌼</span><span>🌸</span>
   </div>
 </div>
 
@@ -395,11 +544,11 @@
 
     <!-- 1. 搭 910 公車前往三峽 -->
     <div class="stop">
-      <div class="dot"><svg viewBox="0 0 40 40"><use href="#paw" fill="#2E7D32"/></svg></div>
+      <div class="dot"><svg viewBox="0 0 40 40"><use href="#heen-mini"/></svg></div>
       <div class="card">
         <div class="time">10:00 — 10:47</div>
         <div class="name"><span class="icon">🚌</span> 搭 910 公車 → 三峽國中</div>
-        <div class="desc">於板橋車站（文化路）站牌搭乘 910 公車（臺北客運，往三峽一站方向），車程約 26 分鐘、共經 6 站，於「三峽國中」站下車。車資 $30。</div>
+        <div class="desc">於板橋車站（文化路）站牌搭乘 910 公車（臺北客運，往三峽一站方向），車程約 26 分鐘、共經 6 站，於「三峽國中」站下車。車資 $30。茵茵搖搖擺擺跟著一起上車。</div>
         <div class="tags">
           <span class="tag bus">910 公車</span>
           <span class="tag">$30</span>
@@ -408,7 +557,7 @@
     </div>
 
     <div class="stop transport">
-      <div class="dot"><svg viewBox="0 0 40 40"><use href="#paw" fill="#9FA8DA"/></svg></div>
+      <div class="dot"><svg viewBox="0 0 40 40"><use href="#heen-mini"/></svg></div>
       <div class="card">
         <div class="name">🐾 步行約 8 分鐘（550 公尺）→ 三峽老街區</div>
       </div>
@@ -418,12 +567,12 @@
 
     <!-- 2. 甘樂食堂 -->
     <div class="stop">
-      <div class="dot"><svg viewBox="0 0 40 40"><use href="#paw" fill="#E65100"/></svg></div>
+      <div class="dot"><svg viewBox="0 0 40 40"><use href="#heen-mini"/></svg></div>
       <div class="card">
-        <svg class="corner-char" viewBox="0 0 200 200"><use href="#pompom-face"/></svg>
+        <svg class="corner-char" viewBox="0 0 200 200"><use href="#heen"/></svg>
         <div class="time">11:00 — 12:30</div>
         <div class="name"><span class="icon">🍚</span> 甘樂食堂</div>
-        <div class="desc">由老三合院改建的在地食堂，甘樂文創旗下品牌，使用三峽在地食材推出台味定食與甕仔麵。古樸庭院、木造老宅氛圍滿分。剛抵達三峽先吃飽再開始逛，避開中午尖峰排隊人潮。建議先預約。</div>
+        <div class="desc">由老三合院改建的在地食堂，甘樂文創旗下品牌，使用三峽在地食材推出台味定食與甕仔麵。古樸庭院、木造老宅氛圍滿分——有點像蘇菲打理的那種安靜小角落。剛抵達三峽先吃飽再開始逛，避開中午尖峰排隊人潮。建議先預約。</div>
         <div class="tags">
           <span class="tag meal">午餐</span>
           <a class="map-link" href="https://maps.app.goo.gl/wDjQ9eePmdn9QrUo7" target="_blank">📍 Google Maps</a>
@@ -432,7 +581,7 @@
     </div>
 
     <div class="stop transport">
-      <div class="dot"><svg viewBox="0 0 40 40"><use href="#paw" fill="#9FA8DA"/></svg></div>
+      <div class="dot"><svg viewBox="0 0 40 40"><use href="#heen-mini"/></svg></div>
       <div class="card">
         <div class="name">🐾 步行約 3 分鐘 → 清水祖師廟</div>
       </div>
@@ -442,11 +591,11 @@
 
     <!-- 3. 三峽長福巖 清水祖師廟 -->
     <div class="stop">
-      <div class="dot"><svg viewBox="0 0 40 40"><use href="#paw" fill="#3F51B5"/></svg></div>
+      <div class="dot"><svg viewBox="0 0 40 40"><use href="#heen-mini"/></svg></div>
       <div class="card">
         <div class="time">12:30 — 13:15</div>
         <div class="name"><span class="icon">⛩️</span> 三峽長福巖 清水祖師廟</div>
-        <div class="desc">被譽為「東方藝術殿堂」的百年古廟，由藝術家李梅樹主導重建。石雕、木雕、銅雕皆為大師手筆，廟內三川殿的百鳥朝梅石柱、銅塑龍柱都是一絕。廟埕就緊鄰老街入口。</div>
+        <div class="desc">被譽為「東方藝術殿堂」的百年古廟，由藝術家李梅樹主導重建。石雕、木雕、銅雕皆為大師手筆——雕工細膩得像卡西法燃燒出來的夢境；廟內三川殿的百鳥朝梅石柱、銅塑龍柱都是一絕。廟埕緊鄰老街入口。</div>
         <div class="tags">
           <a class="map-link" href="https://maps.app.goo.gl/SSQAgRkbwXEjLoER6" target="_blank">📍 Google Maps</a>
         </div>
@@ -454,7 +603,7 @@
     </div>
 
     <div class="stop transport">
-      <div class="dot"><svg viewBox="0 0 40 40"><use href="#paw" fill="#9FA8DA"/></svg></div>
+      <div class="dot"><svg viewBox="0 0 40 40"><use href="#heen-mini"/></svg></div>
       <div class="card">
         <div class="name">🐾 步行約 1 分鐘 → 三峽老街</div>
       </div>
@@ -464,12 +613,12 @@
 
     <!-- 4. 三峽老街 -->
     <div class="stop">
-      <div class="dot"><svg viewBox="0 0 40 40"><use href="#paw" fill="#3F51B5"/></svg></div>
+      <div class="dot"><svg viewBox="0 0 40 40"><use href="#heen-mini"/></svg></div>
       <div class="card">
-        <svg class="corner-char" viewBox="0 0 200 200"><use href="#pompom-face"/></svg>
+        <svg class="corner-char" viewBox="0 0 200 200"><use href="#heen"/></svg>
         <div class="time">13:15 — 17:00</div>
         <div class="name"><span class="icon">🏮</span> 三峽老街（民權街）</div>
-        <div class="desc">全長約 260 公尺的紅磚拱廊老街，保有日治時期巴洛克式街屋立面，是北台灣最具代表性的歷史街區之一。下午慢慢逛以下四個必訪點。</div>
+        <div class="desc">全長約 260 公尺的紅磚拱廊老街，保有日治時期巴洛克式街屋立面，是北台灣最具代表性的歷史街區之一。走在拱廊底下，感覺茵茵的小腳「啪嗒啪嗒」跟在身後。下午慢慢逛以下四個必訪點。</div>
         <div class="tags">
           <a class="map-link" href="https://maps.app.goo.gl/wrUuzTjDuBkPj6MNA" target="_blank">📍 Google Maps</a>
         </div>
@@ -478,11 +627,11 @@
 
     <!-- 4a. 三峽金牛角（總店） -->
     <div class="stop">
-      <div class="dot"><svg viewBox="0 0 40 40"><use href="#paw" fill="#E65100"/></svg></div>
+      <div class="dot"><svg viewBox="0 0 40 40"><use href="#heen-mini"/></svg></div>
       <div class="card">
         <div class="time">13:20 — 13:50</div>
         <div class="name"><span class="icon">🥐</span> 三峽金牛角（總店）</div>
-        <div class="desc">三峽金牛角的元祖名店，層次酥脆、奶香濃郁，原味、巧克力、乳酪等多種口味，剛出爐時最香！買一兩支邊走邊吃，或帶回去當伴手禮。</div>
+        <div class="desc">三峽金牛角的元祖名店，層次酥脆、奶香濃郁，原味、巧克力、乳酪等多種口味，剛出爐時最香！買一兩支邊走邊吃，剩下的帶回移動城堡當下午茶。</div>
         <div class="tags">
           <span class="tag meal">小吃</span>
           <a class="map-link" href="https://maps.app.goo.gl/vAm242jhEJAz9EjAA" target="_blank">📍 Google Maps</a>
@@ -492,11 +641,11 @@
 
     <!-- 4b. 鄭記三角豬血糕 -->
     <div class="stop">
-      <div class="dot"><svg viewBox="0 0 40 40"><use href="#paw" fill="#E65100"/></svg></div>
+      <div class="dot"><svg viewBox="0 0 40 40"><use href="#heen-mini"/></svg></div>
       <div class="card">
         <div class="time">13:50 — 14:20</div>
         <div class="name"><span class="icon">🍢</span> 鄭記三角豬血糕</div>
-        <div class="desc">老街排隊名攤！招牌就是三角形大塊豬血糕，現切現沾，醬油膏搭花生粉、香菜，軟糯彈牙、鹹香夠味，是經典古早味小吃。</div>
+        <div class="desc">老街排隊名攤！招牌三角形大塊豬血糕，現切現沾，醬油膏搭花生粉、香菜，軟糯彈牙、鹹香夠味，是經典古早味小吃。記得分一小塊給腳邊巴望的茵茵（誤）。</div>
         <div class="tags">
           <span class="tag meal">小吃</span>
           <a class="map-link" href="https://maps.app.goo.gl/AFSqdT9Fg88iiWG37" target="_blank">📍 Google Maps</a>
@@ -506,11 +655,11 @@
 
     <!-- 4c. 庶民美術館 -->
     <div class="stop">
-      <div class="dot"><svg viewBox="0 0 40 40"><use href="#paw" fill="#3F51B5"/></svg></div>
+      <div class="dot"><svg viewBox="0 0 40 40"><use href="#heen-mini"/></svg></div>
       <div class="card">
         <div class="time">14:30 — 15:30</div>
         <div class="name"><span class="icon">🖼️</span> 庶民美術館</div>
-        <div class="desc">藏身老街的小型美術空間，展出在地素人藝術家的生活創作，用最貼近土地的視角呈現三峽的人文風景。免費參觀，逛累了進來吹冷氣、靜靜看展剛好。</div>
+        <div class="desc">藏身老街的小型美術空間，展出在地素人藝術家的生活創作，用最貼近土地的視角呈現三峽的人文風景。免費參觀——像推開城堡那扇轉色的門，走進另一個安靜的世界。逛累了進來吹冷氣、靜靜看展剛好。</div>
         <div class="tags">
           <a class="map-link" href="https://maps.app.goo.gl/hcCcgo8oyUVNZwdx7" target="_blank">📍 Google Maps</a>
         </div>
@@ -519,11 +668,11 @@
 
     <!-- 4d. 勇伯豆花 -->
     <div class="stop">
-      <div class="dot"><svg viewBox="0 0 40 40"><use href="#paw" fill="#E65100"/></svg></div>
+      <div class="dot"><svg viewBox="0 0 40 40"><use href="#heen-mini"/></svg></div>
       <div class="card">
         <div class="time">15:40 — 16:30</div>
         <div class="name"><span class="icon">🍨</span> 勇伯豆花</div>
-        <div class="desc">三峽在地老字號，招牌手工豆花綿密細緻，可搭配花生、紅豆、粉圓、薏仁等多種配料，夏天冰的、冬天熱的都好吃，剛好逛累了坐下來歇腿。</div>
+        <div class="desc">三峽在地老字號，招牌手工豆花綿密細緻，可搭配花生、紅豆、粉圓、薏仁等多種配料，夏天冰的、冬天熱的都好吃。茵茵懶懶趴在腳邊，晃著尾巴——這是今天最舒服的一刻。</div>
         <div class="tags">
           <span class="tag meal">甜點</span>
           <a class="map-link" href="https://maps.app.goo.gl/4iX8NviHjeV1up1c7" target="_blank">📍 Google Maps</a>
@@ -532,7 +681,7 @@
     </div>
 
     <div class="stop transport">
-      <div class="dot"><svg viewBox="0 0 40 40"><use href="#paw" fill="#9FA8DA"/></svg></div>
+      <div class="dot"><svg viewBox="0 0 40 40"><use href="#heen-mini"/></svg></div>
       <div class="card">
         <div class="name">🐾 步行約 8 分鐘（550 公尺）→ 三峽國中站</div>
       </div>
@@ -542,11 +691,11 @@
 
     <!-- 5. 回程公車 -->
     <div class="stop">
-      <div class="dot"><svg viewBox="0 0 40 40"><use href="#paw" fill="#2E7D32"/></svg></div>
+      <div class="dot"><svg viewBox="0 0 40 40"><use href="#heen-mini"/></svg></div>
       <div class="card">
         <div class="time">17:00 — 17:30</div>
         <div class="name"><span class="icon">🚌</span> 910 公車 → 板橋車站</div>
-        <div class="desc">於三峽國中站搭 910 公車回板橋方向，車程約 26 分鐘抵達板橋車站（文化路）。帶著滿滿的金牛角和好心情回家！</div>
+        <div class="desc">於三峽國中站搭 910 公車回板橋方向，車程約 26 分鐘抵達板橋車站（文化路）。夕陽把山頭染成金色，茵茵在膝上打起盹，帶著滿滿金牛角和好心情回家。</div>
         <div class="tags">
           <span class="tag bus">910 公車</span>
           <span class="tag">$30</span>
@@ -558,8 +707,8 @@
 
   <!-- Summary -->
   <div class="summary">
-    <svg class="corner-char" viewBox="0 0 200 200"><use href="#pompom-face"/></svg>
-    <h3>🐾 一日行程摘要</h3>
+    <svg class="corner-char" viewBox="0 0 200 200"><use href="#heen"/></svg>
+    <h3>✨ 一日行程摘要</h3>
     <div class="summary-grid">
       <div class="summary-item">
         <div class="label">行程時段</div>
@@ -589,8 +738,8 @@
   </div>
 
   <div class="footer">
-    <svg width="60" height="60" viewBox="0 0 200 200" style="opacity:0.5"><use href="#pompom-face"/></svg>
-    <p>三峽一日遊 — 開心出發！</p>
+    <svg width="70" height="70" viewBox="0 0 200 200" style="opacity:0.55"><use href="#heen"/></svg>
+    <p>「一顆善良的心，比什麼都重要。」—— 與茵茵的三峽漫步</p>
   </div>
 
 </div>
