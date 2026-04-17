@@ -16,6 +16,12 @@ async def home():
         return HTMLResponse(content=f.read())
 
 
+@app.get("/sanxia", response_class=HTMLResponse)
+async def sanxia():
+    with open("templates/sanxia-trip.html", "r", encoding="utf-8") as f:
+        return HTMLResponse(content=f.read())
+
+
 @app.get("/health")
 async def health():
     return {"status": "ok"}

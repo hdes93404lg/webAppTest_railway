@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>三峽一日遊</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;700;900&display=swap');
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: "Zen Maru Gothic", "Noto Sans TC", sans-serif;
+    background: #FDF6EC;
+    min-height: 100vh;
+    color: #5D4037;
+    overflow-x: hidden;
+  }
+
+  /* ===== HERO ===== */
+  .hero {
+    position: relative;
+    background: linear-gradient(180deg, #C5CAE9 0%, #9FA8DA 35%, #AED581 70%, #81C784 100%);
+    text-align: center;
+    padding: 28px 20px 75px;
+    overflow: hidden;
+  }
+  .cloud {
+    position: absolute;
+    background: rgba(255,255,255,0.7);
+    border-radius: 50px;
+    height: 28px;
+    animation: cloudDrift 20s linear infinite;
+  }
+  .cloud::before, .cloud::after {
+    content: '';
+    position: absolute;
+    background: rgba(255,255,255,0.7);
+    border-radius: 50%;
+  }
+  .cloud:nth-child(1) { width: 90px; top: 12px; left: 5%; }
+  .cloud:nth-child(1)::before { width: 36px; height: 36px; top: -18px; left: 14px; }
+  .cloud:nth-child(1)::after { width: 28px; height: 28px; top: -12px; left: 44px; }
+  .cloud:nth-child(2) { width: 65px; top: 28px; right: 10%; height: 22px; animation-delay: -8s; }
+  .cloud:nth-child(2)::before { width: 26px; height: 26px; top: -13px; left: 10px; }
+  .cloud:nth-child(2)::after { width: 20px; height: 20px; top: -9px; left: 30px; }
+  .cloud:nth-child(3) { width: 50px; top: 6px; left: 42%; height: 18px; animation-delay: -14s; }
+  .cloud:nth-child(3)::before { width: 22px; height: 22px; top: -11px; left: 8px; }
+  .cloud:nth-child(3)::after { width: 16px; height: 16px; top: -7px; left: 26px; }
+  @keyframes cloudDrift {
+    0% { transform: translateX(0); }
+    50% { transform: translateX(30px); }
+    100% { transform: translateX(0); }
+  }
+
+  .hero-character {
+    position: relative;
+    z-index: 2;
+    margin-bottom: 8px;
+  }
+  .hero-character svg { filter: drop-shadow(2px 4px 8px rgba(0,0,0,0.1)); }
+  .hero-character .bounce { animation: bounce 3s ease-in-out infinite; display: inline-block; }
+  @keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
+  .hero-friends {
+    position: absolute;
+    bottom: 52px;
+    z-index: 2;
+    animation: bounce 3.5s ease-in-out infinite;
+  }
+  .hero-friends.left { left: 10%; animation-delay: -0.5s; }
+  .hero-friends.right { right: 10%; animation-delay: -1.5s; }
+
+  .hero h1 {
+    position: relative; z-index: 2;
+    font-size: 2rem; font-weight: 900;
+    color: #3E2723;
+    letter-spacing: 3px;
+    text-shadow: 0 2px 0 rgba(255,255,255,0.5);
+  }
+  .hero .subtitle {
+    position: relative; z-index: 2;
+    font-size: 0.92rem; color: #4E342E; font-weight: 700;
+    margin: 4px 0;
+  }
+  .hero .date-badge {
+    position: relative; z-index: 2;
+    display: inline-block; margin-top: 8px;
+    padding: 5px 20px;
+    background: rgba(255,255,255,0.7);
+    border: 2px solid #7986CB;
+    border-radius: 30px;
+    font-size: 0.82rem; color: #3E2723; font-weight: 700;
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: -2px; left: 0; right: 0;
+    height: 45px;
+    background: #FDF6EC;
+    clip-path: ellipse(55% 100% at 50% 100%);
+    z-index: 3;
+  }
+  .ground-flowers {
+    position: absolute;
+    bottom: 38px; left: 0; right: 0; z-index: 2;
+    display: flex; justify-content: space-around;
+    padding: 0 15px; opacity: 0.55; font-size: 0.9rem;
+  }
+
+  /* ===== CONTAINER ===== */
+  .container { max-width: 680px; margin: 0 auto; padding: 20px 16px 50px; }
+
+  /* ===== TIMELINE ===== */
+  .timeline { position: relative; padding-left: 40px; }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 16px; top: 0; bottom: 0;
+    width: 4px;
+    background: repeating-linear-gradient(to bottom, #7986CB 0px, #7986CB 10px, transparent 10px, transparent 16px);
+    border-radius: 4px;
+  }
+  .stop { position: relative; margin-bottom: 14px; animation: fadeUp 0.5s ease both; }
+  .stop:nth-child(1) { animation-delay: 0.05s; }
+  .stop:nth-child(2) { animation-delay: 0.1s; }
+  .stop:nth-child(3) { animation-delay: 0.15s; }
+  .stop:nth-child(4) { animation-delay: 0.2s; }
+  .stop:nth-child(5) { animation-delay: 0.25s; }
+  .stop:nth-child(6) { animation-delay: 0.3s; }
+  .stop:nth-child(7) { animation-delay: 0.35s; }
+  .stop:nth-child(8) { animation-delay: 0.4s; }
+  .stop:nth-child(9) { animation-delay: 0.45s; }
+  .stop:nth-child(10) { animation-delay: 0.5s; }
+  .stop:nth-child(11) { animation-delay: 0.55s; }
+  .stop:nth-child(12) { animation-delay: 0.6s; }
+  .stop:nth-child(13) { animation-delay: 0.65s; }
+  .stop:nth-child(14) { animation-delay: 0.7s; }
+  .stop:nth-child(15) { animation-delay: 0.75s; }
+  .stop:nth-child(16) { animation-delay: 0.8s; }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(14px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* paw SVG dot */
+  .stop .dot {
+    position: absolute;
+    left: -30px; top: 18px;
+    width: 24px; height: 24px;
+    z-index: 1;
+  }
+  .stop.transport .dot {
+    width: 18px; height: 18px;
+    left: -27px; top: 10px;
+    opacity: 0.6;
+  }
+
+  /* ===== CARDS ===== */
+  .card {
+    background: white;
+    border-radius: 20px;
+    padding: 18px 20px;
+    border: 2.5px solid #9FA8DA;
+    box-shadow: 0 4px 16px rgba(121,134,203,0.12), 0 1px 3px rgba(0,0,0,0.03);
+    transition: transform 0.2s, box-shadow 0.2s;
+    position: relative;
+  }
+  .card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 24px rgba(121,134,203,0.2);
+  }
+  .card .time {
+    font-size: 0.74rem; color: #5C6BC0;
+    font-weight: 700; letter-spacing: 1px; margin-bottom: 3px;
+  }
+  .card .name {
+    font-size: 1.1rem; font-weight: 900;
+    margin-bottom: 6px; color: #3E2723;
+    display: flex; align-items: center; gap: 8px;
+    line-height: 1.4;
+  }
+  .card .name .icon { font-size: 1.15rem; }
+  .card .name a {
+    color: inherit; text-decoration: none;
+    border-bottom: 1.5px dashed #9FA8DA;
+    transition: border-color 0.2s;
+  }
+  .card .name a:hover { border-color: #3F51B5; }
+  .card .map-link {
+    display: inline-block;
+    font-size: 0.72rem; color: #3F51B5; font-weight: 700;
+    text-decoration: none;
+    padding: 3px 10px;
+    border: 1.5px solid #C5CAE9;
+    border-radius: 20px;
+    background: #F3F4FB;
+    transition: background 0.2s, border-color 0.2s;
+  }
+  .card .map-link:hover { background: #E8EAF6; border-color: #3F51B5; }
+  .card .desc { font-size: 0.84rem; color: #5D4037; line-height: 1.7; }
+  .card .tags { margin-top: 10px; display: flex; flex-wrap: wrap; gap: 6px; }
+  .card .tag {
+    background: #F3F4FB; color: #3F51B5;
+    padding: 3px 10px; border-radius: 20px;
+    font-size: 0.72rem; font-weight: 700;
+    border: 1.5px solid #9FA8DA;
+  }
+  .card .tag.meal {
+    background: #FFF3E0; color: #E65100;
+    border-color: #FFAB40;
+  }
+  .card .tag.bus {
+    background: #E8F5E9; color: #2E7D32;
+    border-color: #81C784;
+  }
+  /* corner character */
+  .card .corner-char {
+    position: absolute;
+    right: 6px; top: -16px;
+    width: 36px; height: 36px;
+    pointer-events: none;
+  }
+
+  /* Transport */
+  .transport .card {
+    background: linear-gradient(90deg, #F3F4FB, #FDF6EC);
+    padding: 10px 16px;
+    border: 2px dashed #9FA8DA;
+    box-shadow: none;
+    border-radius: 16px;
+  }
+  .transport .card:hover { transform: none; box-shadow: none; }
+  .transport .card .name {
+    font-size: 0.85rem; font-weight: 700;
+    color: #7986CB; margin-bottom: 0;
+  }
+
+  /* Section */
+  .section-label {
+    text-align: center;
+    margin: 8px 0 8px -40px;
+    padding: 6px 0;
+  }
+  .section-label span {
+    background: linear-gradient(135deg, #9FA8DA, #7986CB);
+    color: white;
+    padding: 5px 18px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 900;
+    letter-spacing: 1px;
+    box-shadow: 0 2px 8px rgba(121,134,203,0.3);
+  }
+
+  /* Summary */
+  .summary {
+    margin-top: 30px;
+    background: white;
+    border-radius: 24px;
+    padding: 22px;
+    border: 2.5px solid #9FA8DA;
+    box-shadow: 0 4px 16px rgba(121,134,203,0.12);
+    position: relative;
+  }
+  .summary .corner-char { position: absolute; right: 14px; top: -20px; width: 42px; }
+  .summary h3 { font-size: 1rem; color: #3F51B5; margin-bottom: 14px; font-weight: 900; }
+  .summary-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .summary-item {
+    background: #F3F4FB;
+    border-radius: 16px;
+    padding: 14px;
+    text-align: center;
+    border: 2px solid #C5CAE9;
+  }
+  .summary-item .label { font-size: 0.72rem; color: #7986CB; margin-bottom: 3px; }
+  .summary-item .value { font-size: 1.05rem; font-weight: 900; color: #3E2723; }
+
+  .footer {
+    text-align: center;
+    margin-top: 30px;
+    padding: 16px;
+  }
+  .footer p { font-size: 0.75rem; color: #9FA8DA; font-weight: 500; margin-top: 6px; }
+
+  /* floating paws */
+  .float-paw {
+    position: fixed;
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.08;
+  }
+  .float-paw:nth-child(1) { top: 18%; right: 4%; width: 50px; transform: rotate(20deg); }
+  .float-paw:nth-child(2) { top: 42%; left: 3%; width: 40px; transform: rotate(-15deg); }
+  .float-paw:nth-child(3) { top: 68%; right: 6%; width: 45px; transform: rotate(35deg); }
+</style>
+</head>
+<body>
+
+<!-- SVG definitions (reusable) -->
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none">
+  <!-- Character face -->
+  <symbol id="pompom-face" viewBox="0 0 200 200">
+    <!-- droopy ears -->
+    <ellipse cx="46" cy="115" rx="20" ry="35" fill="#FFF1A8" stroke="#3E2723" stroke-width="3" transform="rotate(10 46 115)"/>
+    <ellipse cx="154" cy="115" rx="20" ry="35" fill="#FFF1A8" stroke="#3E2723" stroke-width="3" transform="rotate(-10 154 115)"/>
+    <!-- round face -->
+    <circle cx="100" cy="108" r="58" fill="#FFF1A8" stroke="#3E2723" stroke-width="3"/>
+    <!-- beret -->
+    <ellipse cx="100" cy="55" rx="38" ry="14" fill="#3F51B5" stroke="#3E2723" stroke-width="3"/>
+    <ellipse cx="100" cy="53" rx="34" ry="10" fill="#5C6BC0"/>
+    <circle cx="100" cy="43" r="4.5" fill="#5C6BC0" stroke="#3E2723" stroke-width="2"/>
+    <!-- eyes -->
+    <circle cx="82" cy="105" r="4.5" fill="#3E2723"/>
+    <circle cx="118" cy="105" r="4.5" fill="#3E2723"/>
+    <!-- nose + mouth -->
+    <ellipse cx="100" cy="118" rx="3" ry="2" fill="#3E2723"/>
+    <path d="M94 122 Q100 128 106 122" fill="none" stroke="#3E2723" stroke-width="2" stroke-linecap="round"/>
+  </symbol>
+
+  <!-- Muffin (hamster friend) -->
+  <symbol id="muffin" viewBox="0 0 120 140">
+    <!-- body -->
+    <ellipse cx="60" cy="90" rx="32" ry="28" fill="#FFF5E6" stroke="#E0C9A6" stroke-width="2"/>
+    <!-- head -->
+    <circle cx="60" cy="62" r="30" fill="#FFF5E6" stroke="#E0C9A6" stroke-width="2"/>
+    <!-- ears -->
+    <circle cx="36" cy="40" r="10" fill="#FFF5E6" stroke="#E0C9A6" stroke-width="2"/>
+    <circle cx="36" cy="40" r="5" fill="#F5C0A0"/>
+    <circle cx="84" cy="40" r="10" fill="#FFF5E6" stroke="#E0C9A6" stroke-width="2"/>
+    <circle cx="84" cy="40" r="5" fill="#F5C0A0"/>
+    <!-- eyes -->
+    <circle cx="50" cy="60" r="3" fill="#1A1A1A"/>
+    <circle cx="70" cy="60" r="3" fill="#1A1A1A"/>
+    <!-- eye highlights -->
+    <circle cx="51" cy="59" r="1" fill="white"/>
+    <circle cx="71" cy="59" r="1" fill="white"/>
+    <!-- nose -->
+    <ellipse cx="60" cy="67" rx="2.5" ry="2" fill="#1A1A1A"/>
+    <!-- mouth -->
+    <path d="M55 71 Q60 76 65 71" fill="none" stroke="#1A1A1A" stroke-width="1.5" stroke-linecap="round"/>
+    <!-- blush -->
+    <ellipse cx="43" cy="68" rx="6" ry="3" fill="rgba(255,150,150,0.25)"/>
+    <ellipse cx="77" cy="68" rx="6" ry="3" fill="rgba(255,150,150,0.25)"/>
+  </symbol>
+
+  <!-- Paw print -->
+  <symbol id="paw" viewBox="0 0 40 40">
+    <ellipse cx="20" cy="26" rx="9" ry="8" fill="currentColor"/>
+    <circle cx="12" cy="15" r="4.5" fill="currentColor"/>
+    <circle cx="28" cy="15" r="4.5" fill="currentColor"/>
+    <circle cx="9" cy="24" r="3.5" fill="currentColor"/>
+    <circle cx="31" cy="24" r="3.5" fill="currentColor"/>
+  </symbol>
+</svg>
+
+<!-- Floating paw deco -->
+<div class="float-paw"><svg viewBox="0 0 40 40"><use href="#paw" fill="#7986CB"/></svg></div>
+<div class="float-paw"><svg viewBox="0 0 40 40"><use href="#paw" fill="#7986CB"/></svg></div>
+<div class="float-paw"><svg viewBox="0 0 40 40"><use href="#paw" fill="#7986CB"/></svg></div>
+
+<div class="hero">
+  <div class="cloud"></div>
+  <div class="cloud"></div>
+  <div class="cloud"></div>
+
+  <div class="hero-character">
+    <div class="bounce">
+      <svg width="130" height="130" viewBox="0 0 200 200"><use href="#pompom-face"/></svg>
+    </div>
+  </div>
+
+  <!-- Friends -->
+  <div class="hero-friends left">
+    <svg width="56" height="65"><use href="#muffin"/></svg>
+  </div>
+  <div class="hero-friends right">
+    <svg width="24" height="24" style="margin-bottom:20px"><use href="#paw" fill="#3F51B5"/></svg>
+  </div>
+
+  <h1>三峽一日遊</h1>
+  <div class="subtitle">~ 搭 910 公車出發吧！~</div>
+  <div class="date-badge">🐾 2026 春季小旅行 🐾</div>
+
+  <div class="ground-flowers">
+    <span>🌸</span><span>🌿</span><span>🏮</span><span>🍀</span><span>🌸</span><span>🌿</span><span>🏮</span><span>🍀</span><span>🌸</span>
+  </div>
+</div>
+
+<div class="container">
+  <div class="timeline">
+
+    <div class="section-label"><span>🚌 出發囉</span></div>
+
+    <!-- 1. 板橋出發 -->
+    <div class="stop">
+      <div class="dot"><svg viewBox="0 0 40 40"><use href="#paw" fill="#3F51B5"/></svg></div>
+      <div class="card">
+        <div class="time">10:00 — 10:21</div>
+        <div class="name"><span class="icon">🏠</span> 板橋出發 → 板橋車站（文化路）</div>
+        <div class="desc">上午 10:00 從板橋大道二段出發，步行約 1 分鐘（76 公尺）抵達板橋車站文化路公車站牌。</div>
+        <div class="tags">
+          <a class="map-link" href="https://www.google.com/maps/dir/?api=1&origin=%E6%96%B0%E5%8C%97%E5%B8%82%E6%9D%BF%E6%A9%8B%E5%8D%80%E7%B8%A3%E6%B0%91%E5%A4%A7%E9%81%93%E4%BA%8C%E6%AE%B57%E8%99%9F&destination=%E6%9D%BF%E6%A9%8B%E8%BB%8A%E7%AB%99%E6%96%87%E5%8C%96%E8%B7%AF&travelmode=walking" target="_blank">📍 導航</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. 搭 910 公車 -->
+    <div class="stop">
+      <div class="dot"><svg viewBox="0 0 40 40"><use href="#paw" fill="#2E7D32"/></svg></div>
+      <div class="card">
+        <div class="time">10:21 — 10:47</div>
+        <div class="name"><span class="icon">🚌</span> 910 臺北客運三峽一站 → 三峽國中</div>
+        <div class="desc">10:21 於板橋車站文化路站牌搭乘 910 公車（往三峽一站方向），車程約 26 分鐘、共經 6 站，於「三峽國中」站下車。車資 $30。</div>
+        <div class="tags">
+          <span class="tag bus">910 公車</span>
+          <span class="tag">$30</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="stop transport">
+      <div class="dot"><svg viewBox="0 0 40 40"><use href="#paw" fill="#9FA8DA"/></svg></div>
+      <div class="card">
+        <div class="name">🐾 步行約 8 分鐘（550 公尺）→ 三峽老街</div>
+      </div>
+    </div>
+
+    <div class="section-label"><span>🏮 抵達三峽老街</span></div>
+
+    <!-- 3. 三峽老街 上午 -->
+    <div class="stop">
+      <div class="dot"><svg viewBox="0 0 40 40"><use href="#paw" fill="#3F51B5"/></svg></div>
+      <div class="card">
+        <svg class="corner-char" viewBox="0 0 200 200"><use href="#pompom-face"/></svg>
+        <div class="time">10:55 — 12:00</div>
+        <div class="name"><span class="icon">🏮</span> 三峽老街（民權街）</div>
+        <div class="desc">全長約 260 公尺的紅磚拱廊老街，保有日治時期巴洛克式街屋立面，是北台灣最具代表性的歷史街區之一。上午先輕鬆漫步、看看建築細節，金牛角、茶點先預熱一下。</div>
+        <div class="tags">
+          <a class="map-link" href="https://maps.app.goo.gl/wrUuzTjDuBkPj6MNA" target="_blank">📍 Google Maps</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4. 清水祖師廟 -->
+    <div class="stop">
+      <div class="dot"><svg viewBox="0 0 40 40"><use href="#paw" fill="#3F51B5"/></svg></div>
+      <div class="card">
+        <div class="time">12:00 — 12:30</div>
+        <div class="name"><span class="icon">⛩️</span> 三峽清水祖師廟</div>
+        <div class="desc">被譽為「東方藝術殿堂」的百年古廟，由藝術家李梅樹主導重建，石雕、木雕、銅雕皆為大師手筆，廟埕就在老街旁，走過去只要 2 分鐘。</div>
+        <div class="tags">
+          <a class="map-link" href="https://maps.google.com/?q=%E4%B8%89%E5%B3%BD%E6%B8%85%E6%B0%B4%E7%A5%96%E5%B8%AB%E5%BB%9F" target="_blank">📍 Google Maps</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="stop transport">
+      <div class="dot"><svg viewBox="0 0 40 40"><use href="#paw" fill="#9FA8DA"/></svg></div>
+      <div class="card">
+        <div class="name">🐾 步行約 2 分鐘 → 甘樂食堂</div>
+      </div>
+    </div>
+
+    <div class="section-label"><span>🍱 午餐時光</span></div>
+
+    <!-- 5. 甘樂食堂 -->
+    <div class="stop">
+      <div class="dot"><svg viewBox="0 0 40 40"><use href="#paw" fill="#E65100"/></svg></div>
+      <div class="card">
+        <svg class="corner-char" viewBox="0 0 200 200"><use href="#pompom-face"/></svg>
+        <div class="time">12:30 — 14:00</div>
+        <div class="name"><span class="icon">🍚</span> 甘樂食堂</div>
+        <div class="desc">由老三合院改建的在地食堂，甘樂文創旗下品牌，使用三峽在地食材推出台味定食與甕仔麵。古樸庭院、木造老宅氛圍滿分，午餐時段人氣很旺，建議先預約。</div>
+        <div class="tags">
+          <span class="tag meal">午餐</span>
+          <a class="map-link" href="https://maps.app.goo.gl/wDjQ9eePmdn9QrUo7" target="_blank">📍 Google Maps</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="stop transport">
+      <div class="dot"><svg viewBox="0 0 40 40"><use href="#paw" fill="#9FA8DA"/></svg></div>
+      <div class="card">
+        <div class="name">🐾 步行約 3 分鐘 → 回到老街</div>
+      </div>
+    </div>
+
+    <div class="section-label"><span>🎨 下午老街漫遊</span></div>
+
+    <!-- 6. 三峽老街下午 -->
+    <div class="stop">
+      <div class="dot"><svg viewBox="0 0 40 40"><use href="#paw" fill="#3F51B5"/></svg></div>
+      <div class="card">
+        <div class="time">14:00 — 16:00</div>
+        <div class="name"><span class="icon">🥐</span> 三峽老街（下午深度逛）</div>
+        <div class="desc">下午回到老街細逛：經典金牛角（福美軒、中華第一）、古早味花生糖、藍染手作體驗店、文創選品小舖。記得留點胃口給下午茶。</div>
+        <div class="tags">
+          <span class="tag">金牛角</span>
+          <span class="tag">伴手禮</span>
+          <a class="map-link" href="https://maps.app.goo.gl/wrUuzTjDuBkPj6MNA" target="_blank">📍 Google Maps</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- 7. 藍染公園 -->
+    <div class="stop">
+      <div class="dot"><svg viewBox="0 0 40 40"><use href="#paw" fill="#3F51B5"/></svg></div>
+      <div class="card">
+        <div class="time">16:00 — 16:40</div>
+        <div class="name"><span class="icon">🌿</span> 三峽藍染公園</div>
+        <div class="desc">老街旁沿三峽河的小公園，可欣賞拱橋與河景，午後散步、休息腳很剛好。旁邊就是三峽歷史文物館，有興趣可以順路走走。</div>
+        <div class="tags">
+          <a class="map-link" href="https://maps.google.com/?q=%E4%B8%89%E5%B3%BD%E8%97%8D%E6%9F%93%E5%85%AC%E5%9C%92" target="_blank">📍 Google Maps</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="stop transport">
+      <div class="dot"><svg viewBox="0 0 40 40"><use href="#paw" fill="#9FA8DA"/></svg></div>
+      <div class="card">
+        <div class="name">🐾 步行約 8 分鐘（550 公尺）→ 三峽國中站</div>
+      </div>
+    </div>
+
+    <div class="section-label"><span>🚌 回程</span></div>
+
+    <!-- 8. 回程公車 -->
+    <div class="stop">
+      <div class="dot"><svg viewBox="0 0 40 40"><use href="#paw" fill="#2E7D32"/></svg></div>
+      <div class="card">
+        <div class="time">17:00 — 17:30</div>
+        <div class="name"><span class="icon">🚌</span> 910 公車 → 板橋車站</div>
+        <div class="desc">於三峽國中站搭 910 公車回板橋方向，車程約 26 分鐘抵達板橋車站（文化路）。帶著滿滿的金牛角和好心情回家！</div>
+        <div class="tags">
+          <span class="tag bus">910 公車</span>
+          <span class="tag">$30</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Summary -->
+  <div class="summary">
+    <svg class="corner-char" viewBox="0 0 200 200"><use href="#pompom-face"/></svg>
+    <h3>🐾 一日行程摘要</h3>
+    <div class="summary-grid">
+      <div class="summary-item">
+        <div class="label">行程時段</div>
+        <div class="value">10:00 — 17:30</div>
+      </div>
+      <div class="summary-item">
+        <div class="label">景點數量</div>
+        <div class="value">5 個</div>
+      </div>
+      <div class="summary-item">
+        <div class="label">餐食安排</div>
+        <div class="value">午餐（甘樂食堂）</div>
+      </div>
+      <div class="summary-item">
+        <div class="label">交通方式</div>
+        <div class="value">910 公車 + 步行</div>
+      </div>
+      <div class="summary-item">
+        <div class="label">來回車資</div>
+        <div class="value">$60</div>
+      </div>
+      <div class="summary-item">
+        <div class="label">步行總計</div>
+        <div class="value">約 1.1 公里</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <svg width="60" height="60" viewBox="0 0 200 200" style="opacity:0.5"><use href="#pompom-face"/></svg>
+    <p>三峽一日遊 — 開心出發！</p>
+  </div>
+
+</div>
+
+</body>
+</html>
