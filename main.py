@@ -12,7 +12,7 @@ templates = Jinja2Templates(directory="templates")
 
 @app.get("/", response_class=HTMLResponse)
 async def home():
-    with open("templates/yingge-trip.html", "r", encoding="utf-8") as f:
+    with open("templates/index.html", "r", encoding="utf-8") as f:
         return HTMLResponse(content=f.read())
 
 
