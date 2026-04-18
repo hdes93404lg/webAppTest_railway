@@ -3,18 +3,18 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>鶯歌一日遊 — 一起出去玩吧！</title>
+<title>鶯歌一日遊</title>
 <meta name="description" content="搭區間車輕鬆抵達鶯歌。三合號早午餐、登鶯歌石、陶瓷博物館、三鶯之心、特色星巴克、厚道飲食店晚餐。2026 春季一日遊小旅行。">
 <!-- Open Graph -->
 <meta property="og:type" content="article">
-<meta property="og:title" content="鶯歌一日遊 — 一起出去玩吧！">
+<meta property="og:title" content="鶯歌一日遊">
 <meta property="og:description" content="火車出發，早午餐巷弄老宅、登鶯歌石、陶博館、老街小吃。2026 春季小旅行。">
 <meta property="og:url" content="https://hdes93404lg.up.railway.app/yingge">
 <meta property="og:site_name" content="跟龍貓去旅行">
 <meta property="og:locale" content="zh_TW">
 <!-- Twitter Card -->
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="鶯歌一日遊 — 一起出去玩吧！">
+<meta name="twitter:title" content="鶯歌一日遊">
 <meta name="twitter:description" content="火車出發的鶯歌一日小旅行。">
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap');
@@ -22,107 +22,203 @@
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body {
     font-family: "Zen Maru Gothic", "Noto Sans TC", sans-serif;
-    background: #FFF9EC;
+    background: #E8E2D0;
+    background-image:
+      radial-gradient(circle at 15% 10%, rgba(200, 210, 190, 0.28) 0%, transparent 45%),
+      radial-gradient(circle at 85% 80%, rgba(156, 170, 184, 0.18) 0%, transparent 45%);
     min-height: 100vh;
-    color: #6B4C2A;
+    color: #3F4A3F;
     overflow-x: hidden;
   }
 
   /* ===== HERO ===== */
   .hero {
     position: relative;
-    background: linear-gradient(180deg, #FFECB3 0%, #FFE082 35%, #A5D6A7 65%, #81C784 100%);
+    background:
+      linear-gradient(180deg,
+        #9CAAB8 0%,
+        #B5B8AE 22%,
+        #C6BCA7 48%,
+        #A8B089 72%,
+        #7A8A6E 100%);
     text-align: center;
-    padding: 28px 20px 75px;
+    padding: 32px 20px 100px;
     overflow: hidden;
   }
+  /* misty layered mountain silhouettes */
+  .hero-mountains {
+    position: absolute;
+    bottom: 50px; left: 0; right: 0;
+    height: 120px;
+    z-index: 1;
+    pointer-events: none;
+  }
+  .hero-mountains::before {
+    content: '';
+    position: absolute;
+    bottom: 0; left: -10%; right: -10%; height: 100%;
+    background:
+      radial-gradient(ellipse at 22% 110%, #8B9885 0%, #8B9885 45%, transparent 46%),
+      radial-gradient(ellipse at 80% 110%, #9BA891 0%, #9BA891 40%, transparent 41%);
+    opacity: 0.85;
+  }
+  .hero-mountains::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: -10%; right: -10%; height: 75%;
+    background:
+      radial-gradient(ellipse at 50% 105%, #6D7E64 0%, #6D7E64 52%, transparent 53%),
+      radial-gradient(ellipse at 8% 105%, #5C6D54 0%, #5C6D54 40%, transparent 41%),
+      radial-gradient(ellipse at 92% 105%, #6D7E64 0%, #6D7E64 40%, transparent 41%);
+  }
+
+  /* Clouds (more wispy, like morning mist) */
   .cloud {
     position: absolute;
-    background: rgba(255,255,255,0.65);
-    border-radius: 50px;
-    height: 28px;
-    animation: cloudDrift 20s linear infinite;
+    background: rgba(255,250,240,0.6);
+    border-radius: 60px;
+    height: 24px;
+    animation: cloudDrift 28s linear infinite;
+    z-index: 1;
+    filter: blur(0.5px);
   }
   .cloud::before, .cloud::after {
     content: '';
     position: absolute;
-    background: rgba(255,255,255,0.65);
+    background: rgba(255,250,240,0.6);
     border-radius: 50%;
   }
-  .cloud:nth-child(1) { width: 90px; top: 12px; left: 5%; }
-  .cloud:nth-child(1)::before { width: 36px; height: 36px; top: -18px; left: 14px; }
-  .cloud:nth-child(1)::after { width: 28px; height: 28px; top: -12px; left: 44px; }
-  .cloud:nth-child(2) { width: 65px; top: 28px; right: 10%; height: 22px; animation-delay: -8s; }
-  .cloud:nth-child(2)::before { width: 26px; height: 26px; top: -13px; left: 10px; }
-  .cloud:nth-child(2)::after { width: 20px; height: 20px; top: -9px; left: 30px; }
-  .cloud:nth-child(3) { width: 50px; top: 6px; left: 42%; height: 18px; animation-delay: -14s; }
-  .cloud:nth-child(3)::before { width: 22px; height: 22px; top: -11px; left: 8px; }
-  .cloud:nth-child(3)::after { width: 16px; height: 16px; top: -7px; left: 26px; }
+  .cloud:nth-of-type(1) { width: 115px; top: 16px; left: 5%; }
+  .cloud:nth-of-type(1)::before { width: 42px; height: 42px; top: -20px; left: 16px; }
+  .cloud:nth-of-type(1)::after  { width: 32px; height: 32px; top: -14px; left: 54px; }
+  .cloud:nth-of-type(2) { width: 85px; top: 42px; right: 8%; height: 22px; animation-delay: -10s; }
+  .cloud:nth-of-type(2)::before { width: 28px; height: 28px; top: -14px; left: 12px; }
+  .cloud:nth-of-type(2)::after  { width: 22px; height: 22px; top: -10px; left: 38px; }
+  .cloud:nth-of-type(3) { width: 65px; top: 12px; left: 45%; height: 20px; animation-delay: -18s; }
+  .cloud:nth-of-type(3)::before { width: 26px; height: 26px; top: -13px; left: 10px; }
+  .cloud:nth-of-type(3)::after  { width: 20px; height: 20px; top: -9px; left: 32px; }
+  .cloud:nth-of-type(4) { width: 75px; top: 70px; left: 18%; height: 22px; animation-delay: -22s; opacity: 0.75; }
+  .cloud:nth-of-type(4)::before { width: 26px; height: 26px; top: -13px; left: 14px; }
+  .cloud:nth-of-type(4)::after  { width: 20px; height: 20px; top: -8px; left: 40px; }
   @keyframes cloudDrift {
-    0% { transform: translateX(0); }
-    50% { transform: translateX(30px); }
+    0%   { transform: translateX(0); }
+    50%  { transform: translateX(32px); }
     100% { transform: translateX(0); }
+  }
+
+  /* Parakeets in sky (small decorative) */
+  .hero-parakeet {
+    position: absolute;
+    z-index: 2;
+    animation: birdSway 4s ease-in-out infinite;
+  }
+  .hero-parakeet.one { top: 28px; right: 18%; width: 38px; animation-delay: -0.6s; }
+  .hero-parakeet.two { top: 58px; left: 28%; width: 30px; animation-delay: -2s; }
+  @keyframes birdSway {
+    0%, 100% { transform: translateY(0) rotate(-3deg); }
+    50%      { transform: translateY(-4px) rotate(3deg); }
+  }
+
+  /* Warawara floating up */
+  .warawara-float {
+    position: absolute;
+    z-index: 3;
+    animation: warawaraFloat 5s ease-in-out infinite;
+  }
+  .warawara-float.one { bottom: 95px; left: 14%; width: 40px; animation-delay: -0.5s; }
+  .warawara-float.two { bottom: 110px; right: 22%; width: 32px; animation-delay: -1.8s; }
+  .warawara-float.three { bottom: 80px; right: 10%; width: 28px; animation-delay: -3s; }
+  @keyframes warawaraFloat {
+    0%, 100% { transform: translateY(0); }
+    50%      { transform: translateY(-12px); }
   }
 
   .hero-character {
     position: relative;
-    z-index: 2;
+    z-index: 4;
     margin-bottom: 8px;
   }
-  .hero-character svg { filter: drop-shadow(2px 4px 8px rgba(0,0,0,0.1)); }
-  .hero-character .bounce { animation: bounce 3s ease-in-out infinite; display: inline-block; }
-  @keyframes bounce {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-10px); }
+  .hero-character svg { filter: drop-shadow(2px 4px 12px rgba(62,74,62,0.22)); }
+  .hero-character .bounce { animation: heronBreath 4s ease-in-out infinite; display: inline-block; }
+  @keyframes heronBreath {
+    0%, 100% { transform: translateY(0) scale(1); }
+    50%      { transform: translateY(-5px) scale(1.02); }
   }
-  .hero-friends {
-    position: absolute;
-    bottom: 52px;
-    z-index: 2;
-    animation: bounce 3.5s ease-in-out infinite;
-  }
-  .hero-friends.left { left: 10%; animation-delay: -0.5s; }
-  .hero-friends.right { right: 10%; animation-delay: -1.5s; }
 
   .hero h1 {
-    position: relative; z-index: 2;
+    position: relative; z-index: 4;
     font-size: 2rem; font-weight: 900;
-    color: #5D4037;
+    color: #2F3E3F;
     letter-spacing: 3px;
-    text-shadow: 0 2px 0 rgba(255,255,255,0.5);
+    text-shadow: 0 2px 0 rgba(255,250,240,0.6), 0 0 14px rgba(210,200,180,0.55);
   }
   .hero .subtitle {
-    position: relative; z-index: 2;
-    font-size: 0.92rem; color: #795548; font-weight: 700;
+    position: relative; z-index: 4;
+    font-size: 0.92rem; color: #4A5A4A; font-weight: 700;
     margin: 4px 0;
   }
   .hero .date-badge {
-    position: relative; z-index: 2;
+    position: relative; z-index: 4;
     display: inline-block; margin-top: 8px;
-    padding: 5px 20px;
-    background: rgba(255,255,255,0.6);
-    border: 2px solid #F5D36E;
+    padding: 5px 22px;
+    background: rgba(251, 247, 232, 0.9);
+    border: 2px solid #6B7E6B;
     border-radius: 30px;
-    font-size: 0.82rem; color: #8D6E63; font-weight: 700;
+    font-size: 0.82rem; color: #2F3E3F; font-weight: 700;
+    box-shadow: 0 2px 6px rgba(75, 90, 75, 0.2);
   }
+
+  /* Foreground reeds */
+  .foreground-reeds {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 60px;
+    z-index: 4;
+    pointer-events: none;
+  }
+  .reed {
+    position: absolute;
+    bottom: 0;
+    width: 4px;
+    background: linear-gradient(to top, #5C6D54 0%, #6D7E64 60%, #8B9885 100%);
+    transform-origin: bottom center;
+    animation: reedSway 4s ease-in-out infinite;
+    border-radius: 2px 2px 0 0;
+  }
+  .reed::before {
+    content: '';
+    position: absolute;
+    top: -8px; left: 50%; transform: translateX(-50%);
+    width: 6px; height: 10px;
+    background: #8B7350;
+    border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+  }
+  .reed:nth-child(1)  { left: 4%;  height: 32px; animation-delay: -0.2s; }
+  .reed:nth-child(2)  { left: 10%; height: 40px; animation-delay: -0.8s; }
+  .reed:nth-child(3)  { left: 18%; height: 28px; animation-delay: -1.2s; }
+  .reed:nth-child(4)  { left: 28%; height: 36px; animation-delay: -0.5s; }
+  .reed:nth-child(5)  { left: 40%; height: 32px; animation-delay: -1.6s; }
+  .reed:nth-child(6)  { left: 56%; height: 40px; animation-delay: -0.3s; }
+  .reed:nth-child(7)  { left: 68%; height: 28px; animation-delay: -1.1s; }
+  .reed:nth-child(8)  { left: 80%; height: 36px; animation-delay: -0.7s; }
+  .reed:nth-child(9)  { left: 92%; height: 32px; animation-delay: -1.4s; }
+  @keyframes reedSway {
+    0%, 100% { transform: rotate(-5deg); }
+    50%      { transform: rotate(5deg); }
+  }
+
   .hero::after {
     content: '';
     position: absolute;
     bottom: -2px; left: 0; right: 0;
-    height: 45px;
-    background: #FFF9EC;
+    height: 50px;
+    background: #E8E2D0;
     clip-path: ellipse(55% 100% at 50% 100%);
-    z-index: 3;
-  }
-  .ground-flowers {
-    position: absolute;
-    bottom: 38px; left: 0; right: 0; z-index: 2;
-    display: flex; justify-content: space-around;
-    padding: 0 15px; opacity: 0.5; font-size: 0.9rem;
+    z-index: 5;
   }
 
   /* ===== CONTAINER ===== */
-  .container { max-width: 680px; margin: 0 auto; padding: 20px 16px 50px; }
+  .container { max-width: 680px; margin: 0 auto; padding: 20px 16px 50px; position: relative; z-index: 2; }
 
   /* ===== TIMELINE ===== */
   .timeline { position: relative; padding-left: 40px; }
@@ -131,7 +227,7 @@
     position: absolute;
     left: 16px; top: 0; bottom: 0;
     width: 4px;
-    background: repeating-linear-gradient(to bottom, #FFD54F 0px, #FFD54F 10px, transparent 10px, transparent 16px);
+    background: repeating-linear-gradient(to bottom, #8B7350 0px, #8B7350 10px, transparent 10px, transparent 16px);
     border-radius: 4px;
   }
   .stop { position: relative; margin-bottom: 14px; animation: fadeUp 0.5s ease both; }
@@ -157,96 +253,107 @@
   .stop:nth-child(20) { animation-delay: 1.0s; }
   @keyframes fadeUp {
     from { opacity: 0; transform: translateY(14px); }
-    to { opacity: 1; transform: translateY(0); }
+    to   { opacity: 1; transform: translateY(0); }
   }
 
-  /* paw SVG dot */
+  /* Warawara as timeline dot */
   .stop .dot {
     position: absolute;
-    left: -30px; top: 18px;
-    width: 24px; height: 24px;
+    left: -33px; top: 14px;
+    width: 28px; height: 28px;
     z-index: 1;
+    background: #FBF7E8;
+    border-radius: 50%;
+    padding: 2px;
+    box-shadow: 0 2px 4px rgba(75, 90, 75, 0.2);
+    border: 2px solid #8B7350;
   }
   .stop.transport .dot {
-    width: 18px; height: 18px;
-    left: -27px; top: 10px;
-    opacity: 0.6;
+    width: 20px; height: 20px;
+    left: -29px; top: 10px;
+    opacity: 0.75;
+    border-width: 1.5px;
   }
 
   /* ===== CARDS ===== */
   .card {
-    background: white;
-    border-radius: 20px;
+    background: #FBF7E8;
+    border-radius: 16px;
     padding: 18px 20px;
-    border: 2.5px solid #FFD54F;
-    box-shadow: 0 4px 16px rgba(255,193,7,0.1), 0 1px 3px rgba(0,0,0,0.03);
-    transition: transform 0.2s, box-shadow 0.2s;
+    border: 2.5px solid #8B7350;
+    box-shadow:
+      0 4px 14px rgba(75, 90, 75, 0.12),
+      0 1px 3px rgba(0,0,0,0.04),
+      inset 0 0 0 1px rgba(251, 247, 232, 0.6);
+    transition: transform 0.25s, box-shadow 0.25s;
     position: relative;
   }
   .card:hover {
     transform: translateY(-3px);
-    box-shadow: 0 8px 24px rgba(255,193,7,0.16);
+    box-shadow: 0 8px 22px rgba(75, 90, 75, 0.22);
   }
   .card .time {
-    font-size: 0.74rem; color: #F9A825;
+    font-size: 0.74rem; color: #6B8070;
     font-weight: 700; letter-spacing: 1px; margin-bottom: 3px;
+    text-transform: uppercase;
   }
   .card .name {
     font-size: 1.1rem; font-weight: 900;
-    margin-bottom: 6px; color: #4E342E;
+    margin-bottom: 6px; color: #2F3E3F;
     display: flex; align-items: center; gap: 8px;
     line-height: 1.4;
   }
   .card .name .icon { font-size: 1.15rem; }
   .card .name a {
     color: inherit; text-decoration: none;
-    border-bottom: 1.5px dashed #FFD54F;
+    border-bottom: 1.5px dashed #8B7350;
     transition: border-color 0.2s;
   }
-  .card .name a:hover { border-color: #F9A825; }
+  .card .name a:hover { border-color: #4A5F5F; }
   .card .map-link {
     display: inline-block;
-    font-size: 0.72rem; color: #F9A825; font-weight: 700;
+    font-size: 0.72rem; color: #4A5F5F; font-weight: 700;
     text-decoration: none;
     padding: 3px 10px;
-    border: 1.5px solid #FFE082;
+    border: 1.5px solid #8B7350;
     border-radius: 20px;
-    background: #FFFDE7;
+    background: #F2ECD8;
     transition: background 0.2s, border-color 0.2s;
   }
-  .card .map-link:hover { background: #FFF8E1; border-color: #F9A825; }
-  .card .desc { font-size: 0.84rem; color: #795548; line-height: 1.7; }
+  .card .map-link:hover { background: #E8E0C0; border-color: #4A5F5F; }
+  .card .desc { font-size: 0.84rem; color: #4A5A4A; line-height: 1.75; }
   .card .tags { margin-top: 10px; display: flex; flex-wrap: wrap; gap: 6px; }
   .card .tag {
-    background: #FFFDE7; color: #F9A825;
+    background: #F2ECD8; color: #6B8070;
     padding: 3px 10px; border-radius: 20px;
     font-size: 0.72rem; font-weight: 700;
-    border: 1.5px solid #FFD54F;
+    border: 1.5px solid #8B7350;
   }
   .card .tag.meal {
-    background: #FFF3E0; color: #E65100;
-    border-color: #FFAB40;
+    background: #F4E1D1; color: #A85530;
+    border-color: #C76B38;
   }
-  /* corner character */
+  /* corner character (small heron / warawara) */
   .card .corner-char {
     position: absolute;
-    right: 6px; top: -16px;
-    width: 36px; height: 36px;
+    right: 6px; top: -20px;
+    width: 42px; height: 42px;
     pointer-events: none;
+    filter: drop-shadow(1px 2px 3px rgba(75,90,75,0.2));
   }
 
   /* Transport */
   .transport .card {
-    background: linear-gradient(90deg, #FFFDE7, #FFF9EC);
+    background: linear-gradient(90deg, #F2ECD8, #E8E2D0);
     padding: 10px 16px;
-    border: 2px dashed #FFD54F;
+    border: 2px dashed #8B7350;
     box-shadow: none;
-    border-radius: 16px;
+    border-radius: 14px;
   }
   .transport .card:hover { transform: none; box-shadow: none; }
   .transport .card .name {
     font-size: 0.85rem; font-weight: 700;
-    color: #A1887F; margin-bottom: 0;
+    color: #6B5A3D; margin-bottom: 0;
   }
 
   /* Section */
@@ -256,166 +363,278 @@
     padding: 6px 0;
   }
   .section-label span {
-    background: linear-gradient(135deg, #FFD54F, #FFCA28);
-    color: #5D4037;
+    background: linear-gradient(135deg, #6B8070, #4A5F5F);
+    color: #FBF7E8;
     padding: 5px 18px;
     border-radius: 20px;
     font-size: 0.8rem;
     font-weight: 900;
     letter-spacing: 1px;
-    box-shadow: 0 2px 8px rgba(255,193,7,0.2);
+    box-shadow: 0 2px 8px rgba(75, 90, 75, 0.28);
+    border: 1.5px solid rgba(251, 247, 232, 0.3);
   }
 
   /* Summary */
   .summary {
     margin-top: 30px;
-    background: white;
-    border-radius: 24px;
-    padding: 22px;
-    border: 2.5px solid #FFD54F;
-    box-shadow: 0 4px 16px rgba(255,193,7,0.1);
+    background: #FBF7E8;
+    border-radius: 20px;
+    padding: 22px 22px 24px;
+    border: 2.5px solid #8B7350;
+    box-shadow: 0 4px 16px rgba(75, 90, 75, 0.15);
     position: relative;
   }
-  .summary .corner-char { position: absolute; right: 14px; top: -20px; width: 42px; }
-  .summary h3 { font-size: 1rem; color: #F9A825; margin-bottom: 14px; font-weight: 900; }
+  .summary .corner-char { position: absolute; right: 14px; top: -22px; width: 52px; }
+  .summary h3 {
+    font-size: 1rem; color: #4A5F5F; margin-bottom: 14px; font-weight: 900;
+    display: flex; align-items: center; gap: 6px;
+  }
   .summary-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
   .summary-item {
-    background: #FFFDE7;
-    border-radius: 16px;
+    background: #F2ECD8;
+    border-radius: 14px;
     padding: 14px;
     text-align: center;
-    border: 2px solid #FFE082;
+    border: 2px solid #B89968;
   }
-  .summary-item .label { font-size: 0.72rem; color: #A1887F; margin-bottom: 3px; }
-  .summary-item .value { font-size: 1.05rem; font-weight: 900; color: #5D4037; }
+  .summary-item .label { font-size: 0.72rem; color: #6B8070; margin-bottom: 3px; }
+  .summary-item .value { font-size: 1.05rem; font-weight: 900; color: #2F3E3F; }
 
   .footer {
     text-align: center;
     margin-top: 30px;
     padding: 16px;
   }
-  .footer p { font-size: 0.75rem; color: #BCAAA4; font-weight: 500; margin-top: 6px; }
+  .footer p { font-size: 0.78rem; color: #6B5A3D; font-weight: 500; margin-top: 6px; font-style: italic; }
 
   .back-btn {
     display: inline-block;
     padding: 10px 26px;
-    background: linear-gradient(135deg, #FFD54F, #FFCA28);
-    color: #5D4037;
+    background: linear-gradient(135deg, #6B8070, #4A5F5F);
+    color: #FBF7E8;
     font-weight: 900;
     font-size: 0.9rem;
     text-decoration: none;
     border-radius: 30px;
-    border: 2px solid #F9A825;
-    box-shadow: 0 3px 10px rgba(255, 193, 7, 0.3);
+    border: 2px solid #3F4A3F;
+    box-shadow: 0 3px 10px rgba(75, 90, 75, 0.28);
     transition: transform 0.2s, box-shadow 0.2s;
     letter-spacing: 1px;
   }
   .back-btn:hover {
     transform: translateY(-2px);
-    box-shadow: 0 6px 16px rgba(255, 193, 7, 0.42);
+    box-shadow: 0 6px 16px rgba(75, 90, 75, 0.4);
   }
 
-  /* floating paws */
-  .float-paw {
+  /* floating decoration (feathers) */
+  .float-feather {
     position: fixed;
     pointer-events: none;
     z-index: 0;
-    opacity: 0.06;
+    opacity: 0.08;
   }
-  .float-paw:nth-child(1) { top: 18%; right: 4%; width: 50px; transform: rotate(20deg); }
-  .float-paw:nth-child(2) { top: 42%; left: 3%; width: 40px; transform: rotate(-15deg); }
-  .float-paw:nth-child(3) { top: 68%; right: 6%; width: 45px; transform: rotate(35deg); }
+  .float-feather:nth-child(1) { top: 18%; right: 4%; width: 50px; transform: rotate(25deg); }
+  .float-feather:nth-child(2) { top: 42%; left: 3%; width: 40px; transform: rotate(-18deg); }
+  .float-feather:nth-child(3) { top: 68%; right: 6%; width: 45px; transform: rotate(40deg); }
 </style>
 </head>
 <body>
 
-<!-- SVG definitions (reusable) -->
+<!-- SVG definitions -->
 <svg xmlns="http://www.w3.org/2000/svg" style="display:none">
-  <!-- Character face -->
-  <symbol id="pompom-face" viewBox="0 0 200 200">
-    <!-- droopy ears -->
-    <ellipse cx="46" cy="115" rx="20" ry="35" fill="#FFF1A8" stroke="#3E2723" stroke-width="3" transform="rotate(10 46 115)"/>
-    <ellipse cx="154" cy="115" rx="20" ry="35" fill="#FFF1A8" stroke="#3E2723" stroke-width="3" transform="rotate(-10 154 115)"/>
-    <!-- round face -->
-    <circle cx="100" cy="108" r="58" fill="#FFF1A8" stroke="#3E2723" stroke-width="3"/>
-    <!-- beret -->
-    <ellipse cx="100" cy="55" rx="38" ry="14" fill="#8B3A3A" stroke="#3E2723" stroke-width="3"/>
-    <ellipse cx="100" cy="53" rx="34" ry="10" fill="#A04040"/>
-    <circle cx="100" cy="43" r="4.5" fill="#A04040" stroke="#3E2723" stroke-width="2"/>
-    <!-- eyes -->
-    <circle cx="82" cy="105" r="4.5" fill="#3E2723"/>
-    <circle cx="118" cy="105" r="4.5" fill="#3E2723"/>
-    <!-- nose + mouth -->
-    <ellipse cx="100" cy="118" rx="3" ry="2" fill="#3E2723"/>
-    <path d="M94 122 Q100 128 106 122" fill="none" stroke="#3E2723" stroke-width="2" stroke-linecap="round"/>
-  </symbol>
 
-  <!-- Muffin (hamster friend) -->
-  <symbol id="muffin" viewBox="0 0 120 140">
+  <!-- Grey Heron 蒼鷺 -->
+  <symbol id="heron" viewBox="0 0 240 300">
+    <!-- shadow -->
+    <ellipse cx="120" cy="285" rx="55" ry="6" fill="rgba(47,62,63,0.2)"/>
+
+    <!-- legs -->
+    <line x1="100" y1="238" x2="96" y2="280" stroke="#4A3E2A" stroke-width="3.5" stroke-linecap="round"/>
+    <line x1="135" y1="238" x2="139" y2="280" stroke="#4A3E2A" stroke-width="3.5" stroke-linecap="round"/>
+    <!-- feet -->
+    <path d="M88 280 L96 278 L104 280" stroke="#4A3E2A" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+    <path d="M131 280 L139 278 L147 280" stroke="#4A3E2A" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+
+    <!-- tail feathers -->
+    <path d="M160 220 L195 235 L170 240 Z" fill="#8B9CA0" stroke="#3E4A4A" stroke-width="2"/>
+    <path d="M165 225 L200 245 Q185 248 170 245" fill="#6B7E82" stroke="#3E4A4A" stroke-width="1.5"/>
+
     <!-- body -->
-    <ellipse cx="60" cy="90" rx="32" ry="28" fill="#FFF5E6" stroke="#E0C9A6" stroke-width="2"/>
+    <ellipse cx="118" cy="200" rx="58" ry="48" fill="#9DA8AC" stroke="#3E4A4A" stroke-width="3"/>
+
+    <!-- belly (lighter) -->
+    <ellipse cx="118" cy="218" rx="38" ry="26" fill="#D4D9D1" stroke="#3E4A4A" stroke-width="2"/>
+
+    <!-- wing (layered feathers) -->
+    <path d="M82 172 Q68 200 78 232 L95 225 Q102 200 102 178 Z" fill="#6B7E82" stroke="#3E4A4A" stroke-width="2.5"/>
+    <path d="M88 180 Q82 205 90 225" stroke="#4A5A5E" stroke-width="1.5" fill="none" opacity="0.7"/>
+    <path d="M98 182 Q92 205 100 225" stroke="#4A5A5E" stroke-width="1.5" fill="none" opacity="0.7"/>
+
+    <!-- feather detail on body -->
+    <path d="M95 188 Q105 196 102 208" stroke="#6B7E82" stroke-width="1.5" fill="none" opacity="0.7"/>
+    <path d="M115 190 Q125 198 120 212" stroke="#6B7E82" stroke-width="1.5" fill="none" opacity="0.7"/>
+    <path d="M135 190 Q145 198 142 212" stroke="#6B7E82" stroke-width="1.5" fill="none" opacity="0.7"/>
+
+    <!-- long neck (S-shape) -->
+    <path d="M108 160 Q100 130 110 105 Q120 82 105 72"
+          stroke="#9DA8AC" stroke-width="20" fill="none" stroke-linecap="round"/>
+    <path d="M108 160 Q100 130 110 105 Q120 82 105 72"
+          stroke="#6B7E82" stroke-width="3" fill="none" stroke-linecap="round" opacity="0.5"/>
+
     <!-- head -->
-    <circle cx="60" cy="62" r="30" fill="#FFF5E6" stroke="#E0C9A6" stroke-width="2"/>
-    <!-- ears -->
-    <circle cx="36" cy="40" r="10" fill="#FFF5E6" stroke="#E0C9A6" stroke-width="2"/>
-    <circle cx="36" cy="40" r="5" fill="#F5C0A0"/>
-    <circle cx="84" cy="40" r="10" fill="#FFF5E6" stroke="#E0C9A6" stroke-width="2"/>
-    <circle cx="84" cy="40" r="5" fill="#F5C0A0"/>
-    <!-- eyes -->
-    <circle cx="50" cy="60" r="3" fill="#1A1A1A"/>
-    <circle cx="70" cy="60" r="3" fill="#1A1A1A"/>
-    <!-- eye highlights -->
-    <circle cx="51" cy="59" r="1" fill="white"/>
-    <circle cx="71" cy="59" r="1" fill="white"/>
-    <!-- nose -->
-    <ellipse cx="60" cy="67" rx="2.5" ry="2" fill="#1A1A1A"/>
-    <!-- mouth -->
-    <path d="M55 71 Q60 76 65 71" fill="none" stroke="#1A1A1A" stroke-width="1.5" stroke-linecap="round"/>
-    <!-- blush -->
-    <ellipse cx="43" cy="68" rx="6" ry="3" fill="rgba(255,150,150,0.25)"/>
-    <ellipse cx="77" cy="68" rx="6" ry="3" fill="rgba(255,150,150,0.25)"/>
+    <ellipse cx="102" cy="68" rx="26" ry="22" fill="#9DA8AC" stroke="#3E4A4A" stroke-width="3"/>
+
+    <!-- crown crest feathers (distinctive heron crest) -->
+    <path d="M95 46 L88 28" stroke="#3E4A4A" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+    <path d="M100 44 L96 25" stroke="#3E4A4A" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+    <path d="M108 46 L112 30" stroke="#3E4A4A" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+
+    <!-- black stripe through eye (heron signature) -->
+    <path d="M84 62 Q95 60 112 62" stroke="#3E4A4A" stroke-width="4" fill="none" stroke-linecap="round"/>
+
+    <!-- eye -->
+    <circle cx="95" cy="62" r="4" fill="#FFFBEA" stroke="#3E4A4A" stroke-width="1.5"/>
+    <circle cx="95" cy="63" r="2.5" fill="#2F3E3F"/>
+    <circle cx="94" cy="62" r="0.8" fill="#FFF"/>
+
+    <!-- beak (long dagger-like) -->
+    <path d="M120 64 L178 72 L120 70 Z" fill="#E0C890" stroke="#6B4A2A" stroke-width="2"/>
+    <path d="M120 70 L178 72 L120 76 Z" fill="#C4A868" stroke="#6B4A2A" stroke-width="2"/>
+
+    <!-- cheeky bulge (shapeshifter hint - the old man) -->
+    <ellipse cx="108" cy="85" rx="18" ry="14" fill="#E0C8B0" stroke="#3E4A4A" stroke-width="1.5" opacity="0.65"/>
+    <circle cx="102" cy="82" r="1.5" fill="#3E4A4A" opacity="0.7"/>
+    <circle cx="112" cy="84" r="1.5" fill="#3E4A4A" opacity="0.7"/>
+    <path d="M103 89 Q108 92 113 89" stroke="#3E4A4A" stroke-width="1" fill="none" opacity="0.7"/>
   </symbol>
 
-  <!-- Paw print -->
-  <symbol id="paw" viewBox="0 0 40 40">
-    <ellipse cx="20" cy="26" rx="9" ry="8" fill="currentColor"/>
-    <circle cx="12" cy="15" r="4.5" fill="currentColor"/>
-    <circle cx="28" cy="15" r="4.5" fill="currentColor"/>
-    <circle cx="9" cy="24" r="3.5" fill="currentColor"/>
-    <circle cx="31" cy="24" r="3.5" fill="currentColor"/>
+  <!-- Heron mini (for timeline dots) -->
+  <symbol id="heron-mini" viewBox="0 0 40 40">
+    <circle cx="20" cy="20" r="15" fill="#9DA8AC" stroke="#3E4A4A" stroke-width="2"/>
+    <!-- neck suggestion -->
+    <path d="M12 18 Q10 14 14 10" stroke="#9DA8AC" stroke-width="4" fill="none" stroke-linecap="round"/>
+    <circle cx="14" cy="10" r="4.5" fill="#9DA8AC" stroke="#3E4A4A" stroke-width="1.5"/>
+    <!-- beak -->
+    <path d="M17 10 L26 12 L17 12 Z" fill="#C4A868" stroke="#6B4A2A" stroke-width="1"/>
+    <!-- eye -->
+    <circle cx="13" cy="9" r="1.2" fill="#2F3E3F"/>
+    <!-- body feather hint -->
+    <path d="M25 22 Q30 26 28 30" stroke="#4A5A5E" stroke-width="1" fill="none" opacity="0.6"/>
+  </symbol>
+
+  <!-- Warawara わらわら -->
+  <symbol id="warawara" viewBox="0 0 80 90">
+    <!-- shadow -->
+    <ellipse cx="40" cy="82" rx="20" ry="3" fill="rgba(47,62,47,0.1)"/>
+    <!-- body (tall dumpling) -->
+    <path d="M22 40 Q22 22 40 17 Q58 22 58 40 Q58 65 52 74 Q40 80 28 74 Q22 65 22 40 Z"
+          fill="#FDF8EC" stroke="#8B7350" stroke-width="2.5"/>
+    <!-- two little feet -->
+    <ellipse cx="32" cy="78" rx="4" ry="2" fill="#FDF8EC" stroke="#8B7350" stroke-width="1.5"/>
+    <ellipse cx="48" cy="78" rx="4" ry="2" fill="#FDF8EC" stroke="#8B7350" stroke-width="1.5"/>
+    <!-- two little arms -->
+    <ellipse cx="20" cy="50" rx="3.5" ry="6" fill="#FDF8EC" stroke="#8B7350" stroke-width="1.5"/>
+    <ellipse cx="60" cy="50" rx="3.5" ry="6" fill="#FDF8EC" stroke="#8B7350" stroke-width="1.5"/>
+    <!-- eyes (simple black dots) -->
+    <ellipse cx="33" cy="42" rx="2.5" ry="3" fill="#2F3E3F"/>
+    <ellipse cx="47" cy="42" rx="2.5" ry="3" fill="#2F3E3F"/>
+    <!-- mouth (tiny smile) -->
+    <path d="M35 52 Q40 55 45 52" stroke="#2F3E3F" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+    <!-- blush -->
+    <ellipse cx="29" cy="50" rx="2.8" ry="1.8" fill="rgba(230,120,120,0.35)"/>
+    <ellipse cx="51" cy="50" rx="2.8" ry="1.8" fill="rgba(230,120,120,0.35)"/>
+  </symbol>
+
+  <!-- Warawara mini (timeline dot) -->
+  <symbol id="warawara-mini" viewBox="0 0 40 40">
+    <ellipse cx="20" cy="22" rx="13" ry="15" fill="#FDF8EC" stroke="#8B7350" stroke-width="2"/>
+    <circle cx="16" cy="20" r="2" fill="#2F3E3F"/>
+    <circle cx="24" cy="20" r="2" fill="#2F3E3F"/>
+    <path d="M17 26 Q20 28 23 26" stroke="#2F3E3F" stroke-width="1.2" fill="none" stroke-linecap="round"/>
+  </symbol>
+
+  <!-- Parakeet 大鸚鵡 -->
+  <symbol id="parakeet" viewBox="0 0 80 90">
+    <!-- shadow -->
+    <ellipse cx="40" cy="85" rx="22" ry="3" fill="rgba(47,62,47,0.1)"/>
+    <!-- body -->
+    <ellipse cx="40" cy="55" rx="26" ry="24" fill="#E6DC88" stroke="#3E4A3E" stroke-width="2.5"/>
+    <!-- head -->
+    <circle cx="40" cy="30" r="18" fill="#F0E89C" stroke="#3E4A3E" stroke-width="2.5"/>
+    <!-- beak (hooked) -->
+    <path d="M32 30 L22 32 Q24 36 30 36 L32 32 Z" fill="#D17E30" stroke="#6B4A2A" stroke-width="1.5"/>
+    <!-- eyes -->
+    <circle cx="37" cy="27" r="3" fill="#FFFBEA" stroke="#3E4A3E" stroke-width="1"/>
+    <circle cx="36" cy="28" r="1.8" fill="#2F3E3F"/>
+    <circle cx="45" cy="27" r="3" fill="#FFFBEA" stroke="#3E4A3E" stroke-width="1"/>
+    <circle cx="44" cy="28" r="1.8" fill="#2F3E3F"/>
+    <!-- wing -->
+    <path d="M18 48 Q12 66 24 78 Q36 74 36 60 Z" fill="#A8C168" stroke="#3E4A3E" stroke-width="2"/>
+    <path d="M22 55 Q20 65 28 72" stroke="#7A9048" stroke-width="1" fill="none"/>
+    <!-- belly -->
+    <path d="M44 48 Q52 55 50 72" fill="#F5EB9C" opacity="0.5"/>
+    <!-- tail -->
+    <path d="M60 70 L75 80 L66 65 Z" fill="#A8C168" stroke="#3E4A3E" stroke-width="2"/>
+    <!-- feet -->
+    <line x1="32" y1="78" x2="32" y2="85" stroke="#D17E30" stroke-width="2.5" stroke-linecap="round"/>
+    <line x1="48" y1="78" x2="48" y2="85" stroke="#D17E30" stroke-width="2.5" stroke-linecap="round"/>
+  </symbol>
+
+  <!-- Feather (floating deco) -->
+  <symbol id="feather" viewBox="0 0 40 80">
+    <path d="M20 5 Q14 20 14 40 Q15 60 20 75 Q25 60 26 40 Q26 20 20 5 Z"
+          fill="#9DA8AC" stroke="#3E4A4A" stroke-width="2"/>
+    <line x1="20" y1="10" x2="20" y2="72" stroke="#3E4A4A" stroke-width="1.5"/>
+    <path d="M16 18 L20 22 M16 28 L20 32 M16 38 L20 42 M16 48 L20 52 M16 58 L20 62"
+          stroke="#3E4A4A" stroke-width="0.8" fill="none"/>
+    <path d="M24 18 L20 22 M24 28 L20 32 M24 38 L20 42 M24 48 L20 52 M24 58 L20 62"
+          stroke="#3E4A4A" stroke-width="0.8" fill="none"/>
   </symbol>
 </svg>
 
-<!-- Floating paw deco -->
-<div class="float-paw"><svg viewBox="0 0 40 40"><use href="#paw" fill="#C49B41"/></svg></div>
-<div class="float-paw"><svg viewBox="0 0 40 40"><use href="#paw" fill="#C49B41"/></svg></div>
-<div class="float-paw"><svg viewBox="0 0 40 40"><use href="#paw" fill="#C49B41"/></svg></div>
+<!-- Floating feathers -->
+<div class="float-feather"><svg viewBox="0 0 40 80"><use href="#feather"/></svg></div>
+<div class="float-feather"><svg viewBox="0 0 40 80"><use href="#feather"/></svg></div>
+<div class="float-feather"><svg viewBox="0 0 40 80"><use href="#feather"/></svg></div>
 
 <div class="hero">
+  <div class="hero-mountains"></div>
+  <div class="cloud"></div>
   <div class="cloud"></div>
   <div class="cloud"></div>
   <div class="cloud"></div>
 
+  <!-- Parakeets -->
+  <div class="hero-parakeet one"><svg viewBox="0 0 80 90"><use href="#parakeet"/></svg></div>
+  <div class="hero-parakeet two"><svg viewBox="0 0 80 90"><use href="#parakeet"/></svg></div>
+
+  <!-- Heron (main character) -->
   <div class="hero-character">
     <div class="bounce">
-      <svg width="130" height="130" viewBox="0 0 200 200"><use href="#pompom-face"/></svg>
+      <svg width="150" height="190" viewBox="0 0 240 300"><use href="#heron"/></svg>
     </div>
   </div>
 
-  <!-- Friends -->
-  <div class="hero-friends left">
-    <svg width="56" height="65"><use href="#muffin"/></svg>
-  </div>
-  <div class="hero-friends right">
-    <svg width="24" height="24" style="margin-bottom:20px"><use href="#paw" fill="#A07830"/></svg>
-  </div>
+  <!-- Warawara floating up -->
+  <div class="warawara-float one"><svg viewBox="0 0 80 90"><use href="#warawara"/></svg></div>
+  <div class="warawara-float two"><svg viewBox="0 0 80 90"><use href="#warawara"/></svg></div>
+  <div class="warawara-float three"><svg viewBox="0 0 80 90"><use href="#warawara"/></svg></div>
 
   <h1>鶯歌一日遊</h1>
-  <div class="subtitle">~ 一起出去玩吧！~</div>
-  <div class="date-badge">🐾 2026 春季旅行 🐾</div>
+  <div class="subtitle">~ 蒼鷺帶路，穿過窯爐與石山的一日 ~</div>
+  <div class="date-badge">🪶 2026 春季小旅行 🪶</div>
 
-  <div class="ground-flowers">
-    <span>🌸</span><span>🌿</span><span>🌼</span><span>🍀</span><span>🌸</span><span>🌿</span><span>🌼</span><span>🍀</span><span>🌸</span>
+  <!-- foreground reeds -->
+  <div class="foreground-reeds">
+    <div class="reed"></div>
+    <div class="reed"></div>
+    <div class="reed"></div>
+    <div class="reed"></div>
+    <div class="reed"></div>
+    <div class="reed"></div>
+    <div class="reed"></div>
+    <div class="reed"></div>
+    <div class="reed"></div>
   </div>
 </div>
 
@@ -426,7 +645,7 @@
 
     <!-- 1. 板橋→鶯歌 -->
     <div class="stop">
-      <div class="dot"><svg viewBox="0 0 40 40"><use href="#paw" fill="#F9A825"/></svg></div>
+      <div class="dot"><svg viewBox="0 0 40 40"><use href="#warawara-mini"/></svg></div>
       <div class="card">
         <div class="time">10:15 — 10:32</div>
         <div class="name"><span class="icon">🚆</span> 板橋火車站 → 鶯歌火車站</div>
@@ -436,9 +655,9 @@
     </div>
 
     <div class="stop transport">
-      <div class="dot"><svg viewBox="0 0 40 40"><use href="#paw" fill="#FFD54F"/></svg></div>
+      <div class="dot"><svg viewBox="0 0 40 40"><use href="#warawara-mini"/></svg></div>
       <div class="card">
-        <div class="name">🐾 步行約 3 分鐘 → 信義街</div>
+        <div class="name">🪶 步行約 3 分鐘 → 信義街</div>
       </div>
     </div>
 
@@ -446,9 +665,9 @@
 
     <!-- 2. 三合號 -->
     <div class="stop">
-      <div class="dot"><svg viewBox="0 0 40 40"><use href="#paw" fill="#F9A825"/></svg></div>
+      <div class="dot"><svg viewBox="0 0 40 40"><use href="#warawara-mini"/></svg></div>
       <div class="card">
-        <svg class="corner-char" viewBox="0 0 200 200"><use href="#pompom-face"/></svg>
+        <svg class="corner-char" viewBox="0 0 80 90"><use href="#warawara"/></svg>
         <div class="time">10:35 — 11:35</div>
         <div class="name"><span class="icon">🏠</span> 三合號 SUMMER HOUSE</div>
         <div class="desc">藏在市場旁巷弄裡的老宅早午餐，復古懷舊風格超好拍。招牌「六合滷呷粿」淋上古早味滷汁，必點！蘿蔔糕加蛋也很推。假日人潮多，建議預留排隊時間。</div>
@@ -459,9 +678,9 @@
     </div>
 
     <div class="stop transport">
-      <div class="dot"><svg viewBox="0 0 40 40"><use href="#paw" fill="#FFD54F"/></svg></div>
+      <div class="dot"><svg viewBox="0 0 40 40"><use href="#warawara-mini"/></svg></div>
       <div class="card">
-        <div class="name">🐾 步行約 10 分鐘 → 宏德宮方向上山</div>
+        <div class="name">🪶 步行約 10 分鐘 → 宏德宮方向上山</div>
       </div>
     </div>
 
@@ -469,7 +688,7 @@
 
     <!-- 3. 宏德宮孫臏廟 -->
     <div class="stop">
-      <div class="dot"><svg viewBox="0 0 40 40"><use href="#paw" fill="#F9A825"/></svg></div>
+      <div class="dot"><svg viewBox="0 0 40 40"><use href="#warawara-mini"/></svg></div>
       <div class="card">
         <div class="time">11:45 — 12:00</div>
         <div class="name"><span class="icon">⛩️</span> 鶯歌宏德宮孫臏廟</div>
@@ -480,19 +699,19 @@
 
     <!-- 4. 鶯歌石 -->
     <div class="stop">
-      <div class="dot"><svg viewBox="0 0 40 40"><use href="#paw" fill="#F9A825"/></svg></div>
+      <div class="dot"><svg viewBox="0 0 40 40"><use href="#warawara-mini"/></svg></div>
       <div class="card">
         <div class="time">12:00 — 12:40</div>
         <div class="name"><span class="icon">🥾</span> 鶯歌石步道 → 鶯歌石</div>
-        <div class="desc">從宏德宮牌樓沿紅磚階梯上行，約 8 分鐘即可抵達鶯歌石觀景台，欣賞三鶯地區景色。拍完照原路折返下山，輕裝即可。</div>
+        <div class="desc">從宏德宮牌樓沿紅磚階梯上行，約 8 分鐘即可抵達鶯歌石觀景台，欣賞三鶯地區景色——像大叔叔的塔樓頂層一樣，整片河谷安靜地攤在眼前。拍完照原路折返下山，輕裝即可。</div>
         <div class="tags"><a class="map-link" href="https://maps.app.goo.gl/dY32TntcwMmttE5X7" target="_blank">📍 Google Maps</a></div>
       </div>
     </div>
 
     <div class="stop transport">
-      <div class="dot"><svg viewBox="0 0 40 40"><use href="#paw" fill="#FFD54F"/></svg></div>
+      <div class="dot"><svg viewBox="0 0 40 40"><use href="#warawara-mini"/></svg></div>
       <div class="card">
-        <div class="name">🐾 下山步行約 15 分鐘 → 館前路方向</div>
+        <div class="name">🪶 下山步行約 15 分鐘 → 館前路方向</div>
       </div>
     </div>
 
@@ -500,25 +719,25 @@
 
     <!-- 5. 美術館 -->
     <div class="stop">
-      <div class="dot"><svg viewBox="0 0 40 40"><use href="#paw" fill="#F9A825"/></svg></div>
+      <div class="dot"><svg viewBox="0 0 40 40"><use href="#warawara-mini"/></svg></div>
       <div class="card">
         <div class="time">13:00 — 14:20</div>
         <div class="name"><span class="icon">🖼️</span> 新北市美術館</div>
-        <div class="desc">2025 年開幕的藝術新地標，蘆葦叢中的現代建築。館內寬敞明亮、展品多元，戶外也有特色藝術裝置。週二至五開放到 17:30，週末到 18:00。</div>
+        <div class="desc">2025 年開幕的藝術新地標，蘆葦叢中的現代建築——風吹過時，像真人的湖畔有哇啦哇啦要飛起來。館內寬敞明亮、展品多元，戶外也有特色藝術裝置。週二至五開放到 17:30，週末到 18:00。</div>
         <div class="tags"><a class="map-link" href="https://maps.app.goo.gl/FUNWUtyF89io6ppi9" target="_blank">📍 Google Maps</a></div>
       </div>
     </div>
 
     <div class="stop transport">
-      <div class="dot"><svg viewBox="0 0 40 40"><use href="#paw" fill="#FFD54F"/></svg></div>
+      <div class="dot"><svg viewBox="0 0 40 40"><use href="#warawara-mini"/></svg></div>
       <div class="card">
-        <div class="name">🐾 步行約 5 分鐘 → 美術館旁</div>
+        <div class="name">🪶 步行約 5 分鐘 → 美術館旁</div>
       </div>
     </div>
 
     <!-- 6. 三鶯之心 -->
     <div class="stop">
-      <div class="dot"><svg viewBox="0 0 40 40"><use href="#paw" fill="#F9A825"/></svg></div>
+      <div class="dot"><svg viewBox="0 0 40 40"><use href="#warawara-mini"/></svg></div>
       <div class="card">
         <div class="time">14:25 — 14:50</div>
         <div class="name"><span class="icon">📸</span> 三鶯之心空間藝術特區</div>
@@ -528,27 +747,27 @@
     </div>
 
     <div class="stop transport">
-      <div class="dot"><svg viewBox="0 0 40 40"><use href="#paw" fill="#FFD54F"/></svg></div>
+      <div class="dot"><svg viewBox="0 0 40 40"><use href="#warawara-mini"/></svg></div>
       <div class="card">
-        <div class="name">🐾 步行約 10 分鐘 → 文化路方向</div>
+        <div class="name">🪶 步行約 10 分鐘 → 文化路方向</div>
       </div>
     </div>
 
-    <!-- 7. 陶瓷博物館 (新增) -->
+    <!-- 7. 陶瓷博物館 -->
     <div class="stop">
-      <div class="dot"><svg viewBox="0 0 40 40"><use href="#paw" fill="#F9A825"/></svg></div>
+      <div class="dot"><svg viewBox="0 0 40 40"><use href="#warawara-mini"/></svg></div>
       <div class="card">
         <div class="time">15:00 — 15:50</div>
         <div class="name"><span class="icon">🏛️</span> 新北市立鶯歌陶瓷博物館</div>
-        <div class="desc">全台首座以陶瓷為主題的專業博物館，常設展呈現台灣陶瓷 200 年發展史，戶外陶瓷藝術園區也值得逛逛。建築本身清水模設計非常好拍。館內的「甘樂茶事」可以喝下午茶休息一下。</div>
+        <div class="desc">全台首座以陶瓷為主題的專業博物館，常設展呈現台灣陶瓷 200 年發展史，戶外陶瓷藝術園區也值得逛逛。建築本身清水模設計非常好拍——有點像真人踏進的神祕塔裡，每層都是不同時代的窯爐。館內的「甘樂茶事」可以喝下午茶休息一下。</div>
         <div class="tags"><a class="map-link" href="https://maps.app.goo.gl/RbZ9JH6mSHXs6q1e9" target="_blank">📍 Google Maps</a></div>
       </div>
     </div>
 
     <div class="stop transport">
-      <div class="dot"><svg viewBox="0 0 40 40"><use href="#paw" fill="#FFD54F"/></svg></div>
+      <div class="dot"><svg viewBox="0 0 40 40"><use href="#warawara-mini"/></svg></div>
       <div class="card">
-        <div class="name">🐾 步行約 10 分鐘 → 老街區域</div>
+        <div class="name">🪶 步行約 10 分鐘 → 老街區域</div>
       </div>
     </div>
 
@@ -556,9 +775,9 @@
 
     <!-- 8. 老街 -->
     <div class="stop">
-      <div class="dot"><svg viewBox="0 0 40 40"><use href="#paw" fill="#F9A825"/></svg></div>
+      <div class="dot"><svg viewBox="0 0 40 40"><use href="#warawara-mini"/></svg></div>
       <div class="card">
-        <svg class="corner-char" viewBox="0 0 200 200"><use href="#pompom-face"/></svg>
+        <svg class="corner-char" viewBox="0 0 80 90"><use href="#warawara"/></svg>
         <div class="time">16:00 — 16:40</div>
         <div class="name"><span class="icon">🏮</span> 鶯歌陶瓷老街</div>
         <div class="desc">全台最大的陶瓷藝品集散地，沿街欣賞各式陶瓷創作、挑選伴手禮，也有手拉坯 DIY 體驗。</div>
@@ -568,7 +787,7 @@
 
     <!-- 9. 光點 -->
     <div class="stop">
-      <div class="dot"><svg viewBox="0 0 40 40"><use href="#paw" fill="#F9A825"/></svg></div>
+      <div class="dot"><svg viewBox="0 0 40 40"><use href="#warawara-mini"/></svg></div>
       <div class="card">
         <div class="time">16:40 — 17:10</div>
         <div class="name"><span class="icon">✨</span> 鶯歌光點美學館</div>
@@ -579,7 +798,7 @@
 
     <!-- 10. 陶館 -->
     <div class="stop">
-      <div class="dot"><svg viewBox="0 0 40 40"><use href="#paw" fill="#F9A825"/></svg></div>
+      <div class="dot"><svg viewBox="0 0 40 40"><use href="#warawara-mini"/></svg></div>
       <div class="card">
         <div class="time">17:10 — 17:30</div>
         <div class="name"><span class="icon">🏛️</span> 鶯歌老街陶館</div>
@@ -590,7 +809,7 @@
 
     <!-- 11. 星巴克 -->
     <div class="stop">
-      <div class="dot"><svg viewBox="0 0 40 40"><use href="#paw" fill="#F9A825"/></svg></div>
+      <div class="dot"><svg viewBox="0 0 40 40"><use href="#warawara-mini"/></svg></div>
       <div class="card">
         <div class="time">17:30 — 17:50</div>
         <div class="name"><span class="icon">📸</span> 星巴克 鶯歌門市</div>
@@ -603,9 +822,9 @@
 
     <!-- 12. 厚道 -->
     <div class="stop">
-      <div class="dot"><svg viewBox="0 0 40 40"><use href="#paw" fill="#F9A825"/></svg></div>
+      <div class="dot"><svg viewBox="0 0 40 40"><use href="#warawara-mini"/></svg></div>
       <div class="card">
-        <svg class="corner-char" viewBox="0 0 200 200"><use href="#pompom-face"/></svg>
+        <svg class="corner-char" viewBox="0 0 80 90"><use href="#warawara"/></svg>
         <div class="time">18:00 — 19:00</div>
         <div class="name"><span class="icon">🍱</span> 厚道飲食店</div>
         <div class="desc">鶯歌老街排隊名店，主打懷舊古早味。招牌炸排骨飯酥脆多汁、炸雞腿飯也超人氣，搭配白菜滷和各式小菜。復古裝潢讓人彷彿回到舊時光。</div>
@@ -616,9 +835,9 @@
     </div>
 
     <div class="stop transport">
-      <div class="dot"><svg viewBox="0 0 40 40"><use href="#paw" fill="#FFD54F"/></svg></div>
+      <div class="dot"><svg viewBox="0 0 40 40"><use href="#warawara-mini"/></svg></div>
       <div class="card">
-        <div class="name">🐾 慢慢逛回鶯歌火車站，約 20 分鐘</div>
+        <div class="name">🪶 慢慢逛回鶯歌火車站，約 20 分鐘</div>
       </div>
     </div>
 
@@ -626,7 +845,7 @@
 
     <!-- 13. 回程 -->
     <div class="stop">
-      <div class="dot"><svg viewBox="0 0 40 40"><use href="#paw" fill="#F9A825"/></svg></div>
+      <div class="dot"><svg viewBox="0 0 40 40"><use href="#warawara-mini"/></svg></div>
       <div class="card">
         <div class="time">19:39 — 19:57</div>
         <div class="name"><span class="icon">🚆</span> 鶯歌火車站 → 板橋火車站</div>
@@ -639,8 +858,8 @@
 
   <!-- Summary -->
   <div class="summary">
-    <svg class="corner-char" viewBox="0 0 200 200"><use href="#pompom-face"/></svg>
-    <h3>🐾 一日行程摘要</h3>
+    <svg class="corner-char" viewBox="0 0 240 300"><use href="#heron"/></svg>
+    <h3>🪶 一日行程摘要</h3>
     <div class="summary-grid">
       <div class="summary-item">
         <div class="label">行程時段</div>
@@ -662,8 +881,8 @@
   </div>
 
   <div class="footer">
-    <svg width="60" height="60" viewBox="0 0 200 200" style="opacity:0.5"><use href="#pompom-face"/></svg>
-    <p>鶯歌一日遊 — 開心出發！</p>
+    <svg width="90" height="110" viewBox="0 0 240 300" style="opacity:0.6"><use href="#heron"/></svg>
+    <p>「你想活出怎樣的人生？」—— 蒼鷺領路的鶯歌</p>
     <div style="margin-top:22px;">
       <a href="/" class="back-btn">← 返回首頁選單</a>
     </div>
