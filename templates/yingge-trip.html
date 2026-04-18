@@ -284,6 +284,26 @@
   }
   .footer p { font-size: 0.75rem; color: #BCAAA4; font-weight: 500; margin-top: 6px; }
 
+  .back-btn {
+    display: inline-block;
+    margin-bottom: 18px;
+    padding: 10px 26px;
+    background: linear-gradient(135deg, #FFD54F, #FFCA28);
+    color: #5D4037;
+    font-weight: 900;
+    font-size: 0.9rem;
+    text-decoration: none;
+    border-radius: 30px;
+    border: 2px solid #F9A825;
+    box-shadow: 0 3px 10px rgba(255, 193, 7, 0.3);
+    transition: transform 0.2s, box-shadow 0.2s;
+    letter-spacing: 1px;
+  }
+  .back-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(255, 193, 7, 0.42);
+  }
+
   /* floating paws */
   .float-paw {
     position: fixed;
@@ -631,6 +651,8 @@
   </div>
 
   <div class="footer">
+    <a href="/" class="back-btn">← 返回首頁選單</a>
+    <br>
     <svg width="60" height="60" viewBox="0 0 200 200" style="opacity:0.5"><use href="#pompom-face"/></svg>
     <p>鶯歌一日遊 — 開心出發！</p>
   </div>
